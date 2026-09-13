@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>АПЛ 2026/2027</title>
+    <link rel="icon" type="image/png" href="https://img.championat.com/tournir/1784643446901518332.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 30%,#1a0030,#0d001a);color:#f0f3f8;line-height:1.4;padding-top:60px;padding-bottom:10px}
+        body::before{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjMiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZikgb3BhY2l0eT0iMC4wNiIvPjwvc3ZnPg==');background-repeat:repeat;pointer-events:none;opacity:.2;z-index:0}
+        .app{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:.8rem 1rem 120px}
+        .top-panel{position:fixed;top:0;left:0;right:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);padding:.4rem 1rem;z-index:100;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.2rem .8rem;border-bottom:1px solid rgba(0,255,135,.25)}
+        .top-panel .hero-title{font-size:1.6rem;font-weight:800;background:linear-gradient(90deg,#00ff87,#a8ffd0,#00ff87);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.02em;white-space:nowrap;display:inline-flex;align-items:center;gap:8px}
+        .top-panel .apl-logo{height:28px;width:auto;display:inline-block;vertical-align:middle}
+        .tour-status{font-size:.75rem;color:#ef4444;font-weight:600;text-align:center;margin-top:.2rem;width:100%}
+        .bottom-panel{position:fixed;bottom:0;left:0;right:0;background:rgba(10,0,20,.95);backdrop-filter:blur(8px);display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.4rem;padding:.4rem .6rem;z-index:100;border-top:1px solid rgba(0,255,135,.25)}
+        .bottom-btn,.bottom-link{background:rgba(56,0,60,.7);backdrop-filter:blur(4px);border:1px solid rgba(0,255,135,.35);padding:.4rem .7rem;border-radius:30px;font-weight:600;font-size:.7rem;color:#e2f2ef;cursor:pointer;transition:.2s;text-decoration:none;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+        .bottom-btn.active{background:#00ff87;color:#0d001a;border-color:#00ff87}
+        .bottom-link:hover{background:rgba(0,255,135,.25);border-color:#00ff87}
+        .bottom-link i,.bottom-btn i{font-size:.9rem}
+        .standings{background:rgba(0,0,0,.45);backdrop-filter:blur(8px);border-radius:1.2rem;padding:.8rem;margin-bottom:1.5rem;border:1px solid rgba(0,255,135,.25);overflow-x:auto;-webkit-overflow-scrolling:touch}
+        .standings h3{font-size:1rem;margin-bottom:.6rem;display:flex;align-items:center;gap:6px}
+        .standings table{width:100%;border-collapse:collapse;font-size:.7rem;min-width:450px}
+        .standings th,.standings td{padding:.2rem .15rem;text-align:center;border:1px solid rgba(255,255,255,.06);vertical-align:middle}
+        .standings th{background:rgba(0,255,135,.12);font-weight:600;font-size:.6rem;padding:.15rem .1rem}
+        .standings .team-name{text-align:left;font-weight:500;font-size:.75rem;display:flex;align-items:center;gap:5px;padding-left:.2rem}
+        .standings .team-name a{color:#00ff87;text-decoration:none;font-weight:600}
+        .standings .team-name a:hover{text-decoration:underline;color:#a8ffd0}
+        .standings .team-logo{width:20px;height:20px;object-fit:contain;flex-shrink:0;display:inline-block;vertical-align:middle}
+        .standings td:last-child,.standings th:last-child{font-weight:700;font-size:.75rem;min-width:28px}
+        .content-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+        @media(min-width:1000px){.content-grid{grid-template-columns:1fr 240px}}
+        .matches-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+        @media(min-width:600px){.matches-grid{grid-template-columns:repeat(2,1fr)}}
+        .match-card{background:rgba(13,0,26,.7);backdrop-filter:blur(8px);border-radius:1.2rem;border:1.5px solid rgba(0,255,135,.5);transition:transform .15s,box-shadow .15s;overflow:hidden}
+        .match-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.4)}
+        .card-header{background:rgba(0,0,0,.35);padding:.3rem .7rem;display:flex;justify-content:space-between;align-items:center;font-size:.6rem;border-bottom:1px solid rgba(255,255,255,.08);flex-wrap:wrap;gap:.2rem}
+        .card-header .match-link{color:#00ff87;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:4px;font-size:.7rem}
+        .card-header .match-link:hover{text-decoration:underline;color:#a8ffd0}
+        .tour-badge{background:#1e0030;padding:.1rem .6rem;border-radius:20px;font-weight:700}
+        .teams{display:flex;justify-content:space-between;align-items:center;padding:.3rem .6rem;gap:.3rem}
+        .team{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1px;background:rgba(0,0,0,.25);padding:.2rem .3rem;border-radius:1.5rem;flex:1;font-size:1rem;font-weight:600;transition:color .2s;word-break:break-word;line-height:1.2}
+        .team .team-logo-small{width:24px;height:24px;object-fit:contain;vertical-align:middle;display:inline-block}
+        .team.win{color:#00ff87}
+        .team.loss{color:#f87171}
+        .team.draw{color:#c084fc}
+        .team a{color:inherit;text-decoration:none}
+        .team a:hover{text-decoration:underline;color:#00ff87}
+        .vs{background:#00ff8720;padding:.1rem .5rem;border-radius:20px;font-weight:700;font-size:.7rem}
+        .score-inputs{display:flex;justify-content:center;align-items:center;gap:.3rem;padding:.1rem .6rem}
+        .score-inputs input{width:50px;padding:.1rem 0;text-align:center;font-size:1.2rem;font-weight:bold;background:transparent;border:1.5px solid rgba(0,255,135,.3);border-radius:.4rem;color:#fff;font-family:monospace;cursor:default;outline:none}
+        .score-inputs input:disabled{opacity:1;background:transparent}
+        .score-inputs span{font-size:1.2rem;font-weight:bold;color:#fff}
+        .calendar-wrap{background:rgba(0,0,0,.45);backdrop-filter:blur(8px);border-radius:1.2rem;padding:.8rem;border:1px solid rgba(0,255,135,.25);height:fit-content;position:sticky;top:80px}
+        .calendar-wrap h4{text-align:center;font-size:.9rem;margin-bottom:.6rem;color:#c084fc}
+        .calendar-wrap .month-label{text-align:center;font-weight:600;font-size:.85rem;margin-bottom:.4rem;color:#e2f2ef}
+        .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;font-size:.7rem}
+        .calendar-grid .day-name{color:#8899a0;font-weight:600;font-size:.6rem;padding:.15rem 0}
+        .calendar-grid .day{padding:.2rem 0;border-radius:.3rem;color:#cbd5e1}
+        .calendar-grid .day.empty{color:transparent}
+        .calendar-grid .day.tour-day{background:rgba(0,255,135,.25);color:#00ff87;font-weight:700;border-radius:50%}
+        .calendar-grid .day.tour-day.active-tour{background:rgba(0,255,135,.45);color:#fff}
+        .calendar-grid .day.other-month{opacity:.3}
+        @media(max-width:480px){body{padding-top:50px;padding-bottom:5px}.app{padding:.5rem .6rem 100px}.top-panel{padding:.3rem .6rem;gap:.1rem}.top-panel .hero-title{font-size:1.2rem}.top-panel .apl-logo{height:22px}.tour-status{font-size:.65rem}.bottom-btn,.bottom-link{font-size:.6rem;padding:.3rem .5rem}.standings{padding:.5rem}.standings table{font-size:.6rem;min-width:320px}.standings th,.standings td{padding:.15rem .1rem}.standings .team-name{font-size:.65rem;gap:3px}.standings .team-logo{width:16px;height:16px}.standings td:last-child{font-size:.65rem;min-width:24px}.team{font-size:.85rem}.team .team-logo-small{width:20px;height:20px}.score-inputs input{width:40px;font-size:1rem}.matches-grid{gap:.6rem}.match-card{border-radius:1rem}.card-header{font-size:.5rem;padding:.2rem .5rem}.tour-badge{font-size:.5rem;padding:.05rem .4rem}.calendar-wrap{padding:.5rem}.calendar-grid{font-size:.6rem;gap:1px}}
+        @media(max-width:380px){.app{padding:.5rem .6rem 90px}.standings table{font-size:.5rem;min-width:280px}.standings .team-name{font-size:.55rem}.standings .team-logo{width:14px;height:14px}.team{font-size:.75rem}.team .team-logo-small{width:16px;height:16px}.score-inputs input{width:32px;font-size:.9rem}}
+    </style>
+</head>
+<body>
+<div class="top-panel">
+    <div class="hero-title"><img src="https://img.championat.com/tournir/1784643446901518332.png" alt="АПЛ" class="apl-logo"> АПЛ 2026/2027</div>
+    <div id="tourStatus" class="tour-status"></div>
+</div>
+<div class="app">
+    <div id="standingsContainer" class="standings"></div>
+    <div class="content-grid">
+        <div class="matches-grid" id="matchesContainer"></div>
+        <div class="calendar-wrap" id="calendarContainer">
+            <h4><i class="fas fa-calendar-alt"></i> Календарь</h4>
+            <div class="month-label" id="monthLabel"></div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+        </div>
+    </div>
+</div>
+<div class="bottom-panel" id="bottomPanel"></div>
+<script>
+// ===================================================================
+// ДАННЫЕ
+// ===================================================================
+const teams = ["Арсенал","Астон Вилла","Борнмут","Брентфорд","Брайтон энд Хоув Альбион","Челси","Ковентри Сити","Кристал Пэлас","Эвертон","Фулхэм","Халл Сити","Ипсвич Таун","Лидс Юнайтед","Ливерпуль","Манчестер Сити","Манчестер Юнайтед","Ньюкасл Юнайтед","Ноттингем Форест","Сандерленд","Тоттенхэм Хотспур"];
+
+const teamLogos = {
+    "Арсенал":"https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg",
+    "Астон Вилла":"https://upload.wikimedia.org/wikipedia/en/9/9f/Aston_Villa_FC_crest.svg",
+    "Борнмут":"https://upload.wikimedia.org/wikipedia/en/e/e5/AFC_Bournemouth_%28crest%29.svg",
+    "Брентфорд":"https://upload.wikimedia.org/wikipedia/en/2/2a/Brentford_FC_crest.svg",
+    "Брайтон энд Хоув Альбион":"https://upload.wikimedia.org/wikipedia/en/f/fd/Brighton_%26_Hove_Albion_FC_logo.svg",
+    "Челси":"https://upload.wikimedia.org/wikipedia/en/c/cc/Chelsea_FC.svg",
+    "Ковентри Сити":"https://upload.wikimedia.org/wikipedia/en/0/0e/Coventry_City_FC_logo.svg",
+    "Кристал Пэлас":"https://upload.wikimedia.org/wikipedia/en/a/a2/Crystal_Palace_FC_logo.svg",
+    "Эвертон":"https://upload.wikimedia.org/wikipedia/en/7/7c/Everton_FC_logo.svg",
+    "Фулхэм":"https://upload.wikimedia.org/wikipedia/en/e/eb/Fulham_FC_%28diagonal_halves%29.svg",
+    "Халл Сити":"https://upload.wikimedia.org/wikipedia/en/5/54/Hull_City_A.F.C._logo.svg",
+    "Ипсвич Таун":"https://upload.wikimedia.org/wikipedia/en/4/4a/Ipswich_Town.svg",
+    "Лидс Юнайтед":"https://upload.wikimedia.org/wikipedia/en/5/54/Leeds_United_F.C._logo.svg",
+    "Ливерпуль":"https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg",
+    "Манчестер Сити":"https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg",
+    "Манчестер Юнайтед":"https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg",
+    "Ньюкасл Юнайтед":"https://upload.wikimedia.org/wikipedia/en/5/56/Newcastle_United_Logo.svg",
+    "Ноттингем Форест":"https://upload.wikimedia.org/wikipedia/en/e/e5/Nottingham_Forest_F.C._logo.svg",
+    "Сандерленд":"https://upload.wikimedia.org/wikipedia/en/7/77/Sunderland_AFClogo.svg",
+    "Тоттенхэм Хотспур":"https://upload.wikimedia.org/wikipedia/en/b/b4/Tottenham_Hotspur.svg"
+};
+
+// ===================================================================
+// ID КОМАНД НА CHAMPIONAT (для ссылок)
+// Известен только ID «Ипсвич Таун». Остальные — заглушки,
+// для них будет использоваться поиск по названию.
+// ===================================================================
+const teamIds = {
+    "Ипсвич Таун": 280930
+};
+
+// ===================================================================
+// ДАННЫЕ МАТЧЕЙ (38 туров, 380 матчей)
+// ===================================================================
+const matchData = [
+    // 1-й тур
+    { id:1, tour:1, date:"21.08.2026", time:"22:00", home:"Арсенал", away:"Ковентри Сити", homeScore:3, awayScore:0 },
+    { id:2, tour:1, date:"22.08.2026", time:"14:30", home:"Халл Сити", away:"Манчестер Юнайтед", homeScore:2, awayScore:0 },
+    { id:3, tour:1, date:"22.08.2026", time:"17:00", home:"Ипсвич Таун", away:"Сандерленд", homeScore:2, awayScore:1 },
+    { id:4, tour:1, date:"22.08.2026", time:"17:00", home:"Ноттингем Форест", away:"Лидс Юнайтед", homeScore:0, awayScore:1 },
+    { id:5, tour:1, date:"22.08.2026", time:"17:00", home:"Эвертон", away:"Кристал Пэлас", homeScore:2, awayScore:0 },
+    { id:6, tour:1, date:"22.08.2026", time:"19:30", home:"Брентфорд", away:"Тоттенхэм Хотспур", homeScore:3, awayScore:0 },
+    { id:7, tour:1, date:"23.08.2026", time:"16:00", home:"Манчестер Сити", away:"Борнмут", homeScore:2, awayScore:1 },
+    { id:8, tour:1, date:"23.08.2026", time:"16:00", home:"Брайтон энд Хоув Альбион", away:"Астон Вилла", homeScore:4, awayScore:0 },
+    { id:9, tour:1, date:"23.08.2026", time:"18:30", home:"Ньюкасл Юнайтед", away:"Ливерпуль", homeScore:2, awayScore:2 },
+    { id:10, tour:1, date:"24.08.2026", time:"22:00", home:"Фулхэм", away:"Челси", homeScore:2, awayScore:3 },
+
+    // 2-й тур
+    { id:11, tour:2, date:"28.08.2026", time:"22:00", home:"Кристал Пэлас", away:"Манчестер Сити", homeScore:1, awayScore:4 },
+    { id:12, tour:2, date:"29.08.2026", time:"14:30", home:"Ливерпуль", away:"Ноттингем Форест", homeScore:2, awayScore:2 },
+    { id:13, tour:2, date:"29.08.2026", time:"17:00", home:"Ковентри Сити", away:"Халл Сити", homeScore:0, awayScore:1 },
+    { id:14, tour:2, date:"29.08.2026", time:"17:00", home:"Борнмут", away:"Эвертон", homeScore:1, awayScore:1 },
+    { id:15, tour:2, date:"29.08.2026", time:"19:30", home:"Тоттенхэм Хотспур", away:"Ньюкасл Юнайтед", homeScore:0, awayScore:2 },
+    { id:16, tour:2, date:"30.08.2026", time:"16:00", home:"Челси", away:"Брайтон энд Хоув Альбион", homeScore:4, awayScore:3 },
+    { id:17, tour:2, date:"30.08.2026", time:"16:00", home:"Сандерленд", away:"Фулхэм", homeScore:1, awayScore:0 },
+    { id:18, tour:2, date:"30.08.2026", time:"16:00", home:"Лидс Юнайтед", away:"Брентфорд", homeScore:1, awayScore:1 },
+    { id:19, tour:2, date:"30.08.2026", time:"18:30", home:"Манчестер Юнайтед", away:"Ипсвич Таун", homeScore:5, awayScore:2 },
+    { id:20, tour:2, date:"31.08.2026", time:"22:00", home:"Астон Вилла", away:"Арсенал", homeScore:0, awayScore:1 },
+
+    // 3-й тур
+    { id:21, tour:3, date:"04.09.2026", time:"22:00", home:"Ипсвич Таун", away:"Ливерпуль", homeScore:0, awayScore:2 },
+    { id:22, tour:3, date:"05.09.2026", time:"14:30", home:"Ньюкасл Юнайтед", away:"Борнмут", homeScore:2, awayScore:2 },
+    { id:23, tour:3, date:"05.09.2026", time:"17:00", home:"Фулхэм", away:"Кристал Пэлас", homeScore:2, awayScore:3 },
+    { id:24, tour:3, date:"05.09.2026", time:"17:00", home:"Брайтон энд Хоув Альбион", away:"Лидс Юнайтед", homeScore:1, awayScore:1 },
+    { id:25, tour:3, date:"05.09.2026", time:"17:00", home:"Ноттингем Форест", away:"Тоттенхэм Хотспур", homeScore:0, awayScore:0 },
+    { id:26, tour:3, date:"05.09.2026", time:"17:00", home:"Манчестер Сити", away:"Ковентри Сити", homeScore:1, awayScore:0 },
+    { id:27, tour:3, date:"05.09.2026", time:"17:00", home:"Брентфорд", away:"Сандерленд", homeScore:1, awayScore:1 },
+    { id:28, tour:3, date:"05.09.2026", time:"19:30", home:"Халл Сити", away:"Астон Вилла", homeScore:0, awayScore:0 },
+    { id:29, tour:3, date:"06.09.2026", time:"16:00", home:"Эвертон", away:"Манчестер Юнайтед", homeScore:2, awayScore:2 },
+    { id:30, tour:3, date:"06.09.2026", time:"18:30", home:"Арсенал", away:"Челси", homeScore:2, awayScore:1 },
+
+    // 4-й тур
+    { id:31, tour:4, date:"12.09.2026", time:"17:00", home:"Кристал Пэлас", away:"Ипсвич Таун", homeScore:2, awayScore:3 },
+    { id:32, tour:4, date:"12.09.2026", time:"17:00", home:"Ливерпуль", away:"Фулхэм", homeScore:0, awayScore:0 },
+    { id:33, tour:4, date:"12.09.2026", time:"17:00", home:"Борнмут", away:"Брентфорд", homeScore:2, awayScore:2 },
+    { id:34, tour:4, date:"12.09.2026", time:"17:00", home:"Астон Вилла", away:"Ноттингем Форест", homeScore:1, awayScore:2 },
+    { id:35, tour:4, date:"12.09.2026", time:"17:00", home:"Челси", away:"Халл Сити", homeScore:2, awayScore:2 },
+    { id:36, tour:4, date:"12.09.2026", time:"19:30", home:"Тоттенхэм Хотспур", away:"Эвертон", homeScore:0, awayScore:0 },
+    { id:37, tour:4, date:"12.09.2026", time:"22:00", home:"Сандерленд", away:"Арсенал", homeScore:0, awayScore:2 },
+    { id:38, tour:4, date:"13.09.2026", time:"16:00", home:"Ковентри Сити", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
+    { id:39, tour:4, date:"13.09.2026", time:"18:30", home:"Манчестер Юнайтед", away:"Манчестер Сити", homeScore:null, awayScore:null },
+    { id:40, tour:4, date:"14.09.2026", time:"22:00", home:"Лидс Юнайтед", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+
+    // 5-й тур
+    { id:41, tour:5, date:"18.09.2026", time:"22:00", home:"Брентфорд", away:"Челси", homeScore:null, awayScore:null },
+    { id:42, tour:5, date:"19.09.2026", time:"14:30", home:"Тоттенхэм Хотспур", away:"Астон Вилла", homeScore:null, awayScore:null },
+    { id:43, tour:5, date:"19.09.2026", time:"17:00", home:"Ньюкасл Юнайтед", away:"Халл Сити", homeScore:null, awayScore:null },
+    { id:44, tour:5, date:"19.09.2026", time:"17:00", home:"Брайтон энд Хоув Альбион", away:"Арсенал", homeScore:null, awayScore:null },
+    { id:45, tour:5, date:"19.09.2026", time:"17:00", home:"Эвертон", away:"Ипсвич Таун", homeScore:null, awayScore:null },
+    { id:46, tour:5, date:"19.09.2026", time:"19:30", home:"Ноттингем Форест", away:"Ковентри Сити", homeScore:null, awayScore:null },
+    { id:47, tour:5, date:"20.09.2026", time:"16:00", home:"Борнмут", away:"Ливерпуль", homeScore:null, awayScore:null },
+    { id:48, tour:5, date:"20.09.2026", time:"16:00", home:"Лидс Юнайтед", away:"Кристал Пэлас", homeScore:null, awayScore:null },
+    { id:49, tour:5, date:"20.09.2026", time:"16:00", home:"Манчестер Сити", away:"Сандерленд", homeScore:null, awayScore:null },
+    { id:50, tour:5, date:"20.09.2026", time:"18:30", home:"Фулхэм", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
+
+    // 6-й тур
+    { id:51, tour:6, date:"10.10.2026", time:"14:30", home:"Арсенал", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
+    { id:52, tour:6, date:"10.10.2026", time:"17:00", home:"Ипсвич Таун", away:"Фулхэм", homeScore:null, awayScore:null },
+    { id:53, tour:6, date:"10.10.2026", time:"17:00", home:"Сандерленд", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
+    { id:54, tour:6, date:"10.10.2026", time:"17:00", home:"Челси", away:"Борнмут", homeScore:null, awayScore:null },
+    { id:55, tour:6, date:"10.10.2026", time:"17:00", home:"Астон Вилла", away:"Брентфорд", homeScore:null, awayScore:null },
+    { id:56, tour:6, date:"10.10.2026", time:"19:30", home:"Манчестер Юнайтед", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+    { id:57, tour:6, date:"11.10.2026", time:"16:00", home:"Халл Сити", away:"Эвертон", homeScore:null, awayScore:null },
+    { id:58, tour:6, date:"11.10.2026", time:"16:00", home:"Кристал Пэлас", away:"Ноттингем Форест", homeScore:null, awayScore:null },
+    { id:59, tour:6, date:"11.10.2026", time:"18:30", home:"Ливерпуль", away:"Манчестер Сити", homeScore:null, awayScore:null },
+    { id:60, tour:6, date:"12.10.2026", time:"22:00", home:"Ковентри Сити", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+
+    // 7-й тур
+    { id:61, tour:7, date:"17.10.2026", time:"14:30", home:"Эвертон", away:"Челси", homeScore:null, awayScore:null },
+    { id:62, tour:7, date:"17.10.2026", time:"17:00", home:"Фулхэм", away:"Халл Сити", homeScore:null, awayScore:null },
+    { id:63, tour:7, date:"17.10.2026", time:"17:00", home:"Брентфорд", away:"Ливерпуль", homeScore:null, awayScore:null },
+    { id:64, tour:7, date:"17.10.2026", time:"17:00", home:"Манчестер Сити", away:"Ипсвич Таун", homeScore:null, awayScore:null },
+    { id:65, tour:7, date:"17.10.2026", time:"19:30", home:"Ньюкасл Юнайтед", away:"Астон Вилла", homeScore:null, awayScore:null },
+    { id:66, tour:7, date:"18.10.2026", time:"16:00", home:"Брайтон энд Хоув Альбион", away:"Кристал Пэлас", homeScore:null, awayScore:null },
+    { id:67, tour:7, date:"18.10.2026", time:"16:00", home:"Лидс Юнайтед", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
+    { id:68, tour:7, date:"18.10.2026", time:"16:00", home:"Борнмут", away:"Сандерленд", homeScore:null, awayScore:null },
+    { id:69, tour:7, date:"18.10.2026", time:"18:30", home:"Ноттингем Форест", away:"Арсенал", homeScore:null, awayScore:null },
+    { id:70, tour:7, date:"19.10.2026", time:"22:00", home:"Тоттенхэм Хотспур", away:"Ковентри Сити", homeScore:null, awayScore:null },
+
+    // 8-й тур
+    { id:71, tour:8, date:"23.10.2026", time:"22:00", home:"Ипсвич Таун", away:"Ноттингем Форест", homeScore:null, awayScore:null },
+    { id:72, tour:8, date:"24.10.2026", time:"14:30", home:"Астон Вилла", away:"Манчестер Сити", homeScore:null, awayScore:null },
+    { id:73, tour:8, date:"24.10.2026", time:"17:00", home:"Ковентри Сити", away:"Фулхэм", homeScore:null, awayScore:null },
+    { id:74, tour:8, date:"24.10.2026", time:"17:00", home:"Арсенал", away:"Эвертон", homeScore:null, awayScore:null },
+    { id:75, tour:8, date:"24.10.2026", time:"19:30", home:"Челси", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+    { id:76, tour:8, date:"25.10.2026", time:"17:00", home:"Ливерпуль", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
+    { id:77, tour:8, date:"25.10.2026", time:"17:00", home:"Манчестер Юнайтед", away:"Борнмут", homeScore:null, awayScore:null },
+    { id:78, tour:8, date:"25.10.2026", time:"17:00", home:"Халл Сити", away:"Брентфорд", homeScore:null, awayScore:null },
+    { id:79, tour:8, date:"25.10.2026", time:"17:00", home:"Кристал Пэлас", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+    { id:80, tour:8, date:"25.10.2026", time:"19:30", home:"Сандерленд", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
+
+    // 9-й тур
+    { id:81, tour:9, date:"31.10.2026", time:"15:30", home:"Челси", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
+    { id:82, tour:9, date:"31.10.2026", time:"18:00", home:"Манчестер Сити", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
+    { id:83, tour:9, date:"31.10.2026", time:"18:00", home:"Халл Сити", away:"Ипсвич Таун", homeScore:null, awayScore:null },
+    { id:84, tour:9, date:"31.10.2026", time:"18:00", home:"Брентфорд", away:"Ноттингем Форест", homeScore:null, awayScore:null },
+    { id:85, tour:9, date:"31.10.2026", time:"18:00", home:"Борнмут", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
+    { id:86, tour:9, date:"31.10.2026", time:"18:00", home:"Ковентри Сити", away:"Сандерленд", homeScore:null, awayScore:null },
+    { id:87, tour:9, date:"31.10.2026", time:"20:30", home:"Тоттенхэм Хотспур", away:"Кристал Пэлас", homeScore:null, awayScore:null },
+    { id:88, tour:9, date:"31.10.2026", time:"23:00", home:"Астон Вилла", away:"Фулхэм", homeScore:null, awayScore:null },
+    { id:89, tour:9, date:"01.11.2026", time:"19:30", home:"Ливерпуль", away:"Арсенал", homeScore:null, awayScore:null },
+    { id:90, tour:9, date:"02.11.2026", time:"23:00", home:"Ньюкасл Юнайтед", away:"Эвертон", homeScore:null, awayScore:null },
+
+    // 10-й тур
+    { id:91, tour:10, date:"07.11.2026", time:"18:00", home:"Ноттингем Форест", away:"Манчестер Сити", homeScore:null, awayScore:null },
+    { id:92, tour:10, date:"07.11.2026", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Брентфорд", homeScore:null, awayScore:null },
+    { id:93, tour:10, date:"07.11.2026", time:"18:00", home:"Фулхэм", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+    { id:94, tour:10, date:"07.11.2026", time:"18:00", home:"Арсенал", away:"Халл Сити", homeScore:null, awayScore:null },
+    { id:95, tour:10, date:"07.11.2026", time:"18:00", home:"Ипсвич Таун", away:"Борнмут", homeScore:null, awayScore:null },
+    { id:96, tour:10, date:"07.11.2026", time:"18:00", home:"Манчестер Юнайтед", away:"Астон Вилла", homeScore:null, awayScore:null },
+    { id:97, tour:10, date:"07.11.2026", time:"18:00", home:"Сандерленд", away:"Челси", homeScore:null, awayScore:null },
+    { id:98, tour:10, date:"07.11.2026", time:"18:00", home:"Эвертон", away:"Ковентри Сити", homeScore:null, awayScore:null },
+    { id:99, tour:10, date:"07.11.2026", time:"18:00", home:"Лидс Юнайтед", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+    { id:100, tour:10, date:"07.11.2026", time:"18:00", home:"Кристал Пэлас", away:"Ливерпуль", homeScore:null, awayScore:null },
+
+    // 11-й тур
+    { id:101, tour:11, date:"21.11.2026", time:"18:00", home:"Тоттенхэм Хотспур", away:"Ипсвич Таун", homeScore:null, awayScore:null },
+    { id:102, tour:11, date:"21.11.2026", time:"18:00", home:"Ньюкасл Юнайтед", away:"Арсенал", homeScore:null, awayScore:null },
+    { id:103, tour:11, date:"21.11.2026", time:"18:00", home:"Манчестер Сити", away:"Фулхэм", homeScore:null, awayScore:null },
+    { id:104, tour:11, date:"21.11.2026", time:"18:00", home:"Халл Сити", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
+    { id:105, tour:11, date:"21.11.2026", time:"18:00", home:"Брентфорд", away:"Эвертон", homeScore:null, awayScore:null },
+    { id:106, tour:11, date:"21.11.2026", time:"18:00", home:"Челси", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
+    { id:107, tour:11, date:"21.11.2026", time:"18:00", home:"Ливерпуль", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
+    { id:108, tour:11, date:"21.11.2026", time:"18:00", home:"Ковентри Сити", away:"Кристал Пэлас", homeScore:null, awayScore:null },
+    { id:109, tour:11, date:"21.11.2026", time:"18:00", home:"Астон Вилла", away:"Сандерленд", homeScore:null, awayScore:null },
+    { id:110, tour:11, date:"21.11.2026", time:"18:00", home:"Борнмут", away:"Ноттингем Форест", homeScore:null, awayScore:null },
+
+    // 12-й тур
+    { id:111, tour:12, date:"28.11.2026", time:"18:00", home:"Лидс Юнайтед", away:"Ковентри Сити", homeScore:null, awayScore:null },
+    { id:112, tour:12, date:"28.11.2026", time:"18:00", home:"Ноттингем Форест", away:"Челси", homeScore:null, awayScore:null },
+    { id:113, tour:12, date:"28.11.2026", time:"18:00", home:"Сандерленд", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+    { id:114, tour:12, date:"28.11.2026", time:"18:00", home:"Манчестер Юнайтед", away:"Брентфорд", homeScore:null, awayScore:null },
+    { id:115, tour:12, date:"28.11.2026", time:"18:00", home:"Фулхэм", away:"Борнмут", homeScore:null, awayScore:null },
+    { id:116, tour:12, date:"28.11.2026", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+    { id:117, tour:12, date:"28.11.2026", time:"18:00", home:"Кристал Пэлас", away:"Халл Сити", homeScore:null, awayScore:null },
+    { id:118, tour:12, date:"28.11.2026", time:"18:00", home:"Арсенал", away:"Манчестер Сити", homeScore:null, awayScore:null },
+    { id:119, tour:12, date:"28.11.2026", time:"18:00", home:"Ипсвич Таун", away:"Астон Вилла", homeScore:null, awayScore:null },
+    { id:120, tour:12, date:"28.11.2026", time:"18:00", home:"Эвертон", away:"Ливерпуль", homeScore:null, awayScore:null },
+
+    // 13-й тур
+    { id:121, tour:13, date:"02.12.2026", time:"23:00", home:"Ньюкасл Юнайтед", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
+    { id:122, tour:13, date:"02.12.2026", time:"23:00", home:"Тоттенхэм Хотспур", away:"Фулхэм", homeScore:null, awayScore:null },
+    { id:123, tour:13, date:"02.12.2026", time:"23:00", home:"Челси", away:"Кристал Пэлас", homeScore:null, awayScore:null },
+    { id:124, tour:13, date:"02.12.2026", time:"23:00", home:"Ливерпуль", away:"Сандерленд", homeScore:null, awayScore:null },
+    { id:125, tour:13, date:"02.12.2026", time:"23:00", home:"Ковентри Сити", away:"Ипсвич Таун", homeScore:null, awayScore:null },
+    { id:126, tour:13, date:"02.12.2026", time:"23:00", home:"Борнмут", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
+    { id:127, tour:13, date:"02.12.2026", time:"23:00", home:"Манчестер Сити", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
+    { id:128, tour:13, date:"02.12.2026", time:"23:00", home:"Халл Сити", away:"Ноттингем Форест", homeScore:null, awayScore:null },
+    { id:129, tour:13, date:"02.12.2026", time:"23:00", home:"Брентфорд", away:"Арсенал", homeScore:null, awayScore:null },
+    { id:130, tour:13, date:"02.12.2026", time:"23:00", home:"Астон Вилла", away:"Эвертон", homeScore:null, awayScore:null },
+
+    // 14-й тур
+    { id:131, tour:14, date:"05.12.2026", time:"18:00", home:"Ноттингем Форест", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
+    { id:132, tour:14, date:"05.12.2026", time:"18:00", home:"Ньюкасл Юнайтед", away:"Сандерленд", homeScore:null, awayScore:null },
+    { id:133, tour:14, date:"05.12.2026", time:"18:00", home:"Тоттенхэм Хотспур", away:"Арсенал", homeScore:null, awayScore:null },
+    { id:134, tour:14, date:"05.12.2026", time:"18:00", home:"Брентфорд", away:"Манчестер Сити", homeScore:null, awayScore:null },
+    { id:135, tour:14, date:"05.12.2026", time:"18:00", home:"Челси", away:"Ливерпуль", homeScore:null, awayScore:null },
+    { id:136, tour:14, date:"05.12.2026", time:"18:00", home:"Борнмут", away:"Халл Сити", homeScore:null, awayScore:null },
+    { id:137, tour:14, date:"05.12.2026", time:"18:00", home:"Астон Вилла", away:"Кристал Пэлас", homeScore:null, awayScore:null },
+    { id:138, tour:14, date:"05.12.2026", time:"18:00", home:"Лидс Юнайтед", away:"Ипсвич Таун", homeScore:null, awayScore:null },
+    { id:139, tour:14, date:"05.12.2026", time:"18:00", home:"Манчестер Юнайтед", away:"Ковентри Сити", homeScore:null, awayScore:null },
+    { id:140, tour:14, date:"05.12.2026", time:"18:00", home:"Эвертон", away:"Фулхэм", homeScore:null, awayScore:null },
+
+    // 15-й тур
+    { id:141, tour:15, date:"12.12.2026", time:"18:00", home:"Сандерленд", away:"Ноттингем Форест", homeScore:null, awayScore:null },
+    { id:142, tour:15, date:"12.12.2026", time:"18:00", home:"Кристал Пэлас", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
+    { id:143, tour:15, date:"12.12.2026", time:"18:00", home:"Манчестер Сити", away:"Челси", homeScore:null, awayScore:null },
+    { id:144, tour:15, date:"12.12.2026", time:"18:00", home:"Ковентри Сити", away:"Астон Вилла", homeScore:null, awayScore:null },
+    { id:145, tour:15, date:"12.12.2026", time:"18:00", home:"Ипсвич Таун", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+    { id:146, tour:15, date:"12.12.2026", time:"18:00", home:"Халл Сити", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+    { id:147, tour:15, date:"12.12.2026", time:"18:00", home:"Фулхэм", away:"Брентфорд", homeScore:null, awayScore:null },
+    { id:148, tour:15, date:"12.12.2026", time:"18:00", home:"Арсенал", away:"Борнмут", homeScore:null, awayScore:null },
+    { id:149, tour:15, date:"12.12.2026", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Эвертон", homeScore:null, awayScore:null },
+    { id:150, tour:15, date:"12.12.2026", time:"18:00", home:"Ливерпуль", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
+
+    // 16-й тур
+    { id:151, tour:16, date:"19.12.2026", time:"18:00", home:"Сандерленд", away:"Кристал Пэлас", homeScore:null, awayScore:null },
+    { id:152, tour:16, date:"19.12.2026", time:"18:00", home:"Ноттингем Форест", away:"Эвертон", homeScore:null, awayScore:null },
+    { id:153, tour:16, date:"19.12.2026", time:"18:00", home:"Ливерпуль", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+    { id:154, tour:16, date:"19.12.2026", time:"18:00", home:"Брентфорд", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+    { id:155, tour:16, date:"19.12.2026", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Ипсвич Таун", homeScore:null, awayScore:null },
+    { id:156, tour:16, date:"19.12.2026", time:"18:00", home:"Манчестер Сити", away:"Халл Сити", homeScore:null, awayScore:null },
+    { id:157, tour:16, date:"19.12.2026", time:"18:00", home:"Арсенал", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
+    { id:158, tour:16, date:"19.12.2026", time:"18:00", home:"Лидс Юнайтед", away:"Фулхэм", homeScore:null, awayScore:null },
+    { id:159, tour:16, date:"19.12.2026", time:"18:00", home:"Челси", away:"Астон Вилла", homeScore:null, awayScore:null },
+    { id:160, tour:16, date:"19.12.2026", time:"18:00", home:"Борнмут", away:"Ковентри Сити", homeScore:null, awayScore:null },
+
+    // 17-й тур
+    { id:161, tour:17, date:"26.12.2026", time:"15:30", home:"Астон Вилла", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
+    { id:162, tour:17, date:"26.12.2026", time:"18:00", home:"Тоттенхэм Хотспур", away:"Борнмут", homeScore:null, awayScore:null },
+    { id:163, tour:17, date:"26.12.2026", time:"18:00", home:"Ипсвич Таун", away:"Брентфорд", homeScore:null, awayScore:null },
+    { id:164, tour:17, date:"26.12.2026", time:"18:00", home:"Фулхэм", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
+    { id:165, tour:17, date:"26.12.2026", time:"18:00", home:"Эвертон", away:"Сандерленд", homeScore:null, awayScore:null },
+    { id:166, tour:17, date:"26.12.2026", time:"20:30", home:"Халл Сити", away:"Ливерпуль", homeScore:null, awayScore:null },
+    { id:167, tour:17, date:"26.12.2026", time:"23:00", home:"Ньюкасл Юнайтед", away:"Манчестер Сити", homeScore:null, awayScore:null },
+    { id:168, tour:17, date:"27.12.2026", time:"17:00", home:"Ковентри Сити", away:"Челси", homeScore:null, awayScore:null },
+    { id:169, tour:17, date:"27.12.2026", time:"19:30", home:"Манчестер Юнайтед", away:"Ноттингем Форест", homeScore:null, awayScore:null },
+    { id:170, tour:17, date:"27.12.2026", time:"22:00", home:"Кристал Пэлас", away:"Арсенал", homeScore:null, awayScore:null },
+
+    // 18-й тур
+    { id:171, tour:18, date:"29.12.2026", time:"22:30", home:"Халл Сити", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
+    { id:172, tour:18, date:"29.12.2026", time:"22:30", home:"Тоттенхэм Хотспур", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
+    { id:173, tour:18, date:"29.12.2026", time:"23:15", home:"Эвертон", away:"Манчестер Сити", homeScore:null, awayScore:null },
+    { id:174, tour:18, date:"30.12.2026", time:"22:30", home:"Фулхэм", away:"Арсенал", homeScore:null, awayScore:null },
+    { id:175, tour:18, date:"30.12.2026", time:"22:30", home:"Ковентри Сити", away:"Брентфорд", homeScore:null, awayScore:null },
+    { id:176, tour:18, date:"30.12.2026", time:"22:30", home:"Манчестер Юнайтед", away:"Сандерленд", homeScore:null, awayScore:null },
+    { id:177, tour:18, date:"30.12.2026", time:"22:30", home:"Ньюкасл Юнайтед", away:"Ноттингем Форест", homeScore:null, awayScore:null },
+    { id:178, tour:18, date:"30.12.2026", time:"22:30", home:"Кристал Пэлас", away:"Борнмут", homeScore:null, awayScore:null },
+    { id:179, tour:18, date:"30.12.2026", time:"23:15", home:"Ипсвич Таун", away:"Челси", homeScore:null, awayScore:null },
+    { id:180, tour:18, date:"30.12.2026", time:"23:15", home:"Астон Вилла", away:"Ливерпуль", homeScore:null, awayScore:null },
+
+    // 19-й тур
+    { id:181, tour:19, date:"01.01.2027", time:"23:00", home:"Лидс Юнайтед", away:"Эвертон", homeScore:null, awayScore:null },
+    { id:182, tour:19, date:"02.01.2027", time:"15:30", home:"Брайтон энд Хоув Альбион", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
+    { id:183, tour:19, date:"02.01.2027", time:"18:00", home:"Ноттингем Форест", away:"Фулхэм", homeScore:null, awayScore:null },
+    { id:184, tour:19, date:"02.01.2027", time:"18:00", home:"Сандерленд", away:"Халл Сити", homeScore:null, awayScore:null },
+    { id:185, tour:19, date:"02.01.2027", time:"18:00", home:"Ливерпуль", away:"Ковентри Сити", homeScore:null, awayScore:null },
+    { id:186, tour:19, date:"02.01.2027", time:"18:00", home:"Брентфорд", away:"Кристал Пэлас", homeScore:null, awayScore:null },
+    { id:187, tour:19, date:"02.01.2027", time:"18:00", home:"Арсенал", away:"Ипсвич Таун", homeScore:null, awayScore:null },
+    { id:188, tour:19, date:"02.01.2027", time:"20:30", home:"Борнмут", away:"Астон Вилла", homeScore:null, awayScore:null },
+    { id:189, tour:19, date:"03.01.2027", time:"17:00", home:"Челси", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+    { id:190, tour:19, date:"03.01.2027", time:"19:30", home:"Манчестер Сити", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+
+    // 20-й тур
+    { id:191, tour:20, date:"05.01.2027", time:"22:30", home:"Эвертон", away:"Астон Вилла", homeScore:null, awayScore:null },
+    { id:192, tour:20, date:"05.01.2027", time:"22:30", home:"Брайтон энд Хоув Альбион", away:"Борнмут", homeScore:null, awayScore:null },
+    { id:193, tour:20, date:"05.01.2027", time:"22:30", home:"Арсенал", away:"Брентфорд", homeScore:null, awayScore:null },
+    { id:194, tour:20, date:"05.01.2027", time:"22:30", home:"Ноттингем Форест", away:"Халл Сити", homeScore:null, awayScore:null },
+    { id:195, tour:20, date:"05.01.2027", time:"23:15", home:"Сандерленд", away:"Ливерпуль", homeScore:null, awayScore:null },
+    { id:196, tour:20, date:"06.01.2027", time:"22:30", home:"Ипсвич Таун", away:"Ковентри Сити", homeScore:null, awayScore:null },
+    { id:197, tour:20, date:"06.01.2027", time:"22:30", home:"Кристал Пэлас", away:"Челси", homeScore:null, awayScore:null },
+    { id:198, tour:20, date:"06.01.2027", time:"22:30", home:"Фулхэм", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+    { id:199, tour:20, date:"06.01.2027", time:"23:15", home:"Лидс Юнайтед", away:"Манчестер Сити", homeScore:null, awayScore:null },
+    { id:200, tour:20, date:"07.01.2027", time:"23:00", home:"Манчестер Юнайтед", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+
+    // 21-й тур
+    { id:201, tour:21, date:"16.01.2027", time:"18:00", home:"Тоттенхэм Хотспур", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
+    { id:202, tour:21, date:"16.01.2027", time:"18:00", home:"Манчестер Сити", away:"Ноттингем Форест", homeScore:null, awayScore:null },
+    { id:203, tour:21, date:"16.01.2027", time:"18:00", home:"Ньюкасл Юнайтед", away:"Фулхэм", homeScore:null, awayScore:null },
+    { id:204, tour:21, date:"16.01.2027", time:"18:00", home:"Челси", away:"Сандерленд", homeScore:null, awayScore:null },
+    { id:205, tour:21, date:"16.01.2027", time:"18:00", home:"Халл Сити", away:"Арсенал", homeScore:null, awayScore:null },
+    { id:206, tour:21, date:"16.01.2027", time:"18:00", home:"Ковентри Сити", away:"Эвертон", homeScore:null, awayScore:null },
+    { id:207, tour:21, date:"16.01.2027", time:"18:00", home:"Брентфорд", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
+    { id:208, tour:21, date:"16.01.2027", time:"18:00", home:"Ливерпуль", away:"Кристал Пэлас", homeScore:null, awayScore:null },
+    { id:209, tour:21, date:"16.01.2027", time:"18:00", home:"Астон Вилла", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
+    { id:210, tour:21, date:"16.01.2027", time:"18:00", home:"Борнмут", away:"Ипсвич Таун", homeScore:null, awayScore:null },
+
+    // 22-й тур
+    { id:211, tour:22, date:"23.01.2027", time:"18:00", home:"Лидс Юнайтед", away:"Челси", homeScore:null, awayScore:null },
+    { id:212, tour:22, date:"23.01.2027", time:"18:00", home:"Эвертон", away:"Брентфорд", homeScore:null, awayScore:null },
+    { id:213, tour:22, date:"23.01.2027", time:"18:00", home:"Ипсвич Таун", away:"Халл Сити", homeScore:null, awayScore:null },
+    { id:214, tour:22, date:"23.01.2027", time:"18:00", home:"Сандерленд", away:"Ковентри Сити", homeScore:null, awayScore:null },
+    { id:215, tour:22, date:"23.01.2027", time:"18:00", home:"Фулхэм", away:"Астон Вилла", homeScore:null, awayScore:null },
+    { id:216, tour:22, date:"23.01.2027", time:"18:00", home:"Арсенал", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+    { id:217, tour:22, date:"23.01.2027", time:"18:00", home:"Ноттингем Форест", away:"Борнмут", homeScore:null, awayScore:null },
+    { id:218, tour:22, date:"23.01.2027", time:"18:00", home:"Кристал Пэлас", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+    { id:219, tour:22, date:"23.01.2027", time:"18:00", home:"Манчестер Юнайтед", away:"Ливерпуль", homeScore:null, awayScore:null },
+    { id:220, tour:22, date:"23.01.2027", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Манчестер Сити", homeScore:null, awayScore:null },
+
+    // 23-й тур
+    { id:221, tour:23, date:"30.01.2027", time:"18:00", home:"Тоттенхэм Хотспур", away:"Сандерленд", homeScore:null, awayScore:null },
+    { id:222, tour:23, date:"30.01.2027", time:"18:00", home:"Манчестер Сити", away:"Арсенал", homeScore:null, awayScore:null },
+    { id:223, tour:23, date:"30.01.2027", time:"18:00", home:"Челси", away:"Ноттингем Форест", homeScore:null, awayScore:null },
+    { id:224, tour:23, date:"30.01.2027", time:"18:00", home:"Брентфорд", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
+    { id:225, tour:23, date:"30.01.2027", time:"18:00", home:"Ковентри Сити", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
+    { id:226, tour:23, date:"30.01.2027", time:"18:00", home:"Ньюкасл Юнайтед", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
+    { id:227, tour:23, date:"30.01.2027", time:"18:00", home:"Ливерпуль", away:"Эвертон", homeScore:null, awayScore:null },
+    { id:228, tour:23, date:"30.01.2027", time:"18:00", home:"Борнмут", away:"Фулхэм", homeScore:null, awayScore:null },
+    { id:229, tour:23, date:"30.01.2027", time:"18:00", home:"Халл Сити", away:"Кристал Пэлас", homeScore:null, awayScore:null },
+    { id:230, tour:23, date:"30.01.2027", time:"18:00", home:"Астон Вилла", away:"Ипсвич Таун", homeScore:null, awayScore:null },
+
+    // 24-й тур
+    { id:231, tour:24, date:"06.02.2027", time:"18:00", home:"Лидс Юнайтед", away:"Борнмут", homeScore:null, awayScore:null },
+    { id:232, tour:24, date:"06.02.2027", time:"18:00", home:"Ноттингем Форест", away:"Брентфорд", homeScore:null, awayScore:null },
+    { id:233, tour:24, date:"06.02.2027", time:"18:00", home:"Манчестер Юнайтед", away:"Челси", homeScore:null, awayScore:null },
+    { id:234, tour:24, date:"06.02.2027", time:"18:00", home:"Эвертон", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+    { id:235, tour:24, date:"06.02.2027", time:"18:00", home:"Фулхэм", away:"Манчестер Сити", homeScore:null, awayScore:null },
+    { id:236, tour:24, date:"06.02.2027", time:"18:00", home:"Сандерленд", away:"Астон Вилла", homeScore:null, awayScore:null },
+    { id:237, tour:24, date:"06.02.2027", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Халл Сити", homeScore:null, awayScore:null },
+    { id:238, tour:24, date:"06.02.2027", time:"18:00", home:"Ипсвич Таун", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+    { id:239, tour:24, date:"06.02.2027", time:"18:00", home:"Кристал Пэлас", away:"Ковентри Сити", homeScore:null, awayScore:null },
+    { id:240, tour:24, date:"06.02.2027", time:"18:00", home:"Арсенал", away:"Ливерпуль", homeScore:null, awayScore:null },
+
+    // 25-й тур
+    { id:241, tour:25, date:"10.02.2027", time:"23:00", home:"Тоттенхэм Хотспур", away:"Манчестер Сити", homeScore:null, awayScore:null },
+    { id:242, tour:25, date:"10.02.2027", time:"23:00", home:"Халл Сити", away:"Сандерленд", homeScore:null, awayScore:null },
+    { id:243, tour:25, date:"10.02.2027", time:"23:00", home:"Фулхэм", away:"Ноттингем Форест", homeScore:null, awayScore:null },
+    { id:244, tour:25, date:"10.02.2027", time:"23:00", home:"Ипсвич Таун", away:"Арсенал", homeScore:null, awayScore:null },
+    { id:245, tour:25, date:"10.02.2027", time:"23:00", home:"Кристал Пэлас", away:"Брентфорд", homeScore:null, awayScore:null },
+    { id:246, tour:25, date:"10.02.2027", time:"23:00", home:"Манчестер Юнайтед", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
+    { id:247, tour:25, date:"10.02.2027", time:"23:00", home:"Ньюкасл Юнайтед", away:"Челси", homeScore:null, awayScore:null },
+    { id:248, tour:25, date:"10.02.2027", time:"23:00", home:"Ковентри Сити", away:"Ливерпуль", homeScore:null, awayScore:null },
+    { id:249, tour:25, date:"10.02.2027", time:"23:00", home:"Эвертон", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
+    { id:250, tour:25, date:"10.02.2027", time:"23:00", home:"Астон Вилла", away:"Борнмут", homeScore:null, awayScore:null },
+
+    // 26-й тур
+    { id:251, tour:26, date:"20.02.2027", time:"18:00", home:"Манчестер Сити", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+    { id:252, tour:26, date:"20.02.2027", time:"18:00", home:"Челси", away:"Ипсвич Таун", homeScore:null, awayScore:null },
+    { id:253, tour:26, date:"20.02.2027", time:"18:00", home:"Лидс Юнайтед", away:"Астон Вилла", homeScore:null, awayScore:null },
+    { id:254, tour:26, date:"20.02.2027", time:"18:00", home:"Арсенал", away:"Фулхэм", homeScore:null, awayScore:null },
+    { id:255, tour:26, date:"20.02.2027", time:"18:00", home:"Брентфорд", away:"Ковентри Сити", homeScore:null, awayScore:null },
+    { id:256, tour:26, date:"20.02.2027", time:"18:00", home:"Борнмут", away:"Кристал Пэлас", homeScore:null, awayScore:null },
+    { id:257, tour:26, date:"20.02.2027", time:"18:00", home:"Ноттингем Форест", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
+    { id:258, tour:26, date:"20.02.2027", time:"18:00", home:"Ливерпуль", away:"Халл Сити", homeScore:null, awayScore:null },
+    { id:259, tour:26, date:"20.02.2027", time:"18:00", home:"Сандерленд", away:"Эвертон", homeScore:null, awayScore:null },
+    { id:260, tour:26, date:"20.02.2027", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+
+    // 27-й тур
+    { id:261, tour:27, date:"27.02.2027", time:"18:00", home:"Ньюкасл Юнайтед", away:"Брентфорд", homeScore:null, awayScore:null },
+    { id:262, tour:27, date:"27.02.2027", time:"18:00", home:"Кристал Пэлас", away:"Сандерленд", homeScore:null, awayScore:null },
+    { id:263, tour:27, date:"27.02.2027", time:"18:00", home:"Ипсвич Таун", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
+    { id:264, tour:27, date:"27.02.2027", time:"18:00", home:"Манчестер Юнайтед", away:"Арсенал", homeScore:null, awayScore:null },
+    { id:265, tour:27, date:"27.02.2027", time:"18:00", home:"Ковентри Сити", away:"Борнмут", homeScore:null, awayScore:null },
+    { id:266, tour:27, date:"27.02.2027", time:"18:00", home:"Эвертон", away:"Ноттингем Форест", homeScore:null, awayScore:null },
+    { id:267, tour:27, date:"27.02.2027", time:"18:00", home:"Тоттенхэм Хотспур", away:"Ливерпуль", homeScore:null, awayScore:null },
+    { id:268, tour:27, date:"27.02.2027", time:"18:00", home:"Фулхэм", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
+    { id:269, tour:27, date:"27.02.2027", time:"18:00", home:"Халл Сити", away:"Манчестер Сити", homeScore:null, awayScore:null },
+    { id:270, tour:27, date:"27.02.2027", time:"18:00", home:"Астон Вилла", away:"Челси", homeScore:null, awayScore:null },
+
+    // 28-й тур
+    { id:271, tour:28, date:"03.03.2027", time:"23:00", home:"Ноттингем Форест", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+    { id:272, tour:28, date:"03.03.2027", time:"23:00", home:"Манчестер Сити", away:"Эвертон", homeScore:null, awayScore:null },
+    { id:273, tour:28, date:"03.03.2027", time:"23:00", home:"Сандерленд", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
+    { id:274, tour:28, date:"03.03.2027", time:"23:00", home:"Ливерпуль", away:"Астон Вилла", homeScore:null, awayScore:null },
+    { id:275, tour:28, date:"03.03.2027", time:"23:00", home:"Лидс Юнайтед", away:"Халл Сити", homeScore:null, awayScore:null },
+    { id:276, tour:28, date:"03.03.2027", time:"23:00", home:"Брентфорд", away:"Ипсвич Таун", homeScore:null, awayScore:null },
+    { id:277, tour:28, date:"03.03.2027", time:"23:00", home:"Челси", away:"Ковентри Сити", homeScore:null, awayScore:null },
+    { id:278, tour:28, date:"03.03.2027", time:"23:00", home:"Борнмут", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+    { id:279, tour:28, date:"03.03.2027", time:"23:00", home:"Брайтон энд Хоув Альбион", away:"Фулхэм", homeScore:null, awayScore:null },
+    { id:280, tour:28, date:"03.03.2027", time:"23:00", home:"Арсенал", away:"Кристал Пэлас", homeScore:null, awayScore:null },
+
+    // 29-й тур
+    { id:281, tour:29, date:"13.03.2027", time:"18:00", home:"Манчестер Юнайтед", away:"Эвертон", homeScore:null, awayScore:null },
+    { id:282, tour:29, date:"13.03.2027", time:"18:00", home:"Тоттенхэм Хотспур", away:"Ноттингем Форест", homeScore:null, awayScore:null },
+    { id:283, tour:29, date:"13.03.2027", time:"18:00", home:"Лидс Юнайтед", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
+    { id:284, tour:29, date:"13.03.2027", time:"18:00", home:"Ковентри Сити", away:"Манчестер Сити", homeScore:null, awayScore:null },
+    { id:285, tour:29, date:"13.03.2027", time:"18:00", home:"Ливерпуль", away:"Ипсвич Таун", homeScore:null, awayScore:null },
+    { id:286, tour:29, date:"13.03.2027", time:"18:00", home:"Сандерленд", away:"Брентфорд", homeScore:null, awayScore:null },
+    { id:287, tour:29, date:"13.03.2027", time:"18:00", home:"Челси", away:"Арсенал", homeScore:null, awayScore:null },
+    { id:288, tour:29, date:"13.03.2027", time:"18:00", home:"Кристал Пэлас", away:"Фулхэм", homeScore:null, awayScore:null },
+    { id:289, tour:29, date:"13.03.2027", time:"18:00", home:"Борнмут", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+    { id:290, tour:29, date:"13.03.2027", time:"18:00", home:"Астон Вилла", away:"Халл Сити", homeScore:null, awayScore:null },
+
+    // 30-й тур
+    { id:291, tour:30, date:"20.03.2027", time:"18:00", home:"Ноттингем Форест", away:"Астон Вилла", homeScore:null, awayScore:null },
+    { id:292, tour:30, date:"20.03.2027", time:"18:00", home:"Ипсвич Таун", away:"Кристал Пэлас", homeScore:null, awayScore:null },
+    { id:293, tour:30, date:"20.03.2027", time:"18:00", home:"Манчестер Сити", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
+    { id:294, tour:30, date:"20.03.2027", time:"18:00", home:"Халл Сити", away:"Челси", homeScore:null, awayScore:null },
+    { id:295, tour:30, date:"20.03.2027", time:"18:00", home:"Фулхэм", away:"Ливерпуль", homeScore:null, awayScore:null },
+    { id:296, tour:30, date:"20.03.2027", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Ковентри Сити", homeScore:null, awayScore:null },
+    { id:297, tour:30, date:"20.03.2027", time:"18:00", home:"Ньюкасл Юнайтед", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
+    { id:298, tour:30, date:"20.03.2027", time:"18:00", home:"Брентфорд", away:"Борнмут", homeScore:null, awayScore:null },
+    { id:299, tour:30, date:"20.03.2027", time:"18:00", home:"Арсенал", away:"Сандерленд", homeScore:null, awayScore:null },
+    { id:300, tour:30, date:"20.03.2027", time:"18:00", home:"Эвертон", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+
+    // 31-й тур
+    { id:301, tour:31, date:"10.04.2027", time:"17:00", home:"Сандерленд", away:"Ипсвич Таун", homeScore:null, awayScore:null },
+    { id:302, tour:31, date:"10.04.2027", time:"17:00", home:"Кристал Пэлас", away:"Эвертон", homeScore:null, awayScore:null },
+    { id:303, tour:31, date:"10.04.2027", time:"17:00", home:"Лидс Юнайтед", away:"Ноттингем Форест", homeScore:null, awayScore:null },
+    { id:304, tour:31, date:"10.04.2027", time:"17:00", home:"Манчестер Юнайтед", away:"Халл Сити", homeScore:null, awayScore:null },
+    { id:305, tour:31, date:"10.04.2027", time:"17:00", home:"Астон Вилла", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
+    { id:306, tour:31, date:"10.04.2027", time:"17:00", home:"Тоттенхэм Хотспур", away:"Брентфорд", homeScore:null, awayScore:null },
+    { id:307, tour:31, date:"10.04.2027", time:"17:00", home:"Челси", away:"Фулхэм", homeScore:null, awayScore:null },
+    { id:308, tour:31, date:"10.04.2027", time:"17:00", home:"Ливерпуль", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+    { id:309, tour:31, date:"10.04.2027", time:"17:00", home:"Борнмут", away:"Манчестер Сити", homeScore:null, awayScore:null },
+    { id:310, tour:31, date:"10.04.2027", time:"17:00", home:"Ковентри Сити", away:"Арсенал", homeScore:null, awayScore:null },
+
+    // 32-й тур
+    { id:311, tour:32, date:"17.04.2027", time:"17:00", home:"Ньюкасл Юнайтед", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+    { id:312, tour:32, date:"17.04.2027", time:"17:00", home:"Ноттингем Форест", away:"Ливерпуль", homeScore:null, awayScore:null },
+    { id:313, tour:32, date:"17.04.2027", time:"17:00", home:"Манчестер Сити", away:"Кристал Пэлас", homeScore:null, awayScore:null },
+    { id:314, tour:32, date:"17.04.2027", time:"17:00", home:"Халл Сити", away:"Ковентри Сити", homeScore:null, awayScore:null },
+    { id:315, tour:32, date:"17.04.2027", time:"17:00", home:"Ипсвич Таун", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
+    { id:316, tour:32, date:"17.04.2027", time:"17:00", home:"Арсенал", away:"Астон Вилла", homeScore:null, awayScore:null },
+    { id:317, tour:32, date:"17.04.2027", time:"17:00", home:"Фулхэм", away:"Сандерленд", homeScore:null, awayScore:null },
+    { id:318, tour:32, date:"17.04.2027", time:"17:00", home:"Брентфорд", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
+    { id:319, tour:32, date:"17.04.2027", time:"17:00", home:"Эвертон", away:"Борнмут", homeScore:null, awayScore:null },
+    { id:320, tour:32, date:"17.04.2027", time:"17:00", home:"Брайтон энд Хоув Альбион", away:"Челси", homeScore:null, awayScore:null },
+
+    // 33-й тур
+    { id:321, tour:33, date:"24.04.2027", time:"17:00", home:"Астон Вилла", away:"Ковентри Сити", homeScore:null, awayScore:null },
+    { id:322, tour:33, date:"24.04.2027", time:"17:00", home:"Борнмут", away:"Арсенал", homeScore:null, awayScore:null },
+    { id:323, tour:33, date:"24.04.2027", time:"17:00", home:"Ноттингем Форест", away:"Сандерленд", homeScore:null, awayScore:null },
+    { id:324, tour:33, date:"24.04.2027", time:"17:00", home:"Ньюкасл Юнайтед", away:"Ипсвич Таун", homeScore:null, awayScore:null },
+    { id:325, tour:33, date:"24.04.2027", time:"17:00", home:"Тоттенхэм Хотспур", away:"Халл Сити", homeScore:null, awayScore:null },
+    { id:326, tour:33, date:"24.04.2027", time:"17:00", home:"Лидс Юнайтед", away:"Ливерпуль", homeScore:null, awayScore:null },
+    { id:327, tour:33, date:"24.04.2027", time:"17:00", home:"Эвертон", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
+    { id:328, tour:33, date:"24.04.2027", time:"17:00", home:"Манчестер Юнайтед", away:"Кристал Пэлас", homeScore:null, awayScore:null },
+    { id:329, tour:33, date:"24.04.2027", time:"17:00", home:"Челси", away:"Манчестер Сити", homeScore:null, awayScore:null },
+    { id:330, tour:33, date:"24.04.2027", time:"17:00", home:"Брентфорд", away:"Фулхэм", homeScore:null, awayScore:null },
+
+    // 34-й тур
+    { id:331, tour:34, date:"01.05.2027", time:"17:00", home:"Манчестер Сити", away:"Брентфорд", homeScore:null, awayScore:null },
+    { id:332, tour:34, date:"01.05.2027", time:"17:00", home:"Ливерпуль", away:"Челси", homeScore:null, awayScore:null },
+    { id:333, tour:34, date:"01.05.2027", time:"17:00", home:"Сандерленд", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+    { id:334, tour:34, date:"01.05.2027", time:"17:00", home:"Фулхэм", away:"Эвертон", homeScore:null, awayScore:null },
+    { id:335, tour:34, date:"01.05.2027", time:"17:00", home:"Халл Сити", away:"Борнмут", homeScore:null, awayScore:null },
+    { id:336, tour:34, date:"01.05.2027", time:"17:00", home:"Ипсвич Таун", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
+    { id:337, tour:34, date:"01.05.2027", time:"17:00", home:"Брайтон энд Хоув Альбион", away:"Ноттингем Форест", homeScore:null, awayScore:null },
+    { id:338, tour:34, date:"01.05.2027", time:"17:00", home:"Ковентри Сити", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
+    { id:339, tour:34, date:"01.05.2027", time:"17:00", home:"Кристал Пэлас", away:"Астон Вилла", homeScore:null, awayScore:null },
+    { id:340, tour:34, date:"01.05.2027", time:"17:00", home:"Арсенал", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+
+    // 35-й тур
+    { id:341, tour:35, date:"08.05.2027", time:"17:00", home:"Борнмут", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
+    { id:342, tour:35, date:"08.05.2027", time:"17:00", home:"Тоттенхэм Хотспур", away:"Челси", homeScore:null, awayScore:null },
+    { id:343, tour:35, date:"08.05.2027", time:"17:00", home:"Ноттингем Форест", away:"Кристал Пэлас", homeScore:null, awayScore:null },
+    { id:344, tour:35, date:"08.05.2027", time:"17:00", home:"Ньюкасл Юнайтед", away:"Ковентри Сити", homeScore:null, awayScore:null },
+    { id:345, tour:35, date:"08.05.2027", time:"17:00", home:"Манчестер Сити", away:"Ливерпуль", homeScore:null, awayScore:null },
+    { id:346, tour:35, date:"08.05.2027", time:"17:00", home:"Фулхэм", away:"Ипсвич Таун", homeScore:null, awayScore:null },
+    { id:347, tour:35, date:"08.05.2027", time:"17:00", home:"Лидс Юнайтед", away:"Арсенал", homeScore:null, awayScore:null },
+    { id:348, tour:35, date:"08.05.2027", time:"17:00", home:"Эвертон", away:"Халл Сити", homeScore:null, awayScore:null },
+    { id:349, tour:35, date:"08.05.2027", time:"17:00", home:"Брайтон энд Хоув Альбион", away:"Сандерленд", homeScore:null, awayScore:null },
+    { id:350, tour:35, date:"08.05.2027", time:"17:00", home:"Брентфорд", away:"Астон Вилла", homeScore:null, awayScore:null },
+
+    // 36-й тур
+    { id:351, tour:36, date:"15.05.2027", time:"17:00", home:"Сандерленд", away:"Борнмут", homeScore:null, awayScore:null },
+    { id:352, tour:36, date:"15.05.2027", time:"17:00", home:"Кристал Пэлас", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
+    { id:353, tour:36, date:"15.05.2027", time:"17:00", home:"Ливерпуль", away:"Брентфорд", homeScore:null, awayScore:null },
+    { id:354, tour:36, date:"15.05.2027", time:"17:00", home:"Халл Сити", away:"Фулхэм", homeScore:null, awayScore:null },
+    { id:355, tour:36, date:"15.05.2027", time:"17:00", home:"Челси", away:"Эвертон", homeScore:null, awayScore:null },
+    { id:356, tour:36, date:"15.05.2027", time:"17:00", home:"Ковентри Сити", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+    { id:357, tour:36, date:"15.05.2027", time:"17:00", home:"Манчестер Юнайтед", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
+    { id:358, tour:36, date:"15.05.2027", time:"17:00", home:"Арсенал", away:"Ноттингем Форест", homeScore:null, awayScore:null },
+    { id:359, tour:36, date:"15.05.2027", time:"17:00", home:"Ипсвич Таун", away:"Манчестер Сити", homeScore:null, awayScore:null },
+    { id:360, tour:36, date:"15.05.2027", time:"17:00", home:"Астон Вилла", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+
+    // 37-й тур
+    { id:361, tour:37, date:"23.05.2027", time:"17:00", home:"Тоттенхэм Хотспур", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
+    { id:362, tour:37, date:"23.05.2027", time:"17:00", home:"Ноттингем Форест", away:"Ипсвич Таун", homeScore:null, awayScore:null },
+    { id:363, tour:37, date:"23.05.2027", time:"17:00", home:"Ньюкасл Юнайтед", away:"Кристал Пэлас", homeScore:null, awayScore:null },
+    { id:364, tour:37, date:"23.05.2027", time:"17:00", home:"Брентфорд", away:"Халл Сити", homeScore:null, awayScore:null },
+    { id:365, tour:37, date:"23.05.2027", time:"17:00", home:"Фулхэм", away:"Ковентри Сити", homeScore:null, awayScore:null },
+    { id:366, tour:37, date:"23.05.2027", time:"17:00", home:"Брайтон энд Хоув Альбион", away:"Ливерпуль", homeScore:null, awayScore:null },
+    { id:367, tour:37, date:"23.05.2027", time:"17:00", home:"Эвертон", away:"Арсенал", homeScore:null, awayScore:null },
+    { id:368, tour:37, date:"23.05.2027", time:"17:00", home:"Манчестер Сити", away:"Астон Вилла", homeScore:null, awayScore:null },
+    { id:369, tour:37, date:"23.05.2027", time:"17:00", home:"Борнмут", away:"Челси", homeScore:null, awayScore:null },
+    { id:370, tour:37, date:"23.05.2027", time:"17:00", home:"Лидс Юнайтед", away:"Сандерленд", homeScore:null, awayScore:null },
+
+    // 38-й тур
+    { id:371, tour:38, date:"30.05.2027", time:"18:00", home:"Манчестер Юнайтед", away:"Фулхэм", homeScore:null, awayScore:null },
+    { id:372, tour:38, date:"30.05.2027", time:"18:00", home:"Сандерленд", away:"Манчестер Сити", homeScore:null, awayScore:null },
+    { id:373, tour:38, date:"30.05.2027", time:"18:00", home:"Ливерпуль", away:"Борнмут", homeScore:null, awayScore:null },
+    { id:374, tour:38, date:"30.05.2027", time:"18:00", home:"Астон Вилла", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+    { id:375, tour:38, date:"30.05.2027", time:"18:00", home:"Ипсвич Таун", away:"Эвертон", homeScore:null, awayScore:null },
+    { id:376, tour:38, date:"30.05.2027", time:"18:00", home:"Челси", away:"Брентфорд", homeScore:null, awayScore:null },
+    { id:377, tour:38, date:"30.05.2027", time:"18:00", home:"Арсенал", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
+    { id:378, tour:38, date:"30.05.2027", time:"18:00", home:"Халл Сити", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+    { id:379, tour:38, date:"30.05.2027", time:"18:00", home:"Ковентри Сити", away:"Ноттингем Форест", homeScore:null, awayScore:null },
+    { id:380, tour:38, date:"30.05.2027", time:"18:00", home:"Кристал Пэлас", away:"Лидс Юнайтед", homeScore:null, awayScore:null }
+];
+
+// ===================================================================
+// ТУРНИРНАЯ ТАБЛИЦА
+// ===================================================================
+let scores = {};
+function loadScores() {
+    const saved = localStorage.getItem("apl2627_scores");
+    let parsed = saved ? JSON.parse(saved) : {};
+    matchData.forEach(m => {
+        if (m.homeScore !== null && m.awayScore !== null) {
+            scores[m.id] = { home: m.homeScore, away: m.awayScore };
+        } else if (parsed[m.id] !== undefined) {
+            scores[m.id] = parsed[m.id];
+        } else {
+            scores[m.id] = null;
+        }
+    });
+    localStorage.setItem("apl2627_scores", JSON.stringify(scores));
+}
+
+function computeStandings() {
+    const stats = {};
+    teams.forEach(t => stats[t] = { played:0, wins:0, draws:0, losses:0, gf:0, ga:0, pts:0 });
+    matchData.forEach(m => {
+        const s = scores[m.id];
+        if (s && s.home !== undefined && s.away !== undefined) {
+            const hg = s.home, ag = s.away;
+            stats[m.home].gf += hg; stats[m.home].ga += ag;
+            stats[m.away].gf += ag; stats[m.away].ga += hg;
+            stats[m.home].played++; stats[m.away].played++;
+            if (hg > ag) { stats[m.home].wins++; stats[m.home].pts += 3; stats[m.away].losses++; }
+            else if (hg < ag) { stats[m.away].wins++; stats[m.away].pts += 3; stats[m.home].losses++; }
+            else { stats[m.home].draws++; stats[m.away].draws++; stats[m.home].pts++; stats[m.away].pts++; }
+        }
+    });
+    return teams.map(name => ({ name, ...stats[name] })).sort((a,b) => b.pts - a.pts || (b.gf - b.ga) - (a.gf - a.ga) || b.gf - a.gf);
+}
+
+// ===================================================================
+// ФУНКЦИЯ ДЛЯ ПОЛУЧЕНИЯ ССЫЛКИ НА КОМАНДУ
+// ===================================================================
+function getTeamUrl(teamName) {
+    const id = teamIds[teamName];
+    if (id) {
+        return `https://www.championat.com/football/_england/tournament/7142/teams/${id}/result/`;
+    }
+    // Если ID нет — ведём на поиск Championat по названию команды
+    return `https://www.championat.com/search/?q=${encodeURIComponent(teamName)}`;
+}
+
+function renderStandings() {
+    const table = computeStandings();
+    const container = document.getElementById('standingsContainer');
+    let html = `<h3><i class="fas fa-table"></i> Турнирная таблица АПЛ 2026/2027</h3>
+        <table><thead><tr><th>#</th><th>Команда</th><th>И</th><th>В</th><th>Н</th><th>П</th><th>З</th><th>П</th><th>О</th></tr></thead><tbody>`;
+    table.forEach((t, idx) => {
+        const logoUrl = teamLogos[t.name] || '';
+        const logoImg = logoUrl ? `<img src="${logoUrl}" alt="${t.name}" class="team-logo">` : '';
+        const url = getTeamUrl(t.name);
+        html += `<tr><td>${idx+1}</td><td class="team-name">${logoImg} <a href="${url}" target="_blank">${t.name}</a></td>
+            <td>${t.played}</td><td>${t.wins}</td><td>${t.draws}</td><td>${t.losses}</td>
+            <td>${t.gf}</td><td>${t.ga}</td><td><strong>${t.pts}</strong></td></tr>`;
+    });
+    html += `</tbody></table>`;
+    container.innerHTML = html;
+}
+
+// ===================================================================
+// ОПРЕДЕЛЕНИЕ ТУРОВ
+// ===================================================================
+function getLastPlayedTour() {
+    let last = 1;
+    matchData.forEach(m => {
+        const s = scores[m.id];
+        if (s && s.home !== undefined && s.away !== undefined && m.tour > last) {
+            last = m.tour;
+        }
+    });
+    return last;
+}
+
+function getTodayTour() {
+    const now = new Date();
+    now.setHours(0,0,0,0);
+    for (let t = 1; t <= 38; t++) {
+        const dates = tourDates[t];
+        if (!dates || dates.length === 0) continue;
+        const times = dates.map(ds => {
+            const [d, m, y] = ds.split('.').map(Number);
+            return new Date(y, m - 1, d).getTime();
+        });
+        const min = Math.min(...times);
+        const max = Math.max(...times);
+        if (now.getTime() >= min && now.getTime() <= max) {
+            return t;
+        }
+    }
+    return null;
+}
+
+function getDefaultTour() {
+    return getTodayTour() || getLastPlayedTour();
+}
+
+// ===================================================================
+// ОТОБРАЖЕНИЕ МАТЧЕЙ
+// ===================================================================
+function getActiveTour() {
+    const activeBtn = document.querySelector('.bottom-btn.active');
+    return activeBtn ? parseInt(activeBtn.getAttribute('data-tour')) : getDefaultTour();
+}
+
+function updateTeamColors() {
+    const cards = document.querySelectorAll('.match-card');
+    cards.forEach(card => {
+        const id = parseInt(card.dataset.id);
+        const s = scores[id];
+        if (!s || s.home === undefined || s.away === undefined) return;
+        const homeDiv = card.querySelector('.team:first-child');
+        const awayDiv = card.querySelector('.team:last-child');
+        if (!homeDiv || !awayDiv) return;
+        homeDiv.classList.remove('win', 'loss', 'draw');
+        awayDiv.classList.remove('win', 'loss', 'draw');
+        if (s.home > s.away) { homeDiv.classList.add('win'); awayDiv.classList.add('loss'); }
+        else if (s.home < s.away) { homeDiv.classList.add('loss'); awayDiv.classList.add('win'); }
+        else { homeDiv.classList.add('draw'); awayDiv.classList.add('draw'); }
+    });
+}
+
+function renderMatches() {
+    const activeTour = getActiveTour();
+    let filtered = matchData.filter(m => m.tour === activeTour);
+    let html = '';
+    for (let m of filtered) {
+        const s = scores[m.id];
+        const homeVal = s?.home !== undefined ? s.home : '';
+        const awayVal = s?.away !== undefined ? s.away : '';
+        const link = matchLinks[m.id] || '#';
+
+        const homeLogo = teamLogos[m.home] || '';
+        const awayLogo = teamLogos[m.away] || '';
+        const homeLogoImg = homeLogo ? `<img src="${homeLogo}" alt="${m.home}" class="team-logo-small">` : '';
+        const awayLogoImg = awayLogo ? `<img src="${awayLogo}" alt="${m.away}" class="team-logo-small">` : '';
+
+        const homeUrl = getTeamUrl(m.home);
+        const awayUrl = getTeamUrl(m.away);
+
+        html += `
+            <div class="match-card" data-id="${m.id}">
+                <div class="card-header">
+                    <span class="tour-badge">${m.tour}-й тур</span>
+                    <span>${m.date} ${m.time || ''}</span>
+                    <a href="${link}" target="_blank" class="match-link"><i class="fas fa-external-link-alt"></i> Матч</a>
+                </div>
+                <div class="teams">
+                    <div class="team">${homeLogoImg} <a href="${homeUrl}" target="_blank">${m.home}</a></div>
+                    <div class="vs">VS</div>
+                    <div class="team"><a href="${awayUrl}" target="_blank">${m.away}</a> ${awayLogoImg}</div>
+                </div>
+                <div class="score-inputs">
+                    <input type="number" class="home-score" value="${homeVal}" placeholder="0" disabled>
+                    <span>:</span>
+                    <input type="number" class="away-score" value="${awayVal}" placeholder="0" disabled>
+                </div>
+            </div>
+        `;
+    }
+    document.getElementById('matchesContainer').innerHTML = html;
+    updateTeamColors();
+    renderCalendar(activeTour);
+}
+
+// ===================================================================
+// КАЛЕНДАРЬ
+// ===================================================================
+function renderCalendar(activeTour) {
+    const grid = document.getElementById('calendarGrid');
+    const label = document.getElementById('monthLabel');
+
+    let month = 7;
+    let year = 2026;
+    if (tourDates[activeTour] && tourDates[activeTour].length > 0) {
+        const [d, m, y] = tourDates[activeTour][0].split('.').map(Number);
+        month = m - 1;
+        year = y;
+    }
+
+    const monthNames = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+    label.textContent = `${monthNames[month]} ${year}`;
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    const tourDayMap = {};
+    if (tourDates[activeTour]) {
+        tourDates[activeTour].forEach(dateStr => {
+            const [d, m, y] = dateStr.split('.').map(Number);
+            if (m === month + 1 && y === year) {
+                tourDayMap[d] = true;
+            }
+        });
+    }
+
+    let html = '';
+    const dayNames = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+    dayNames.forEach(name => {
+        html += `<div class="day-name">${name}</div>`;
+    });
+
+    const startOffset = (firstDay === 0 ? 6 : firstDay - 1);
+    for (let i = 0; i < startOffset; i++) {
+        html += `<div class="day empty"></div>`;
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+        let cls = 'day';
+        if (tourDayMap[d]) {
+            cls += ' tour-day active-tour';
+        }
+        html += `<div class="${cls}">${d}</div>`;
+    }
+
+    grid.innerHTML = html;
+}
+
+// Собираем даты туров для календаря
+const tourDates = {};
+matchData.forEach(m => {
+    if (m.date) {
+        if (!tourDates[m.tour]) tourDates[m.tour] = [];
+        if (!tourDates[m.tour].includes(m.date)) tourDates[m.tour].push(m.date);
+    }
+});
+
+// ===================================================================
+// ФИЛЬТРЫ ПО ТУРАМ
+// ===================================================================
+function buildBottomFilters() {
+    const container = document.getElementById('bottomPanel');
+    const initialTour = getDefaultTour();
+    let html = '';
+    for (let i = 1; i <= 38; i++) {
+        const cls = i === initialTour ? 'bottom-btn active' : 'bottom-btn';
+        html += `<button class="${cls}" data-tour="${i}">${i} тур</button>`;
+    }
+    html += `<a href="https://sor236.github.io/WCF2026/table.html" target="_blank" class="bottom-link"><i class="fas fa-table"></i> Общая</a>`;
+    container.innerHTML = html;
+    container.querySelectorAll('.bottom-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            container.querySelectorAll('.bottom-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderMatches();
+        });
+    });
+}
+
+// ===================================================================
+// НАДПИСЬ В ШАПКЕ
+// ===================================================================
+function renderTourStatus() {
+    const el = document.getElementById('tourStatus');
+    if (!el) return;
+
+    const now = new Date();
+    const dd = String(now.getDate()).padStart(2, '0');
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    const yyyy = now.getFullYear();
+    const todayStr = `${dd}.${mm}.${yyyy}`;
+
+    const todayTour = getTodayTour();
+    if (todayTour) {
+        el.textContent = `Сегодня: ${todayStr}. Идёт ${todayTour} тур.`;
+    } else {
+        el.textContent = `Сегодня: ${todayStr}. Сыгран ${getLastPlayedTour()} тур.`;
+    }
+}
+
+// ===================================================================
+// ЗАПУСК
+// ===================================================================
+loadScores();
+buildBottomFilters();
+renderStandings();
+renderMatches();
+renderTourStatus();
+</script>
+</body>
+</html>
