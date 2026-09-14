@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 30%,#1a0030,#0d001a);color:#f0f3f8;line-height:1.4;padding-top:60px;padding-bottom:10px}
+        body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#2d0055,#1a0030,#0d001a,#1a0030,#2d0055);color:#f0f3f8;line-height:1.4;padding-top:60px;padding-bottom:10px;min-height:100vh}
         body::before{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjMiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZikgb3BhY2l0eT0iMC4wNiIvPjwvc3ZnPg==');background-repeat:repeat;pointer-events:none;opacity:.2;z-index:0}
         .app{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:.8rem 1rem 120px}
         .top-panel{position:fixed;top:0;left:0;right:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);padding:.4rem 1rem;z-index:100;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.2rem .8rem;border-bottom:1px solid rgba(0,255,135,.25)}
@@ -43,7 +43,7 @@
         .tour-badge{background:#1e0030;padding:.1rem .6rem;border-radius:20px;font-weight:700}
         .teams{display:flex;justify-content:space-between;align-items:center;padding:.3rem .6rem;gap:.3rem}
         .team{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1px;background:rgba(0,0,0,.25);padding:.2rem .3rem;border-radius:1.5rem;flex:1;font-size:1rem;font-weight:600;transition:color .2s;word-break:break-word;line-height:1.2}
-        .team .team-logo-small{width:24px;height:24px;object-fit:contain;vertical-align:middle;display:inline-block}
+        .team .team-logo-small{width:31px;height:31px;object-fit:contain;vertical-align:middle;display:inline-block}
         .team.win{color:#00ff87}
         .team.loss{color:#f87171}
         .team.draw{color:#c084fc}
@@ -64,13 +64,13 @@
         .calendar-grid .day.tour-day{background:rgba(0,255,135,.25);color:#00ff87;font-weight:700;border-radius:50%}
         .calendar-grid .day.tour-day.active-tour{background:rgba(0,255,135,.45);color:#fff}
         .calendar-grid .day.other-month{opacity:.3}
-        @media(max-width:480px){body{padding-top:50px;padding-bottom:5px}.app{padding:.5rem .6rem 100px}.top-panel{padding:.3rem .6rem;gap:.1rem}.top-panel .hero-title{font-size:1.2rem}.top-panel .apl-logo{height:22px}.tour-status{font-size:.65rem}.bottom-btn,.bottom-link{font-size:.6rem;padding:.3rem .5rem}.standings{padding:.5rem}.standings table{font-size:.6rem;min-width:320px}.standings th,.standings td{padding:.15rem .1rem}.standings .team-name{font-size:.65rem;gap:3px}.standings .team-logo{width:16px;height:16px}.standings td:last-child{font-size:.65rem;min-width:24px}.team{font-size:.85rem}.team .team-logo-small{width:20px;height:20px}.score-inputs input{width:40px;font-size:1rem}.matches-grid{gap:.6rem}.match-card{border-radius:1rem}.card-header{font-size:.5rem;padding:.2rem .5rem}.tour-badge{font-size:.5rem;padding:.05rem .4rem}.calendar-wrap{padding:.5rem}.calendar-grid{font-size:.6rem;gap:1px}}
-        @media(max-width:380px){.app{padding:.5rem .6rem 90px}.standings table{font-size:.5rem;min-width:280px}.standings .team-name{font-size:.55rem}.standings .team-logo{width:14px;height:14px}.team{font-size:.75rem}.team .team-logo-small{width:16px;height:16px}.score-inputs input{width:32px;font-size:.9rem}}
+        @media(max-width:480px){body{padding-top:50px;padding-bottom:5px}.app{padding:.5rem .6rem 100px}.top-panel{padding:.3rem .6rem;gap:.1rem}.top-panel .hero-title{font-size:1.2rem}.top-panel .apl-logo{height:22px}.tour-status{font-size:.65rem}.bottom-btn,.bottom-link{font-size:.6rem;padding:.3rem .5rem}.standings{padding:.5rem}.standings table{font-size:.6rem;min-width:320px}.standings th,.standings td{padding:.15rem .1rem}.standings .team-name{font-size:.65rem;gap:3px}.standings .team-logo{width:16px;height:16px}.standings td:last-child{font-size:.65rem;min-width:24px}.team{font-size:.85rem}.team .team-logo-small{width:26px;height:26px}.score-inputs input{width:40px;font-size:1rem}.matches-grid{gap:.6rem}.match-card{border-radius:1rem}.card-header{font-size:.5rem;padding:.2rem .5rem}.tour-badge{font-size:.5rem;padding:.05rem .4rem}.calendar-wrap{padding:.5rem}.calendar-grid{font-size:.6rem;gap:1px}}
+        @media(max-width:380px){.app{padding:.5rem .6rem 90px}.standings table{font-size:.5rem;min-width:280px}.standings .team-name{font-size:.55rem}.standings .team-logo{width:14px;height:14px}.team{font-size:.75rem}.team .team-logo-small{width:21px;height:21px}.score-inputs input{width:32px;font-size:.9rem}}
     </style>
 </head>
 <body>
 <div class="top-panel">
-    <div class="hero-title"><img src="https://img.championat.com/tournir/1784643446901518332.png" alt="АПЛ" class="apl-logo"> АПЛ 2026/2027</div>
+    <div class="hero-title"><img src="https://upload.wikimedia.org/wikipedia/ru/f/f2/Premier_League_Logo.svg" alt="АПЛ" class="apl-logo"> АПЛ 2026/2027</div>
     <div id="tourStatus" class="tour-status"></div>
 </div>
 <div class="app">
@@ -92,504 +92,512 @@
 const teams = ["Арсенал","Астон Вилла","Борнмут","Брентфорд","Брайтон энд Хоув Альбион","Челси","Ковентри Сити","Кристал Пэлас","Эвертон","Фулхэм","Халл Сити","Ипсвич Таун","Лидс Юнайтед","Ливерпуль","Манчестер Сити","Манчестер Юнайтед","Ньюкасл Юнайтед","Ноттингем Форест","Сандерленд","Тоттенхэм Хотспур"];
 
 const teamLogos = {
-    "Арсенал":"https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg",
-    "Астон Вилла":"https://upload.wikimedia.org/wikipedia/en/9/9f/Aston_Villa_FC_crest.svg",
-    "Борнмут":"https://upload.wikimedia.org/wikipedia/en/e/e5/AFC_Bournemouth_%28crest%29.svg",
-    "Брентфорд":"https://upload.wikimedia.org/wikipedia/en/2/2a/Brentford_FC_crest.svg",
-    "Брайтон энд Хоув Альбион":"https://upload.wikimedia.org/wikipedia/en/f/fd/Brighton_%26_Hove_Albion_FC_logo.svg",
-    "Челси":"https://upload.wikimedia.org/wikipedia/en/c/cc/Chelsea_FC.svg",
-    "Ковентри Сити":"https://upload.wikimedia.org/wikipedia/en/0/0e/Coventry_City_FC_logo.svg",
-    "Кристал Пэлас":"https://upload.wikimedia.org/wikipedia/en/a/a2/Crystal_Palace_FC_logo.svg",
-    "Эвертон":"https://upload.wikimedia.org/wikipedia/en/7/7c/Everton_FC_logo.svg",
-    "Фулхэм":"https://upload.wikimedia.org/wikipedia/en/e/eb/Fulham_FC_%28diagonal_halves%29.svg",
-    "Халл Сити":"https://upload.wikimedia.org/wikipedia/en/5/54/Hull_City_A.F.C._logo.svg",
-    "Ипсвич Таун":"https://upload.wikimedia.org/wikipedia/en/4/4a/Ipswich_Town.svg",
-    "Лидс Юнайтед":"https://upload.wikimedia.org/wikipedia/en/5/54/Leeds_United_F.C._logo.svg",
-    "Ливерпуль":"https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg",
-    "Манчестер Сити":"https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg",
-    "Манчестер Юнайтед":"https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg",
-    "Ньюкасл Юнайтед":"https://upload.wikimedia.org/wikipedia/en/5/56/Newcastle_United_Logo.svg",
-    "Ноттингем Форест":"https://upload.wikimedia.org/wikipedia/en/e/e5/Nottingham_Forest_F.C._logo.svg",
-    "Сандерленд":"https://upload.wikimedia.org/wikipedia/en/7/77/Sunderland_AFClogo.svg",
-    "Тоттенхэм Хотспур":"https://upload.wikimedia.org/wikipedia/en/b/b4/Tottenham_Hotspur.svg"
+    "Арсенал":"https://img.championat.com/team/logo/1465832935255919291.png",
+    "Манчестер Сити":"https://img.championat.com/team/logo/1469055821916222532.png",
+    "Халл Сити":"https://img.championat.com/team/logo/16908857891836710527.png",
+    "Брайтон энд Хоув Альбион":"https://img.championat.com/team/logo/14694863921668483594.png",
+    "Челси":"https://img.championat.com/team/logo/14658314551368579346.png",
+    "Брентфорд":"https://img.championat.com/team/logo/1533675409726060064.png",
+    "Ливерпуль":"https://img.championat.com/team/logo/17339105841496834676.png",
+    "Эвертон":"https://img.championat.com/team/logo/1465755316563300807.png",
+    "Ипсвич Таун":"https://img.championat.com/team/logo/146948700183067155.png",
+    "Ньюкасл Юнайтед":"https://img.championat.com/team/logo/14658319671198636026.png",
+    "Лидс Юнайтед":"https://img.championat.com/team/logo/16908851602082049052.png",
+    "Ноттингем Форест":"https://img.championat.com/team/logo/167459926688484228.png",
+    "Манчестер Юнайтед":"https://img.championat.com/team/logo/14658325251734697001.png",
+    "Сандерленд":"https://img.championat.com/team/logo/14658318981948842910.png",
+    "Борнмут":"https://img.championat.com/team/logo/1552494382773535695.png",
+    "Кристал Пэлас":"https://img.championat.com/team/logo/14658327001948562049.png",
+    "Тоттенхэм Хотспур":"https://img.championat.com/team/logo/1733523861602969969.png",
+    "Фулхэм":"https://img.championat.com/team/logo/1552494403343266701.png",
+    "Астон Вилла":"https://img.championat.com/team/logo/1739479715976747970.png",
+    "Ковентри Сити":"https://img.championat.com/team/logo/1690885078147911709.png"
 };
 
-// ===================================================================
-// ID КОМАНД НА CHAMPIONAT (для ссылок)
-// Известен только ID «Ипсвич Таун». Остальные — заглушки,
-// для них будет использоваться поиск по названию.
-// ===================================================================
 const teamIds = {
-    "Ипсвич Таун": 280930
+    "Арсенал": 280924,
+    "Манчестер Сити": 280906,
+    "Халл Сити": 280916,
+    "Брайтон энд Хоув Альбион": 280936,
+    "Челси": 280904,
+    "Брентфорд": 280932,
+    "Ливерпуль": 280914,
+    "Эвертон": 280918,
+    "Ипсвич Таун": 280930,
+    "Ньюкасл Юнайтед": 280942,
+    "Лидс Юнайтед": 280908,
+    "Ноттингем Форест": 280934,
+    "Манчестер Юнайтед": 280940,
+    "Сандерленд": 280910,
+    "Борнмут": 280922,
+    "Кристал Пэлас": 280926,
+    "Тоттенхэм Хотспур": 280912,
+    "Фулхэм": 280928,
+    "Астон Вилла": 280938,
+    "Ковентри Сити": 280920
 };
 
-// ===================================================================
-// ДАННЫЕ МАТЧЕЙ (38 туров, 380 матчей)
-// ===================================================================
 const matchData = [
     // 1-й тур
-    { id:1, tour:1, date:"21.08.2026", time:"22:00", home:"Арсенал", away:"Ковентри Сити", homeScore:3, awayScore:0 },
-    { id:2, tour:1, date:"22.08.2026", time:"14:30", home:"Халл Сити", away:"Манчестер Юнайтед", homeScore:2, awayScore:0 },
-    { id:3, tour:1, date:"22.08.2026", time:"17:00", home:"Ипсвич Таун", away:"Сандерленд", homeScore:2, awayScore:1 },
-    { id:4, tour:1, date:"22.08.2026", time:"17:00", home:"Ноттингем Форест", away:"Лидс Юнайтед", homeScore:0, awayScore:1 },
-    { id:5, tour:1, date:"22.08.2026", time:"17:00", home:"Эвертон", away:"Кристал Пэлас", homeScore:2, awayScore:0 },
-    { id:6, tour:1, date:"22.08.2026", time:"19:30", home:"Брентфорд", away:"Тоттенхэм Хотспур", homeScore:3, awayScore:0 },
-    { id:7, tour:1, date:"23.08.2026", time:"16:00", home:"Манчестер Сити", away:"Борнмут", homeScore:2, awayScore:1 },
-    { id:8, tour:1, date:"23.08.2026", time:"16:00", home:"Брайтон энд Хоув Альбион", away:"Астон Вилла", homeScore:4, awayScore:0 },
-    { id:9, tour:1, date:"23.08.2026", time:"18:30", home:"Ньюкасл Юнайтед", away:"Ливерпуль", homeScore:2, awayScore:2 },
-    { id:10, tour:1, date:"24.08.2026", time:"22:00", home:"Фулхэм", away:"Челси", homeScore:2, awayScore:3 },
+    { id:1, tour:1, date:"21.08.2026", time:"22:00", home:"Арсенал", away:"Ковентри Сити", homeScore:3, awayScore:0, link:"https://www.championat.com/football/_england/tournament/7142/match/1322400/" },
+    { id:2, tour:1, date:"22.08.2026", time:"14:30", home:"Халл Сити", away:"Манчестер Юнайтед", homeScore:2, awayScore:0, link:"https://www.championat.com/football/_england/tournament/7142/match/1322406/" },
+    { id:3, tour:1, date:"22.08.2026", time:"17:00", home:"Ипсвич Таун", away:"Сандерленд", homeScore:2, awayScore:1, link:"https://www.championat.com/football/_england/tournament/7142/match/1322390/" },
+    { id:4, tour:1, date:"22.08.2026", time:"17:00", home:"Ноттингем Форест", away:"Лидс Юнайтед", homeScore:0, awayScore:1, link:"https://www.championat.com/football/_england/tournament/7142/match/1322392/" },
+    { id:5, tour:1, date:"22.08.2026", time:"17:00", home:"Эвертон", away:"Кристал Пэлас", homeScore:2, awayScore:0, link:"https://www.championat.com/football/_england/tournament/7142/match/1322402/" },
+    { id:6, tour:1, date:"22.08.2026", time:"19:30", home:"Брентфорд", away:"Тоттенхэм Хотспур", homeScore:3, awayScore:0, link:"https://www.championat.com/football/_england/tournament/7142/match/1322394/" },
+    { id:7, tour:1, date:"23.08.2026", time:"16:00", home:"Манчестер Сити", away:"Борнмут", homeScore:2, awayScore:1, link:"https://www.championat.com/football/_england/tournament/7142/match/1322374/" },
+    { id:8, tour:1, date:"23.08.2026", time:"16:00", home:"Брайтон энд Хоув Альбион", away:"Астон Вилла", homeScore:4, awayScore:0, link:"https://www.championat.com/football/_england/tournament/7142/match/1322386/" },
+    { id:9, tour:1, date:"23.08.2026", time:"18:30", home:"Ньюкасл Юнайтед", away:"Ливерпуль", homeScore:2, awayScore:2, link:"https://www.championat.com/football/_england/tournament/7142/match/1322388/" },
+    { id:10, tour:1, date:"24.08.2026", time:"22:00", home:"Фулхэм", away:"Челси", homeScore:2, awayScore:3, link:"https://www.championat.com/football/_england/tournament/7142/match/1322380/" },
 
     // 2-й тур
-    { id:11, tour:2, date:"28.08.2026", time:"22:00", home:"Кристал Пэлас", away:"Манчестер Сити", homeScore:1, awayScore:4 },
-    { id:12, tour:2, date:"29.08.2026", time:"14:30", home:"Ливерпуль", away:"Ноттингем Форест", homeScore:2, awayScore:2 },
-    { id:13, tour:2, date:"29.08.2026", time:"17:00", home:"Ковентри Сити", away:"Халл Сити", homeScore:0, awayScore:1 },
-    { id:14, tour:2, date:"29.08.2026", time:"17:00", home:"Борнмут", away:"Эвертон", homeScore:1, awayScore:1 },
-    { id:15, tour:2, date:"29.08.2026", time:"19:30", home:"Тоттенхэм Хотспур", away:"Ньюкасл Юнайтед", homeScore:0, awayScore:2 },
-    { id:16, tour:2, date:"30.08.2026", time:"16:00", home:"Челси", away:"Брайтон энд Хоув Альбион", homeScore:4, awayScore:3 },
-    { id:17, tour:2, date:"30.08.2026", time:"16:00", home:"Сандерленд", away:"Фулхэм", homeScore:1, awayScore:0 },
-    { id:18, tour:2, date:"30.08.2026", time:"16:00", home:"Лидс Юнайтед", away:"Брентфорд", homeScore:1, awayScore:1 },
-    { id:19, tour:2, date:"30.08.2026", time:"18:30", home:"Манчестер Юнайтед", away:"Ипсвич Таун", homeScore:5, awayScore:2 },
-    { id:20, tour:2, date:"31.08.2026", time:"22:00", home:"Астон Вилла", away:"Арсенал", homeScore:0, awayScore:1 },
+    { id:11, tour:2, date:"28.08.2026", time:"22:00", home:"Кристал Пэлас", away:"Манчестер Сити", homeScore:1, awayScore:4, link:"https://www.championat.com/football/_england/tournament/7142/match/1322410/" },
+    { id:12, tour:2, date:"29.08.2026", time:"14:30", home:"Ливерпуль", away:"Ноттингем Форест", homeScore:2, awayScore:2, link:"https://www.championat.com/football/_england/tournament/7142/match/1322408/" },
+    { id:13, tour:2, date:"29.08.2026", time:"17:00", home:"Ковентри Сити", away:"Халл Сити", homeScore:0, awayScore:1, link:"https://www.championat.com/football/_england/tournament/7142/match/1322384/" },
+    { id:14, tour:2, date:"29.08.2026", time:"17:00", home:"Борнмут", away:"Эвертон", homeScore:1, awayScore:1, link:"https://www.championat.com/football/_england/tournament/7142/match/1322404/" },
+    { id:15, tour:2, date:"29.08.2026", time:"19:30", home:"Тоттенхэм Хотспур", away:"Ньюкасл Юнайтед", homeScore:0, awayScore:2, link:"https://www.championat.com/football/_england/tournament/7142/match/1322396/" },
+    { id:16, tour:2, date:"30.08.2026", time:"16:00", home:"Челси", away:"Брайтон энд Хоув Альбион", homeScore:4, awayScore:3, link:"https://www.championat.com/football/_england/tournament/7142/match/1322378/" },
+    { id:17, tour:2, date:"30.08.2026", time:"16:00", home:"Сандерленд", away:"Фулхэм", homeScore:1, awayScore:0, link:"https://www.championat.com/football/_england/tournament/7142/match/1322382/" },
+    { id:18, tour:2, date:"30.08.2026", time:"16:00", home:"Лидс Юнайтед", away:"Брентфорд", homeScore:1, awayScore:1, link:"https://www.championat.com/football/_england/tournament/7142/match/1322398/" },
+    { id:19, tour:2, date:"30.08.2026", time:"18:30", home:"Манчестер Юнайтед", away:"Ипсвич Таун", homeScore:5, awayScore:2, link:"https://www.championat.com/football/_england/tournament/7142/match/1322376/" },
+    { id:20, tour:2, date:"31.08.2026", time:"22:00", home:"Астон Вилла", away:"Арсенал", homeScore:0, awayScore:1, link:"https://www.championat.com/football/_england/tournament/7142/match/1322372/" },
 
     // 3-й тур
-    { id:21, tour:3, date:"04.09.2026", time:"22:00", home:"Ипсвич Таун", away:"Ливерпуль", homeScore:0, awayScore:2 },
-    { id:22, tour:3, date:"05.09.2026", time:"14:30", home:"Ньюкасл Юнайтед", away:"Борнмут", homeScore:2, awayScore:2 },
-    { id:23, tour:3, date:"05.09.2026", time:"17:00", home:"Фулхэм", away:"Кристал Пэлас", homeScore:2, awayScore:3 },
-    { id:24, tour:3, date:"05.09.2026", time:"17:00", home:"Брайтон энд Хоув Альбион", away:"Лидс Юнайтед", homeScore:1, awayScore:1 },
-    { id:25, tour:3, date:"05.09.2026", time:"17:00", home:"Ноттингем Форест", away:"Тоттенхэм Хотспур", homeScore:0, awayScore:0 },
-    { id:26, tour:3, date:"05.09.2026", time:"17:00", home:"Манчестер Сити", away:"Ковентри Сити", homeScore:1, awayScore:0 },
-    { id:27, tour:3, date:"05.09.2026", time:"17:00", home:"Брентфорд", away:"Сандерленд", homeScore:1, awayScore:1 },
-    { id:28, tour:3, date:"05.09.2026", time:"19:30", home:"Халл Сити", away:"Астон Вилла", homeScore:0, awayScore:0 },
-    { id:29, tour:3, date:"06.09.2026", time:"16:00", home:"Эвертон", away:"Манчестер Юнайтед", homeScore:2, awayScore:2 },
-    { id:30, tour:3, date:"06.09.2026", time:"18:30", home:"Арсенал", away:"Челси", homeScore:2, awayScore:1 },
+    { id:21, tour:3, date:"04.09.2026", time:"22:00", home:"Ипсвич Таун", away:"Ливерпуль", homeScore:0, awayScore:2, link:"https://www.championat.com/football/_england/tournament/7142/match/1322364/" },
+    { id:22, tour:3, date:"05.09.2026", time:"14:30", home:"Ньюкасл Юнайтед", away:"Борнмут", homeScore:2, awayScore:2, link:"https://www.championat.com/football/_england/tournament/7142/match/1322370/" },
+    { id:23, tour:3, date:"05.09.2026", time:"17:00", home:"Фулхэм", away:"Кристал Пэлас", homeScore:2, awayScore:3, link:"https://www.championat.com/football/_england/tournament/7142/match/1322354/" },
+    { id:24, tour:3, date:"05.09.2026", time:"17:00", home:"Брайтон энд Хоув Альбион", away:"Лидс Юнайтед", homeScore:1, awayScore:1, link:"https://www.championat.com/football/_england/tournament/7142/match/1322358/" },
+    { id:25, tour:3, date:"05.09.2026", time:"17:00", home:"Ноттингем Форест", away:"Тоттенхэм Хотспур", homeScore:0, awayScore:0, link:"https://www.championat.com/football/_england/tournament/7142/match/1322362/" },
+    { id:26, tour:3, date:"05.09.2026", time:"17:00", home:"Манчестер Сити", away:"Ковентри Сити", homeScore:1, awayScore:0, link:"https://www.championat.com/football/_england/tournament/7142/match/1322366/" },
+    { id:27, tour:3, date:"05.09.2026", time:"17:00", home:"Брентфорд", away:"Сандерленд", homeScore:1, awayScore:1, link:"https://www.championat.com/football/_england/tournament/7142/match/1322368/" },
+    { id:28, tour:3, date:"05.09.2026", time:"19:30", home:"Халл Сити", away:"Астон Вилла", homeScore:0, awayScore:0, link:"https://www.championat.com/football/_england/tournament/7142/match/1322352/" },
+    { id:29, tour:3, date:"06.09.2026", time:"16:00", home:"Эвертон", away:"Манчестер Юнайтед", homeScore:2, awayScore:2, link:"https://www.championat.com/football/_england/tournament/7142/match/1322344/" },
+    { id:30, tour:3, date:"06.09.2026", time:"18:30", home:"Арсенал", away:"Челси", homeScore:2, awayScore:1, link:"https://www.championat.com/football/_england/tournament/7142/match/1322350/" },
 
     // 4-й тур
-    { id:31, tour:4, date:"12.09.2026", time:"17:00", home:"Кристал Пэлас", away:"Ипсвич Таун", homeScore:2, awayScore:3 },
-    { id:32, tour:4, date:"12.09.2026", time:"17:00", home:"Ливерпуль", away:"Фулхэм", homeScore:0, awayScore:0 },
-    { id:33, tour:4, date:"12.09.2026", time:"17:00", home:"Борнмут", away:"Брентфорд", homeScore:2, awayScore:2 },
-    { id:34, tour:4, date:"12.09.2026", time:"17:00", home:"Астон Вилла", away:"Ноттингем Форест", homeScore:1, awayScore:2 },
-    { id:35, tour:4, date:"12.09.2026", time:"17:00", home:"Челси", away:"Халл Сити", homeScore:2, awayScore:2 },
-    { id:36, tour:4, date:"12.09.2026", time:"19:30", home:"Тоттенхэм Хотспур", away:"Эвертон", homeScore:0, awayScore:0 },
-    { id:37, tour:4, date:"12.09.2026", time:"22:00", home:"Сандерленд", away:"Арсенал", homeScore:0, awayScore:2 },
-    { id:38, tour:4, date:"13.09.2026", time:"16:00", home:"Ковентри Сити", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
-    { id:39, tour:4, date:"13.09.2026", time:"18:30", home:"Манчестер Юнайтед", away:"Манчестер Сити", homeScore:null, awayScore:null },
-    { id:40, tour:4, date:"14.09.2026", time:"22:00", home:"Лидс Юнайтед", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+    { id:31, tour:4, date:"12.09.2026", time:"17:00", home:"Кристал Пэлас", away:"Ипсвич Таун", homeScore:2, awayScore:3, link:"https://www.championat.com/football/_england/tournament/7142/match/1322340/" },
+    { id:32, tour:4, date:"12.09.2026", time:"17:00", home:"Ливерпуль", away:"Фулхэм", homeScore:0, awayScore:0, link:"https://www.championat.com/football/_england/tournament/7142/match/1322342/" },
+    { id:33, tour:4, date:"12.09.2026", time:"17:00", home:"Борнмут", away:"Брентфорд", homeScore:2, awayScore:2, link:"https://www.championat.com/football/_england/tournament/7142/match/1322346/" },
+    { id:34, tour:4, date:"12.09.2026", time:"17:00", home:"Астон Вилла", away:"Ноттингем Форест", homeScore:1, awayScore:2, link:"https://www.championat.com/football/_england/tournament/7142/match/1322356/" },
+    { id:35, tour:4, date:"12.09.2026", time:"17:00", home:"Челси", away:"Халл Сити", homeScore:2, awayScore:2, link:"https://www.championat.com/football/_england/tournament/7142/match/1322360/" },
+    { id:36, tour:4, date:"12.09.2026", time:"19:30", home:"Тоттенхэм Хотспур", away:"Эвертон", homeScore:0, awayScore:0, link:"https://www.championat.com/football/_england/tournament/7142/match/1322338/" },
+    { id:37, tour:4, date:"12.09.2026", time:"22:00", home:"Сандерленд", away:"Арсенал", homeScore:0, awayScore:2, link:"https://www.championat.com/football/_england/tournament/7142/match/1322348/" },
+    { id:38, tour:4, date:"13.09.2026", time:"16:00", home:"Ковентри Сити", away:"Брайтон энд Хоув Альбион", homeScore:0, awayScore:5, link:"https://www.championat.com/football/_england/tournament/7142/match/1322334/" },
+    { id:39, tour:4, date:"13.09.2026", time:"18:30", home:"Манчестер Юнайтед", away:"Манчестер Сити", homeScore:0, awayScore:1, link:"https://www.championat.com/football/_england/tournament/7142/match/1322326/" },
+    { id:40, tour:4, date:"14.09.2026", time:"22:00", home:"Лидс Юнайтед", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322324/" },
 
     // 5-й тур
-    { id:41, tour:5, date:"18.09.2026", time:"22:00", home:"Брентфорд", away:"Челси", homeScore:null, awayScore:null },
-    { id:42, tour:5, date:"19.09.2026", time:"14:30", home:"Тоттенхэм Хотспур", away:"Астон Вилла", homeScore:null, awayScore:null },
-    { id:43, tour:5, date:"19.09.2026", time:"17:00", home:"Ньюкасл Юнайтед", away:"Халл Сити", homeScore:null, awayScore:null },
-    { id:44, tour:5, date:"19.09.2026", time:"17:00", home:"Брайтон энд Хоув Альбион", away:"Арсенал", homeScore:null, awayScore:null },
-    { id:45, tour:5, date:"19.09.2026", time:"17:00", home:"Эвертон", away:"Ипсвич Таун", homeScore:null, awayScore:null },
-    { id:46, tour:5, date:"19.09.2026", time:"19:30", home:"Ноттингем Форест", away:"Ковентри Сити", homeScore:null, awayScore:null },
-    { id:47, tour:5, date:"20.09.2026", time:"16:00", home:"Борнмут", away:"Ливерпуль", homeScore:null, awayScore:null },
-    { id:48, tour:5, date:"20.09.2026", time:"16:00", home:"Лидс Юнайтед", away:"Кристал Пэлас", homeScore:null, awayScore:null },
-    { id:49, tour:5, date:"20.09.2026", time:"16:00", home:"Манчестер Сити", away:"Сандерленд", homeScore:null, awayScore:null },
-    { id:50, tour:5, date:"20.09.2026", time:"18:30", home:"Фулхэм", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
+    { id:41, tour:5, date:"18.09.2026", time:"22:00", home:"Брентфорд", away:"Челси", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322332/" },
+    { id:42, tour:5, date:"19.09.2026", time:"14:30", home:"Тоттенхэм Хотспур", away:"Астон Вилла", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322336/" },
+    { id:43, tour:5, date:"19.09.2026", time:"17:00", home:"Ньюкасл Юнайтед", away:"Халл Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322316/" },
+    { id:44, tour:5, date:"19.09.2026", time:"17:00", home:"Брайтон энд Хоув Альбион", away:"Арсенал", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322320/" },
+    { id:45, tour:5, date:"19.09.2026", time:"17:00", home:"Эвертон", away:"Ипсвич Таун", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322322/" },
+    { id:46, tour:5, date:"19.09.2026", time:"19:30", home:"Ноттингем Форест", away:"Ковентри Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322314/" },
+    { id:47, tour:5, date:"20.09.2026", time:"16:00", home:"Борнмут", away:"Ливерпуль", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322310/" },
+    { id:48, tour:5, date:"20.09.2026", time:"16:00", home:"Лидс Юнайтед", away:"Кристал Пэлас", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322328/" },
+    { id:49, tour:5, date:"20.09.2026", time:"16:00", home:"Манчестер Сити", away:"Сандерленд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322330/" },
+    { id:50, tour:5, date:"20.09.2026", time:"18:30", home:"Фулхэм", away:"Манчестер Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322308/" },
 
     // 6-й тур
-    { id:51, tour:6, date:"10.10.2026", time:"14:30", home:"Арсенал", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
-    { id:52, tour:6, date:"10.10.2026", time:"17:00", home:"Ипсвич Таун", away:"Фулхэм", homeScore:null, awayScore:null },
-    { id:53, tour:6, date:"10.10.2026", time:"17:00", home:"Сандерленд", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
-    { id:54, tour:6, date:"10.10.2026", time:"17:00", home:"Челси", away:"Борнмут", homeScore:null, awayScore:null },
-    { id:55, tour:6, date:"10.10.2026", time:"17:00", home:"Астон Вилла", away:"Брентфорд", homeScore:null, awayScore:null },
-    { id:56, tour:6, date:"10.10.2026", time:"19:30", home:"Манчестер Юнайтед", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
-    { id:57, tour:6, date:"11.10.2026", time:"16:00", home:"Халл Сити", away:"Эвертон", homeScore:null, awayScore:null },
-    { id:58, tour:6, date:"11.10.2026", time:"16:00", home:"Кристал Пэлас", away:"Ноттингем Форест", homeScore:null, awayScore:null },
-    { id:59, tour:6, date:"11.10.2026", time:"18:30", home:"Ливерпуль", away:"Манчестер Сити", homeScore:null, awayScore:null },
-    { id:60, tour:6, date:"12.10.2026", time:"22:00", home:"Ковентри Сити", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+    { id:51, tour:6, date:"10.10.2026", time:"14:30", home:"Арсенал", away:"Лидс Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322318/" },
+    { id:52, tour:6, date:"10.10.2026", time:"17:00", home:"Ипсвич Таун", away:"Фулхэм", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322294/" },
+    { id:53, tour:6, date:"10.10.2026", time:"17:00", home:"Сандерленд", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322300/" },
+    { id:54, tour:6, date:"10.10.2026", time:"17:00", home:"Челси", away:"Борнмут", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322304/" },
+    { id:55, tour:6, date:"10.10.2026", time:"17:00", home:"Астон Вилла", away:"Брентфорд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322312/" },
+    { id:56, tour:6, date:"10.10.2026", time:"19:30", home:"Манчестер Юнайтед", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322298/" },
+    { id:57, tour:6, date:"11.10.2026", time:"16:00", home:"Халл Сити", away:"Эвертон", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322284/" },
+    { id:58, tour:6, date:"11.10.2026", time:"16:00", home:"Кристал Пэлас", away:"Ноттингем Форест", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322302/" },
+    { id:59, tour:6, date:"11.10.2026", time:"18:30", home:"Ливерпуль", away:"Манчестер Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322296/" },
+    { id:60, tour:6, date:"12.10.2026", time:"22:00", home:"Ковентри Сити", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322306/" },
 
     // 7-й тур
-    { id:61, tour:7, date:"17.10.2026", time:"14:30", home:"Эвертон", away:"Челси", homeScore:null, awayScore:null },
-    { id:62, tour:7, date:"17.10.2026", time:"17:00", home:"Фулхэм", away:"Халл Сити", homeScore:null, awayScore:null },
-    { id:63, tour:7, date:"17.10.2026", time:"17:00", home:"Брентфорд", away:"Ливерпуль", homeScore:null, awayScore:null },
-    { id:64, tour:7, date:"17.10.2026", time:"17:00", home:"Манчестер Сити", away:"Ипсвич Таун", homeScore:null, awayScore:null },
-    { id:65, tour:7, date:"17.10.2026", time:"19:30", home:"Ньюкасл Юнайтед", away:"Астон Вилла", homeScore:null, awayScore:null },
-    { id:66, tour:7, date:"18.10.2026", time:"16:00", home:"Брайтон энд Хоув Альбион", away:"Кристал Пэлас", homeScore:null, awayScore:null },
-    { id:67, tour:7, date:"18.10.2026", time:"16:00", home:"Лидс Юнайтед", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
-    { id:68, tour:7, date:"18.10.2026", time:"16:00", home:"Борнмут", away:"Сандерленд", homeScore:null, awayScore:null },
-    { id:69, tour:7, date:"18.10.2026", time:"18:30", home:"Ноттингем Форест", away:"Арсенал", homeScore:null, awayScore:null },
-    { id:70, tour:7, date:"19.10.2026", time:"22:00", home:"Тоттенхэм Хотспур", away:"Ковентри Сити", homeScore:null, awayScore:null },
+    { id:61, tour:7, date:"17.10.2026", time:"14:30", home:"Эвертон", away:"Челси", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322286/" },
+    { id:62, tour:7, date:"17.10.2026", time:"17:00", home:"Фулхэм", away:"Халл Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322272/" },
+    { id:63, tour:7, date:"17.10.2026", time:"17:00", home:"Брентфорд", away:"Ливерпуль", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322278/" },
+    { id:64, tour:7, date:"17.10.2026", time:"17:00", home:"Манчестер Сити", away:"Ипсвич Таун", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322280/" },
+    { id:65, tour:7, date:"17.10.2026", time:"19:30", home:"Ньюкасл Юнайтед", away:"Астон Вилла", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322276/" },
+    { id:66, tour:7, date:"18.10.2026", time:"16:00", home:"Брайтон энд Хоув Альбион", away:"Кристал Пэлас", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322270/" },
+    { id:67, tour:7, date:"18.10.2026", time:"16:00", home:"Лидс Юнайтед", away:"Манчестер Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322288/" },
+    { id:68, tour:7, date:"18.10.2026", time:"16:00", home:"Борнмут", away:"Сандерленд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322290/" },
+    { id:69, tour:7, date:"18.10.2026", time:"18:30", home:"Ноттингем Форест", away:"Арсенал", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322274/" },
+    { id:70, tour:7, date:"19.10.2026", time:"22:00", home:"Тоттенхэм Хотспур", away:"Ковентри Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322292/" },
 
     // 8-й тур
-    { id:71, tour:8, date:"23.10.2026", time:"22:00", home:"Ипсвич Таун", away:"Ноттингем Форест", homeScore:null, awayScore:null },
-    { id:72, tour:8, date:"24.10.2026", time:"14:30", home:"Астон Вилла", away:"Манчестер Сити", homeScore:null, awayScore:null },
-    { id:73, tour:8, date:"24.10.2026", time:"17:00", home:"Ковентри Сити", away:"Фулхэм", homeScore:null, awayScore:null },
-    { id:74, tour:8, date:"24.10.2026", time:"17:00", home:"Арсенал", away:"Эвертон", homeScore:null, awayScore:null },
-    { id:75, tour:8, date:"24.10.2026", time:"19:30", home:"Челси", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
-    { id:76, tour:8, date:"25.10.2026", time:"17:00", home:"Ливерпуль", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
-    { id:77, tour:8, date:"25.10.2026", time:"17:00", home:"Манчестер Юнайтед", away:"Борнмут", homeScore:null, awayScore:null },
-    { id:78, tour:8, date:"25.10.2026", time:"17:00", home:"Халл Сити", away:"Брентфорд", homeScore:null, awayScore:null },
-    { id:79, tour:8, date:"25.10.2026", time:"17:00", home:"Кристал Пэлас", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
-    { id:80, tour:8, date:"25.10.2026", time:"19:30", home:"Сандерленд", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
+    { id:71, tour:8, date:"23.10.2026", time:"22:00", home:"Ипсвич Таун", away:"Ноттингем Форест", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322252/" },
+    { id:72, tour:8, date:"24.10.2026", time:"14:30", home:"Астон Вилла", away:"Манчестер Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322264/" },
+    { id:73, tour:8, date:"24.10.2026", time:"17:00", home:"Ковентри Сити", away:"Фулхэм", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322262/" },
+    { id:74, tour:8, date:"24.10.2026", time:"17:00", home:"Арсенал", away:"Эвертон", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322282/" },
+    { id:75, tour:8, date:"24.10.2026", time:"19:30", home:"Челси", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322266/" },
+    { id:76, tour:8, date:"25.10.2026", time:"17:00", home:"Ливерпуль", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322254/" },
+    { id:77, tour:8, date:"25.10.2026", time:"17:00", home:"Манчестер Юнайтед", away:"Борнмут", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322256/" },
+    { id:78, tour:8, date:"25.10.2026", time:"17:00", home:"Халл Сити", away:"Брентфорд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322258/" },
+    { id:79, tour:8, date:"25.10.2026", time:"17:00", home:"Кристал Пэлас", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322268/" },
+    { id:80, tour:8, date:"25.10.2026", time:"19:30", home:"Сандерленд", away:"Лидс Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322260/" },
 
     // 9-й тур
-    { id:81, tour:9, date:"31.10.2026", time:"15:30", home:"Челси", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
-    { id:82, tour:9, date:"31.10.2026", time:"18:00", home:"Манчестер Сити", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
-    { id:83, tour:9, date:"31.10.2026", time:"18:00", home:"Халл Сити", away:"Ипсвич Таун", homeScore:null, awayScore:null },
-    { id:84, tour:9, date:"31.10.2026", time:"18:00", home:"Брентфорд", away:"Ноттингем Форест", homeScore:null, awayScore:null },
-    { id:85, tour:9, date:"31.10.2026", time:"18:00", home:"Борнмут", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
-    { id:86, tour:9, date:"31.10.2026", time:"18:00", home:"Ковентри Сити", away:"Сандерленд", homeScore:null, awayScore:null },
-    { id:87, tour:9, date:"31.10.2026", time:"20:30", home:"Тоттенхэм Хотспур", away:"Кристал Пэлас", homeScore:null, awayScore:null },
-    { id:88, tour:9, date:"31.10.2026", time:"23:00", home:"Астон Вилла", away:"Фулхэм", homeScore:null, awayScore:null },
-    { id:89, tour:9, date:"01.11.2026", time:"19:30", home:"Ливерпуль", away:"Арсенал", homeScore:null, awayScore:null },
-    { id:90, tour:9, date:"02.11.2026", time:"23:00", home:"Ньюкасл Юнайтед", away:"Эвертон", homeScore:null, awayScore:null },
+    { id:81, tour:9, date:"31.10.2026", time:"15:30", home:"Челси", away:"Манчестер Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322238/" },
+    { id:82, tour:9, date:"31.10.2026", time:"18:00", home:"Манчестер Сити", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322226/" },
+    { id:83, tour:9, date:"31.10.2026", time:"18:00", home:"Халл Сити", away:"Ипсвич Таун", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322236/" },
+    { id:84, tour:9, date:"31.10.2026", time:"18:00", home:"Брентфорд", away:"Ноттингем Форест", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322240/" },
+    { id:85, tour:9, date:"31.10.2026", time:"18:00", home:"Борнмут", away:"Лидс Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322242/" },
+    { id:86, tour:9, date:"31.10.2026", time:"18:00", home:"Ковентри Сити", away:"Сандерленд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322248/" },
+    { id:87, tour:9, date:"31.10.2026", time:"20:30", home:"Тоттенхэм Хотспур", away:"Кристал Пэлас", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322212/" },
+    { id:88, tour:9, date:"31.10.2026", time:"23:00", home:"Астон Вилла", away:"Фулхэм", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322250/" },
+    { id:89, tour:9, date:"01.11.2026", time:"19:30", home:"Ливерпуль", away:"Арсенал", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322244/" },
+    { id:90, tour:9, date:"02.11.2026", time:"23:00", home:"Ньюкасл Юнайтед", away:"Эвертон", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322232/" },
 
     // 10-й тур
-    { id:91, tour:10, date:"07.11.2026", time:"18:00", home:"Ноттингем Форест", away:"Манчестер Сити", homeScore:null, awayScore:null },
-    { id:92, tour:10, date:"07.11.2026", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Брентфорд", homeScore:null, awayScore:null },
-    { id:93, tour:10, date:"07.11.2026", time:"18:00", home:"Фулхэм", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
-    { id:94, tour:10, date:"07.11.2026", time:"18:00", home:"Арсенал", away:"Халл Сити", homeScore:null, awayScore:null },
-    { id:95, tour:10, date:"07.11.2026", time:"18:00", home:"Ипсвич Таун", away:"Борнмут", homeScore:null, awayScore:null },
-    { id:96, tour:10, date:"07.11.2026", time:"18:00", home:"Манчестер Юнайтед", away:"Астон Вилла", homeScore:null, awayScore:null },
-    { id:97, tour:10, date:"07.11.2026", time:"18:00", home:"Сандерленд", away:"Челси", homeScore:null, awayScore:null },
-    { id:98, tour:10, date:"07.11.2026", time:"18:00", home:"Эвертон", away:"Ковентри Сити", homeScore:null, awayScore:null },
-    { id:99, tour:10, date:"07.11.2026", time:"18:00", home:"Лидс Юнайтед", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
-    { id:100, tour:10, date:"07.11.2026", time:"18:00", home:"Кристал Пэлас", away:"Ливерпуль", homeScore:null, awayScore:null },
+    { id:91, tour:10, date:"07.11.2026", time:"18:00", home:"Ноттингем Форест", away:"Манчестер Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322206/" },
+    { id:92, tour:10, date:"07.11.2026", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Брентфорд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322210/" },
+    { id:93, tour:10, date:"07.11.2026", time:"18:00", home:"Фулхэм", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322216/" },
+    { id:94, tour:10, date:"07.11.2026", time:"18:00", home:"Арсенал", away:"Халл Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322218/" },
+    { id:95, tour:10, date:"07.11.2026", time:"18:00", home:"Ипсвич Таун", away:"Борнмут", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322220/" },
+    { id:96, tour:10, date:"07.11.2026", time:"18:00", home:"Манчестер Юнайтед", away:"Астон Вилла", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322222/" },
+    { id:97, tour:10, date:"07.11.2026", time:"18:00", home:"Сандерленд", away:"Челси", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322224/" },
+    { id:98, tour:10, date:"07.11.2026", time:"18:00", home:"Эвертон", away:"Ковентри Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322230/" },
+    { id:99, tour:10, date:"07.11.2026", time:"18:00", home:"Лидс Юнайтед", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322234/" },
+    { id:100, tour:10, date:"07.11.2026", time:"18:00", home:"Кристал Пэлас", away:"Ливерпуль", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322246/" },
 
     // 11-й тур
-    { id:101, tour:11, date:"21.11.2026", time:"18:00", home:"Тоттенхэм Хотспур", away:"Ипсвич Таун", homeScore:null, awayScore:null },
-    { id:102, tour:11, date:"21.11.2026", time:"18:00", home:"Ньюкасл Юнайтед", away:"Арсенал", homeScore:null, awayScore:null },
-    { id:103, tour:11, date:"21.11.2026", time:"18:00", home:"Манчестер Сити", away:"Фулхэм", homeScore:null, awayScore:null },
-    { id:104, tour:11, date:"21.11.2026", time:"18:00", home:"Халл Сити", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
-    { id:105, tour:11, date:"21.11.2026", time:"18:00", home:"Брентфорд", away:"Эвертон", homeScore:null, awayScore:null },
-    { id:106, tour:11, date:"21.11.2026", time:"18:00", home:"Челси", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
-    { id:107, tour:11, date:"21.11.2026", time:"18:00", home:"Ливерпуль", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
-    { id:108, tour:11, date:"21.11.2026", time:"18:00", home:"Ковентри Сити", away:"Кристал Пэлас", homeScore:null, awayScore:null },
-    { id:109, tour:11, date:"21.11.2026", time:"18:00", home:"Астон Вилла", away:"Сандерленд", homeScore:null, awayScore:null },
-    { id:110, tour:11, date:"21.11.2026", time:"18:00", home:"Борнмут", away:"Ноттингем Форест", homeScore:null, awayScore:null },
+    { id:101, tour:11, date:"21.11.2026", time:"18:00", home:"Тоттенхэм Хотспур", away:"Ипсвич Таун", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322180/" },
+    { id:102, tour:11, date:"21.11.2026", time:"18:00", home:"Ньюкасл Юнайтед", away:"Арсенал", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322188/" },
+    { id:103, tour:11, date:"21.11.2026", time:"18:00", home:"Манчестер Сити", away:"Фулхэм", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322196/" },
+    { id:104, tour:11, date:"21.11.2026", time:"18:00", home:"Халл Сити", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322198/" },
+    { id:105, tour:11, date:"21.11.2026", time:"18:00", home:"Брентфорд", away:"Эвертон", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322200/" },
+    { id:106, tour:11, date:"21.11.2026", time:"18:00", home:"Челси", away:"Лидс Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322202/" },
+    { id:107, tour:11, date:"21.11.2026", time:"18:00", home:"Ливерпуль", away:"Манчестер Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322204/" },
+    { id:108, tour:11, date:"21.11.2026", time:"18:00", home:"Ковентри Сити", away:"Кристал Пэлас", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322208/" },
+    { id:109, tour:11, date:"21.11.2026", time:"18:00", home:"Астон Вилла", away:"Сандерленд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322214/" },
+    { id:110, tour:11, date:"21.11.2026", time:"18:00", home:"Борнмут", away:"Ноттингем Форест", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322228/" },
 
     // 12-й тур
-    { id:111, tour:12, date:"28.11.2026", time:"18:00", home:"Лидс Юнайтед", away:"Ковентри Сити", homeScore:null, awayScore:null },
-    { id:112, tour:12, date:"28.11.2026", time:"18:00", home:"Ноттингем Форест", away:"Челси", homeScore:null, awayScore:null },
-    { id:113, tour:12, date:"28.11.2026", time:"18:00", home:"Сандерленд", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
-    { id:114, tour:12, date:"28.11.2026", time:"18:00", home:"Манчестер Юнайтед", away:"Брентфорд", homeScore:null, awayScore:null },
-    { id:115, tour:12, date:"28.11.2026", time:"18:00", home:"Фулхэм", away:"Борнмут", homeScore:null, awayScore:null },
-    { id:116, tour:12, date:"28.11.2026", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
-    { id:117, tour:12, date:"28.11.2026", time:"18:00", home:"Кристал Пэлас", away:"Халл Сити", homeScore:null, awayScore:null },
-    { id:118, tour:12, date:"28.11.2026", time:"18:00", home:"Арсенал", away:"Манчестер Сити", homeScore:null, awayScore:null },
-    { id:119, tour:12, date:"28.11.2026", time:"18:00", home:"Ипсвич Таун", away:"Астон Вилла", homeScore:null, awayScore:null },
-    { id:120, tour:12, date:"28.11.2026", time:"18:00", home:"Эвертон", away:"Ливерпуль", homeScore:null, awayScore:null },
+    { id:111, tour:12, date:"28.11.2026", time:"18:00", home:"Лидс Юнайтед", away:"Ковентри Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322170/" },
+    { id:112, tour:12, date:"28.11.2026", time:"18:00", home:"Ноттингем Форест", away:"Челси", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322174/" },
+    { id:113, tour:12, date:"28.11.2026", time:"18:00", home:"Сандерленд", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322176/" },
+    { id:114, tour:12, date:"28.11.2026", time:"18:00", home:"Манчестер Юнайтед", away:"Брентфорд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322178/" },
+    { id:115, tour:12, date:"28.11.2026", time:"18:00", home:"Фулхэм", away:"Борнмут", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322182/" },
+    { id:116, tour:12, date:"28.11.2026", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322184/" },
+    { id:117, tour:12, date:"28.11.2026", time:"18:00", home:"Кристал Пэлас", away:"Халл Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322186/" },
+    { id:118, tour:12, date:"28.11.2026", time:"18:00", home:"Арсенал", away:"Манчестер Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322190/" },
+    { id:119, tour:12, date:"28.11.2026", time:"18:00", home:"Ипсвич Таун", away:"Астон Вилла", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322192/" },
+    { id:120, tour:12, date:"28.11.2026", time:"18:00", home:"Эвертон", away:"Ливерпуль", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322194/" },
 
     // 13-й тур
-    { id:121, tour:13, date:"02.12.2026", time:"23:00", home:"Ньюкасл Юнайтед", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
-    { id:122, tour:13, date:"02.12.2026", time:"23:00", home:"Тоттенхэм Хотспур", away:"Фулхэм", homeScore:null, awayScore:null },
-    { id:123, tour:13, date:"02.12.2026", time:"23:00", home:"Челси", away:"Кристал Пэлас", homeScore:null, awayScore:null },
-    { id:124, tour:13, date:"02.12.2026", time:"23:00", home:"Ливерпуль", away:"Сандерленд", homeScore:null, awayScore:null },
-    { id:125, tour:13, date:"02.12.2026", time:"23:00", home:"Ковентри Сити", away:"Ипсвич Таун", homeScore:null, awayScore:null },
-    { id:126, tour:13, date:"02.12.2026", time:"23:00", home:"Борнмут", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
-    { id:127, tour:13, date:"02.12.2026", time:"23:00", home:"Манчестер Сити", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
-    { id:128, tour:13, date:"02.12.2026", time:"23:00", home:"Халл Сити", away:"Ноттингем Форест", homeScore:null, awayScore:null },
-    { id:129, tour:13, date:"02.12.2026", time:"23:00", home:"Брентфорд", away:"Арсенал", homeScore:null, awayScore:null },
-    { id:130, tour:13, date:"02.12.2026", time:"23:00", home:"Астон Вилла", away:"Эвертон", homeScore:null, awayScore:null },
+    { id:121, tour:13, date:"02.12.2026", time:"23:00", home:"Ньюкасл Юнайтед", away:"Манчестер Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322150/" },
+    { id:122, tour:13, date:"02.12.2026", time:"23:00", home:"Тоттенхэм Хотспур", away:"Фулхэм", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322152/" },
+    { id:123, tour:13, date:"02.12.2026", time:"23:00", home:"Челси", away:"Кристал Пэлас", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322154/" },
+    { id:124, tour:13, date:"02.12.2026", time:"23:00", home:"Ливерпуль", away:"Сандерленд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322156/" },
+    { id:125, tour:13, date:"02.12.2026", time:"23:00", home:"Ковентри Сити", away:"Ипсвич Таун", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322158/" },
+    { id:126, tour:13, date:"02.12.2026", time:"23:00", home:"Борнмут", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322160/" },
+    { id:127, tour:13, date:"02.12.2026", time:"23:00", home:"Манчестер Сити", away:"Лидс Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322162/" },
+    { id:128, tour:13, date:"02.12.2026", time:"23:00", home:"Халл Сити", away:"Ноттингем Форест", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322166/" },
+    { id:129, tour:13, date:"02.12.2026", time:"23:00", home:"Брентфорд", away:"Арсенал", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322168/" },
+    { id:130, tour:13, date:"02.12.2026", time:"23:00", home:"Астон Вилла", away:"Эвертон", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322172/" },
 
     // 14-й тур
-    { id:131, tour:14, date:"05.12.2026", time:"18:00", home:"Ноттингем Форест", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
-    { id:132, tour:14, date:"05.12.2026", time:"18:00", home:"Ньюкасл Юнайтед", away:"Сандерленд", homeScore:null, awayScore:null },
-    { id:133, tour:14, date:"05.12.2026", time:"18:00", home:"Тоттенхэм Хотспур", away:"Арсенал", homeScore:null, awayScore:null },
-    { id:134, tour:14, date:"05.12.2026", time:"18:00", home:"Брентфорд", away:"Манчестер Сити", homeScore:null, awayScore:null },
-    { id:135, tour:14, date:"05.12.2026", time:"18:00", home:"Челси", away:"Ливерпуль", homeScore:null, awayScore:null },
-    { id:136, tour:14, date:"05.12.2026", time:"18:00", home:"Борнмут", away:"Халл Сити", homeScore:null, awayScore:null },
-    { id:137, tour:14, date:"05.12.2026", time:"18:00", home:"Астон Вилла", away:"Кристал Пэлас", homeScore:null, awayScore:null },
-    { id:138, tour:14, date:"05.12.2026", time:"18:00", home:"Лидс Юнайтед", away:"Ипсвич Таун", homeScore:null, awayScore:null },
-    { id:139, tour:14, date:"05.12.2026", time:"18:00", home:"Манчестер Юнайтед", away:"Ковентри Сити", homeScore:null, awayScore:null },
-    { id:140, tour:14, date:"05.12.2026", time:"18:00", home:"Эвертон", away:"Фулхэм", homeScore:null, awayScore:null },
+    { id:131, tour:14, date:"05.12.2026", time:"18:00", home:"Ноттингем Форест", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322124/" },
+    { id:132, tour:14, date:"05.12.2026", time:"18:00", home:"Ньюкасл Юнайтед", away:"Сандерленд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322128/" },
+    { id:133, tour:14, date:"05.12.2026", time:"18:00", home:"Тоттенхэм Хотспур", away:"Арсенал", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322132/" },
+    { id:134, tour:14, date:"05.12.2026", time:"18:00", home:"Брентфорд", away:"Манчестер Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322138/" },
+    { id:135, tour:14, date:"05.12.2026", time:"18:00", home:"Челси", away:"Ливерпуль", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322140/" },
+    { id:136, tour:14, date:"05.12.2026", time:"18:00", home:"Борнмут", away:"Халл Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322142/" },
+    { id:137, tour:14, date:"05.12.2026", time:"18:00", home:"Астон Вилла", away:"Кристал Пэлас", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322144/" },
+    { id:138, tour:14, date:"05.12.2026", time:"18:00", home:"Лидс Юнайтед", away:"Ипсвич Таун", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322146/" },
+    { id:139, tour:14, date:"05.12.2026", time:"18:00", home:"Манчестер Юнайтед", away:"Ковентри Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322148/" },
+    { id:140, tour:14, date:"05.12.2026", time:"18:00", home:"Эвертон", away:"Фулхэм", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322164/" },
 
     // 15-й тур
-    { id:141, tour:15, date:"12.12.2026", time:"18:00", home:"Сандерленд", away:"Ноттингем Форест", homeScore:null, awayScore:null },
-    { id:142, tour:15, date:"12.12.2026", time:"18:00", home:"Кристал Пэлас", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
-    { id:143, tour:15, date:"12.12.2026", time:"18:00", home:"Манчестер Сити", away:"Челси", homeScore:null, awayScore:null },
-    { id:144, tour:15, date:"12.12.2026", time:"18:00", home:"Ковентри Сити", away:"Астон Вилла", homeScore:null, awayScore:null },
-    { id:145, tour:15, date:"12.12.2026", time:"18:00", home:"Ипсвич Таун", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
-    { id:146, tour:15, date:"12.12.2026", time:"18:00", home:"Халл Сити", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
-    { id:147, tour:15, date:"12.12.2026", time:"18:00", home:"Фулхэм", away:"Брентфорд", homeScore:null, awayScore:null },
-    { id:148, tour:15, date:"12.12.2026", time:"18:00", home:"Арсенал", away:"Борнмут", homeScore:null, awayScore:null },
-    { id:149, tour:15, date:"12.12.2026", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Эвертон", homeScore:null, awayScore:null },
-    { id:150, tour:15, date:"12.12.2026", time:"18:00", home:"Ливерпуль", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
+    { id:141, tour:15, date:"12.12.2026", time:"18:00", home:"Сандерленд", away:"Ноттингем Форест", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322104/" },
+    { id:142, tour:15, date:"12.12.2026", time:"18:00", home:"Кристал Пэлас", away:"Манчестер Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322112/" },
+    { id:143, tour:15, date:"12.12.2026", time:"18:00", home:"Манчестер Сити", away:"Челси", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322114/" },
+    { id:144, tour:15, date:"12.12.2026", time:"18:00", home:"Ковентри Сити", away:"Астон Вилла", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322116/" },
+    { id:145, tour:15, date:"12.12.2026", time:"18:00", home:"Ипсвич Таун", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322120/" },
+    { id:146, tour:15, date:"12.12.2026", time:"18:00", home:"Халл Сити", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322122/" },
+    { id:147, tour:15, date:"12.12.2026", time:"18:00", home:"Фулхэм", away:"Брентфорд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322126/" },
+    { id:148, tour:15, date:"12.12.2026", time:"18:00", home:"Арсенал", away:"Борнмут", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322130/" },
+    { id:149, tour:15, date:"12.12.2026", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Эвертон", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322134/" },
+    { id:150, tour:15, date:"12.12.2026", time:"18:00", home:"Ливерпуль", away:"Лидс Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322136/" },
 
     // 16-й тур
-    { id:151, tour:16, date:"19.12.2026", time:"18:00", home:"Сандерленд", away:"Кристал Пэлас", homeScore:null, awayScore:null },
-    { id:152, tour:16, date:"19.12.2026", time:"18:00", home:"Ноттингем Форест", away:"Эвертон", homeScore:null, awayScore:null },
-    { id:153, tour:16, date:"19.12.2026", time:"18:00", home:"Ливерпуль", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
-    { id:154, tour:16, date:"19.12.2026", time:"18:00", home:"Брентфорд", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
-    { id:155, tour:16, date:"19.12.2026", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Ипсвич Таун", homeScore:null, awayScore:null },
-    { id:156, tour:16, date:"19.12.2026", time:"18:00", home:"Манчестер Сити", away:"Халл Сити", homeScore:null, awayScore:null },
-    { id:157, tour:16, date:"19.12.2026", time:"18:00", home:"Арсенал", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
-    { id:158, tour:16, date:"19.12.2026", time:"18:00", home:"Лидс Юнайтед", away:"Фулхэм", homeScore:null, awayScore:null },
-    { id:159, tour:16, date:"19.12.2026", time:"18:00", home:"Челси", away:"Астон Вилла", homeScore:null, awayScore:null },
-    { id:160, tour:16, date:"19.12.2026", time:"18:00", home:"Борнмут", away:"Ковентри Сити", homeScore:null, awayScore:null },
+    { id:151, tour:16, date:"19.12.2026", time:"18:00", home:"Сандерленд", away:"Кристал Пэлас", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322086/" },
+    { id:152, tour:16, date:"19.12.2026", time:"18:00", home:"Ноттингем Форест", away:"Эвертон", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322090/" },
+    { id:153, tour:16, date:"19.12.2026", time:"18:00", home:"Ливерпуль", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322092/" },
+    { id:154, tour:16, date:"19.12.2026", time:"18:00", home:"Брентфорд", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322098/" },
+    { id:155, tour:16, date:"19.12.2026", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Ипсвич Таун", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322100/" },
+    { id:156, tour:16, date:"19.12.2026", time:"18:00", home:"Манчестер Сити", away:"Халл Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322102/" },
+    { id:157, tour:16, date:"19.12.2026", time:"18:00", home:"Арсенал", away:"Манчестер Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322106/" },
+    { id:158, tour:16, date:"19.12.2026", time:"18:00", home:"Лидс Юнайтед", away:"Фулхэм", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322108/" },
+    { id:159, tour:16, date:"19.12.2026", time:"18:00", home:"Челси", away:"Астон Вилла", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322110/" },
+    { id:160, tour:16, date:"19.12.2026", time:"18:00", home:"Борнмут", away:"Ковентри Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322118/" },
 
     // 17-й тур
-    { id:161, tour:17, date:"26.12.2026", time:"15:30", home:"Астон Вилла", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
-    { id:162, tour:17, date:"26.12.2026", time:"18:00", home:"Тоттенхэм Хотспур", away:"Борнмут", homeScore:null, awayScore:null },
-    { id:163, tour:17, date:"26.12.2026", time:"18:00", home:"Ипсвич Таун", away:"Брентфорд", homeScore:null, awayScore:null },
-    { id:164, tour:17, date:"26.12.2026", time:"18:00", home:"Фулхэм", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
-    { id:165, tour:17, date:"26.12.2026", time:"18:00", home:"Эвертон", away:"Сандерленд", homeScore:null, awayScore:null },
-    { id:166, tour:17, date:"26.12.2026", time:"20:30", home:"Халл Сити", away:"Ливерпуль", homeScore:null, awayScore:null },
-    { id:167, tour:17, date:"26.12.2026", time:"23:00", home:"Ньюкасл Юнайтед", away:"Манчестер Сити", homeScore:null, awayScore:null },
-    { id:168, tour:17, date:"27.12.2026", time:"17:00", home:"Ковентри Сити", away:"Челси", homeScore:null, awayScore:null },
-    { id:169, tour:17, date:"27.12.2026", time:"19:30", home:"Манчестер Юнайтед", away:"Ноттингем Форест", homeScore:null, awayScore:null },
-    { id:170, tour:17, date:"27.12.2026", time:"22:00", home:"Кристал Пэлас", away:"Арсенал", homeScore:null, awayScore:null },
+    { id:161, tour:17, date:"26.12.2026", time:"15:30", home:"Астон Вилла", away:"Лидс Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322094/" },
+    { id:162, tour:17, date:"26.12.2026", time:"18:00", home:"Тоттенхэм Хотспур", away:"Борнмут", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322058/" },
+    { id:163, tour:17, date:"26.12.2026", time:"18:00", home:"Ипсвич Таун", away:"Брентфорд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322060/" },
+    { id:164, tour:17, date:"26.12.2026", time:"18:00", home:"Фулхэм", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322082/" },
+    { id:165, tour:17, date:"26.12.2026", time:"18:00", home:"Эвертон", away:"Сандерленд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322088/" },
+    { id:166, tour:17, date:"26.12.2026", time:"20:30", home:"Халл Сити", away:"Ливерпуль", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322084/" },
+    { id:167, tour:17, date:"26.12.2026", time:"23:00", home:"Ньюкасл Юнайтед", away:"Манчестер Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322068/" },
+    { id:168, tour:17, date:"27.12.2026", time:"17:00", home:"Ковентри Сити", away:"Челси", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322080/" },
+    { id:169, tour:17, date:"27.12.2026", time:"19:30", home:"Манчестер Юнайтед", away:"Ноттингем Форест", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322074/" },
+    { id:170, tour:17, date:"27.12.2026", time:"22:00", home:"Кристал Пэлас", away:"Арсенал", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322096/" },
 
     // 18-й тур
-    { id:171, tour:18, date:"29.12.2026", time:"22:30", home:"Халл Сити", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
-    { id:172, tour:18, date:"29.12.2026", time:"22:30", home:"Тоттенхэм Хотспур", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
-    { id:173, tour:18, date:"29.12.2026", time:"23:15", home:"Эвертон", away:"Манчестер Сити", homeScore:null, awayScore:null },
-    { id:174, tour:18, date:"30.12.2026", time:"22:30", home:"Фулхэм", away:"Арсенал", homeScore:null, awayScore:null },
-    { id:175, tour:18, date:"30.12.2026", time:"22:30", home:"Ковентри Сити", away:"Брентфорд", homeScore:null, awayScore:null },
-    { id:176, tour:18, date:"30.12.2026", time:"22:30", home:"Манчестер Юнайтед", away:"Сандерленд", homeScore:null, awayScore:null },
-    { id:177, tour:18, date:"30.12.2026", time:"22:30", home:"Ньюкасл Юнайтед", away:"Ноттингем Форест", homeScore:null, awayScore:null },
-    { id:178, tour:18, date:"30.12.2026", time:"22:30", home:"Кристал Пэлас", away:"Борнмут", homeScore:null, awayScore:null },
-    { id:179, tour:18, date:"30.12.2026", time:"23:15", home:"Ипсвич Таун", away:"Челси", homeScore:null, awayScore:null },
-    { id:180, tour:18, date:"30.12.2026", time:"23:15", home:"Астон Вилла", away:"Ливерпуль", homeScore:null, awayScore:null },
+    { id:171, tour:18, date:"29.12.2026", time:"22:30", home:"Халл Сити", away:"Лидс Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322062/" },
+    { id:172, tour:18, date:"29.12.2026", time:"22:30", home:"Тоттенхэм Хотспур", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322066/" },
+    { id:173, tour:18, date:"29.12.2026", time:"23:15", home:"Эвертон", away:"Манчестер Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322064/" },
+    { id:174, tour:18, date:"30.12.2026", time:"22:30", home:"Фулхэм", away:"Арсенал", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322054/" },
+    { id:175, tour:18, date:"30.12.2026", time:"22:30", home:"Ковентри Сити", away:"Брентфорд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322056/" },
+    { id:176, tour:18, date:"30.12.2026", time:"22:30", home:"Манчестер Юнайтед", away:"Сандерленд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322070/" },
+    { id:177, tour:18, date:"30.12.2026", time:"22:30", home:"Ньюкасл Юнайтед", away:"Ноттингем Форест", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322072/" },
+    { id:178, tour:18, date:"30.12.2026", time:"22:30", home:"Кристал Пэлас", away:"Борнмут", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322076/" },
+    { id:179, tour:18, date:"30.12.2026", time:"23:15", home:"Ипсвич Таун", away:"Челси", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322050/" },
+    { id:180, tour:18, date:"30.12.2026", time:"23:15", home:"Астон Вилла", away:"Ливерпуль", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322078/" },
 
     // 19-й тур
-    { id:181, tour:19, date:"01.01.2027", time:"23:00", home:"Лидс Юнайтед", away:"Эвертон", homeScore:null, awayScore:null },
-    { id:182, tour:19, date:"02.01.2027", time:"15:30", home:"Брайтон энд Хоув Альбион", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
-    { id:183, tour:19, date:"02.01.2027", time:"18:00", home:"Ноттингем Форест", away:"Фулхэм", homeScore:null, awayScore:null },
-    { id:184, tour:19, date:"02.01.2027", time:"18:00", home:"Сандерленд", away:"Халл Сити", homeScore:null, awayScore:null },
-    { id:185, tour:19, date:"02.01.2027", time:"18:00", home:"Ливерпуль", away:"Ковентри Сити", homeScore:null, awayScore:null },
-    { id:186, tour:19, date:"02.01.2027", time:"18:00", home:"Брентфорд", away:"Кристал Пэлас", homeScore:null, awayScore:null },
-    { id:187, tour:19, date:"02.01.2027", time:"18:00", home:"Арсенал", away:"Ипсвич Таун", homeScore:null, awayScore:null },
-    { id:188, tour:19, date:"02.01.2027", time:"20:30", home:"Борнмут", away:"Астон Вилла", homeScore:null, awayScore:null },
-    { id:189, tour:19, date:"03.01.2027", time:"17:00", home:"Челси", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
-    { id:190, tour:19, date:"03.01.2027", time:"19:30", home:"Манчестер Сити", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+    { id:181, tour:19, date:"01.01.2027", time:"23:00", home:"Лидс Юнайтед", away:"Эвертон", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322034/" },
+    { id:182, tour:19, date:"02.01.2027", time:"15:30", home:"Брайтон энд Хоув Альбион", away:"Манчестер Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322044/" },
+    { id:183, tour:19, date:"02.01.2027", time:"18:00", home:"Ноттингем Форест", away:"Фулхэм", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322026/" },
+    { id:184, tour:19, date:"02.01.2027", time:"18:00", home:"Сандерленд", away:"Халл Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322030/" },
+    { id:185, tour:19, date:"02.01.2027", time:"18:00", home:"Ливерпуль", away:"Ковентри Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322040/" },
+    { id:186, tour:19, date:"02.01.2027", time:"18:00", home:"Брентфорд", away:"Кристал Пэлас", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322042/" },
+    { id:187, tour:19, date:"02.01.2027", time:"18:00", home:"Арсенал", away:"Ипсвич Таун", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322046/" },
+    { id:188, tour:19, date:"02.01.2027", time:"20:30", home:"Борнмут", away:"Астон Вилла", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322052/" },
+    { id:189, tour:19, date:"03.01.2027", time:"17:00", home:"Челси", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322048/" },
+    { id:190, tour:19, date:"03.01.2027", time:"19:30", home:"Манчестер Сити", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322036/" },
 
     // 20-й тур
-    { id:191, tour:20, date:"05.01.2027", time:"22:30", home:"Эвертон", away:"Астон Вилла", homeScore:null, awayScore:null },
-    { id:192, tour:20, date:"05.01.2027", time:"22:30", home:"Брайтон энд Хоув Альбион", away:"Борнмут", homeScore:null, awayScore:null },
-    { id:193, tour:20, date:"05.01.2027", time:"22:30", home:"Арсенал", away:"Брентфорд", homeScore:null, awayScore:null },
-    { id:194, tour:20, date:"05.01.2027", time:"22:30", home:"Ноттингем Форест", away:"Халл Сити", homeScore:null, awayScore:null },
-    { id:195, tour:20, date:"05.01.2027", time:"23:15", home:"Сандерленд", away:"Ливерпуль", homeScore:null, awayScore:null },
-    { id:196, tour:20, date:"06.01.2027", time:"22:30", home:"Ипсвич Таун", away:"Ковентри Сити", homeScore:null, awayScore:null },
-    { id:197, tour:20, date:"06.01.2027", time:"22:30", home:"Кристал Пэлас", away:"Челси", homeScore:null, awayScore:null },
-    { id:198, tour:20, date:"06.01.2027", time:"22:30", home:"Фулхэм", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
-    { id:199, tour:20, date:"06.01.2027", time:"23:15", home:"Лидс Юнайтед", away:"Манчестер Сити", homeScore:null, awayScore:null },
-    { id:200, tour:20, date:"07.01.2027", time:"23:00", home:"Манчестер Юнайтед", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+    { id:191, tour:20, date:"05.01.2027", time:"22:30", home:"Эвертон", away:"Астон Вилла", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322018/" },
+    { id:192, tour:20, date:"05.01.2027", time:"22:30", home:"Брайтон энд Хоув Альбион", away:"Борнмут", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322020/" },
+    { id:193, tour:20, date:"05.01.2027", time:"22:30", home:"Арсенал", away:"Брентфорд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322024/" },
+    { id:194, tour:20, date:"05.01.2027", time:"22:30", home:"Ноттингем Форест", away:"Халл Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322038/" },
+    { id:195, tour:20, date:"05.01.2027", time:"23:15", home:"Сандерленд", away:"Ливерпуль", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322002/" },
+    { id:196, tour:20, date:"06.01.2027", time:"22:30", home:"Ипсвич Таун", away:"Ковентри Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322014/" },
+    { id:197, tour:20, date:"06.01.2027", time:"22:30", home:"Кристал Пэлас", away:"Челси", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322028/" },
+    { id:198, tour:20, date:"06.01.2027", time:"22:30", home:"Фулхэм", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322032/" },
+    { id:199, tour:20, date:"06.01.2027", time:"23:15", home:"Лидс Юнайтед", away:"Манчестер Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322016/" },
+    { id:200, tour:20, date:"07.01.2027", time:"23:00", home:"Манчестер Юнайтед", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321998/" },
 
     // 21-й тур
-    { id:201, tour:21, date:"16.01.2027", time:"18:00", home:"Тоттенхэм Хотспур", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
-    { id:202, tour:21, date:"16.01.2027", time:"18:00", home:"Манчестер Сити", away:"Ноттингем Форест", homeScore:null, awayScore:null },
-    { id:203, tour:21, date:"16.01.2027", time:"18:00", home:"Ньюкасл Юнайтед", away:"Фулхэм", homeScore:null, awayScore:null },
-    { id:204, tour:21, date:"16.01.2027", time:"18:00", home:"Челси", away:"Сандерленд", homeScore:null, awayScore:null },
-    { id:205, tour:21, date:"16.01.2027", time:"18:00", home:"Халл Сити", away:"Арсенал", homeScore:null, awayScore:null },
-    { id:206, tour:21, date:"16.01.2027", time:"18:00", home:"Ковентри Сити", away:"Эвертон", homeScore:null, awayScore:null },
-    { id:207, tour:21, date:"16.01.2027", time:"18:00", home:"Брентфорд", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
-    { id:208, tour:21, date:"16.01.2027", time:"18:00", home:"Ливерпуль", away:"Кристал Пэлас", homeScore:null, awayScore:null },
-    { id:209, tour:21, date:"16.01.2027", time:"18:00", home:"Астон Вилла", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
-    { id:210, tour:21, date:"16.01.2027", time:"18:00", home:"Борнмут", away:"Ипсвич Таун", homeScore:null, awayScore:null },
+    { id:201, tour:21, date:"16.01.2027", time:"18:00", home:"Тоттенхэм Хотспур", away:"Лидс Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321984/" },
+    { id:202, tour:21, date:"16.01.2027", time:"18:00", home:"Манчестер Сити", away:"Ноттингем Форест", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321986/" },
+    { id:203, tour:21, date:"16.01.2027", time:"18:00", home:"Ньюкасл Юнайтед", away:"Фулхэм", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321990/" },
+    { id:204, tour:21, date:"16.01.2027", time:"18:00", home:"Челси", away:"Сандерленд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321996/" },
+    { id:205, tour:21, date:"16.01.2027", time:"18:00", home:"Халл Сити", away:"Арсенал", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322000/" },
+    { id:206, tour:21, date:"16.01.2027", time:"18:00", home:"Ковентри Сити", away:"Эвертон", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322004/" },
+    { id:207, tour:21, date:"16.01.2027", time:"18:00", home:"Брентфорд", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322008/" },
+    { id:208, tour:21, date:"16.01.2027", time:"18:00", home:"Ливерпуль", away:"Кристал Пэлас", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322010/" },
+    { id:209, tour:21, date:"16.01.2027", time:"18:00", home:"Астон Вилла", away:"Манчестер Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322012/" },
+    { id:210, tour:21, date:"16.01.2027", time:"18:00", home:"Борнмут", away:"Ипсвич Таун", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322022/" },
 
     // 22-й тур
-    { id:211, tour:22, date:"23.01.2027", time:"18:00", home:"Лидс Юнайтед", away:"Челси", homeScore:null, awayScore:null },
-    { id:212, tour:22, date:"23.01.2027", time:"18:00", home:"Эвертон", away:"Брентфорд", homeScore:null, awayScore:null },
-    { id:213, tour:22, date:"23.01.2027", time:"18:00", home:"Ипсвич Таун", away:"Халл Сити", homeScore:null, awayScore:null },
-    { id:214, tour:22, date:"23.01.2027", time:"18:00", home:"Сандерленд", away:"Ковентри Сити", homeScore:null, awayScore:null },
-    { id:215, tour:22, date:"23.01.2027", time:"18:00", home:"Фулхэм", away:"Астон Вилла", homeScore:null, awayScore:null },
-    { id:216, tour:22, date:"23.01.2027", time:"18:00", home:"Арсенал", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
-    { id:217, tour:22, date:"23.01.2027", time:"18:00", home:"Ноттингем Форест", away:"Борнмут", homeScore:null, awayScore:null },
-    { id:218, tour:22, date:"23.01.2027", time:"18:00", home:"Кристал Пэлас", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
-    { id:219, tour:22, date:"23.01.2027", time:"18:00", home:"Манчестер Юнайтед", away:"Ливерпуль", homeScore:null, awayScore:null },
-    { id:220, tour:22, date:"23.01.2027", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Манчестер Сити", homeScore:null, awayScore:null },
+    { id:211, tour:22, date:"23.01.2027", time:"18:00", home:"Лидс Юнайтед", away:"Челси", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321968/" },
+    { id:212, tour:22, date:"23.01.2027", time:"18:00", home:"Эвертон", away:"Брентфорд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321974/" },
+    { id:213, tour:22, date:"23.01.2027", time:"18:00", home:"Ипсвич Таун", away:"Халл Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321976/" },
+    { id:214, tour:22, date:"23.01.2027", time:"18:00", home:"Сандерленд", away:"Ковентри Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321978/" },
+    { id:215, tour:22, date:"23.01.2027", time:"18:00", home:"Фулхэм", away:"Астон Вилла", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321980/" },
+    { id:216, tour:22, date:"23.01.2027", time:"18:00", home:"Арсенал", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321982/" },
+    { id:217, tour:22, date:"23.01.2027", time:"18:00", home:"Ноттингем Форест", away:"Борнмут", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321988/" },
+    { id:218, tour:22, date:"23.01.2027", time:"18:00", home:"Кристал Пэлас", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321992/" },
+    { id:219, tour:22, date:"23.01.2027", time:"18:00", home:"Манчестер Юнайтед", away:"Ливерпуль", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321994/" },
+    { id:220, tour:22, date:"23.01.2027", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Манчестер Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1322006/" },
 
     // 23-й тур
-    { id:221, tour:23, date:"30.01.2027", time:"18:00", home:"Тоттенхэм Хотспур", away:"Сандерленд", homeScore:null, awayScore:null },
-    { id:222, tour:23, date:"30.01.2027", time:"18:00", home:"Манчестер Сити", away:"Арсенал", homeScore:null, awayScore:null },
-    { id:223, tour:23, date:"30.01.2027", time:"18:00", home:"Челси", away:"Ноттингем Форест", homeScore:null, awayScore:null },
-    { id:224, tour:23, date:"30.01.2027", time:"18:00", home:"Брентфорд", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
-    { id:225, tour:23, date:"30.01.2027", time:"18:00", home:"Ковентри Сити", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
-    { id:226, tour:23, date:"30.01.2027", time:"18:00", home:"Ньюкасл Юнайтед", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
-    { id:227, tour:23, date:"30.01.2027", time:"18:00", home:"Ливерпуль", away:"Эвертон", homeScore:null, awayScore:null },
-    { id:228, tour:23, date:"30.01.2027", time:"18:00", home:"Борнмут", away:"Фулхэм", homeScore:null, awayScore:null },
-    { id:229, tour:23, date:"30.01.2027", time:"18:00", home:"Халл Сити", away:"Кристал Пэлас", homeScore:null, awayScore:null },
-    { id:230, tour:23, date:"30.01.2027", time:"18:00", home:"Астон Вилла", away:"Ипсвич Таун", homeScore:null, awayScore:null },
+    { id:221, tour:23, date:"30.01.2027", time:"18:00", home:"Тоттенхэм Хотспур", away:"Сандерленд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321944/" },
+    { id:222, tour:23, date:"30.01.2027", time:"18:00", home:"Манчестер Сити", away:"Арсенал", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321948/" },
+    { id:223, tour:23, date:"30.01.2027", time:"18:00", home:"Челси", away:"Ноттингем Форест", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321954/" },
+    { id:224, tour:23, date:"30.01.2027", time:"18:00", home:"Брентфорд", away:"Манчестер Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321956/" },
+    { id:225, tour:23, date:"30.01.2027", time:"18:00", home:"Ковентри Сити", away:"Лидс Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321958/" },
+    { id:226, tour:23, date:"30.01.2027", time:"18:00", home:"Ньюкасл Юнайтед", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321962/" },
+    { id:227, tour:23, date:"30.01.2027", time:"18:00", home:"Ливерпуль", away:"Эвертон", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321964/" },
+    { id:228, tour:23, date:"30.01.2027", time:"18:00", home:"Борнмут", away:"Фулхэм", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321966/" },
+    { id:229, tour:23, date:"30.01.2027", time:"18:00", home:"Халл Сити", away:"Кристал Пэлас", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321970/" },
+    { id:230, tour:23, date:"30.01.2027", time:"18:00", home:"Астон Вилла", away:"Ипсвич Таун", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321972/" },
 
     // 24-й тур
-    { id:231, tour:24, date:"06.02.2027", time:"18:00", home:"Лидс Юнайтед", away:"Борнмут", homeScore:null, awayScore:null },
-    { id:232, tour:24, date:"06.02.2027", time:"18:00", home:"Ноттингем Форест", away:"Брентфорд", homeScore:null, awayScore:null },
-    { id:233, tour:24, date:"06.02.2027", time:"18:00", home:"Манчестер Юнайтед", away:"Челси", homeScore:null, awayScore:null },
-    { id:234, tour:24, date:"06.02.2027", time:"18:00", home:"Эвертон", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
-    { id:235, tour:24, date:"06.02.2027", time:"18:00", home:"Фулхэм", away:"Манчестер Сити", homeScore:null, awayScore:null },
-    { id:236, tour:24, date:"06.02.2027", time:"18:00", home:"Сандерленд", away:"Астон Вилла", homeScore:null, awayScore:null },
-    { id:237, tour:24, date:"06.02.2027", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Халл Сити", homeScore:null, awayScore:null },
-    { id:238, tour:24, date:"06.02.2027", time:"18:00", home:"Ипсвич Таун", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
-    { id:239, tour:24, date:"06.02.2027", time:"18:00", home:"Кристал Пэлас", away:"Ковентри Сити", homeScore:null, awayScore:null },
-    { id:240, tour:24, date:"06.02.2027", time:"18:00", home:"Арсенал", away:"Ливерпуль", homeScore:null, awayScore:null },
+    { id:231, tour:24, date:"06.02.2027", time:"18:00", home:"Лидс Юнайтед", away:"Борнмут", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321932/" },
+    { id:232, tour:24, date:"06.02.2027", time:"18:00", home:"Ноттингем Форест", away:"Брентфорд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321934/" },
+    { id:233, tour:24, date:"06.02.2027", time:"18:00", home:"Манчестер Юнайтед", away:"Челси", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321936/" },
+    { id:234, tour:24, date:"06.02.2027", time:"18:00", home:"Эвертон", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321938/" },
+    { id:235, tour:24, date:"06.02.2027", time:"18:00", home:"Фулхэм", away:"Манчестер Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321940/" },
+    { id:236, tour:24, date:"06.02.2027", time:"18:00", home:"Сандерленд", away:"Астон Вилла", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321942/" },
+    { id:237, tour:24, date:"06.02.2027", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Халл Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321946/" },
+    { id:238, tour:24, date:"06.02.2027", time:"18:00", home:"Ипсвич Таун", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321950/" },
+    { id:239, tour:24, date:"06.02.2027", time:"18:00", home:"Кристал Пэлас", away:"Ковентри Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321952/" },
+    { id:240, tour:24, date:"06.02.2027", time:"18:00", home:"Арсенал", away:"Ливерпуль", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321960/" },
 
     // 25-й тур
-    { id:241, tour:25, date:"10.02.2027", time:"23:00", home:"Тоттенхэм Хотспур", away:"Манчестер Сити", homeScore:null, awayScore:null },
-    { id:242, tour:25, date:"10.02.2027", time:"23:00", home:"Халл Сити", away:"Сандерленд", homeScore:null, awayScore:null },
-    { id:243, tour:25, date:"10.02.2027", time:"23:00", home:"Фулхэм", away:"Ноттингем Форест", homeScore:null, awayScore:null },
-    { id:244, tour:25, date:"10.02.2027", time:"23:00", home:"Ипсвич Таун", away:"Арсенал", homeScore:null, awayScore:null },
-    { id:245, tour:25, date:"10.02.2027", time:"23:00", home:"Кристал Пэлас", away:"Брентфорд", homeScore:null, awayScore:null },
-    { id:246, tour:25, date:"10.02.2027", time:"23:00", home:"Манчестер Юнайтед", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
-    { id:247, tour:25, date:"10.02.2027", time:"23:00", home:"Ньюкасл Юнайтед", away:"Челси", homeScore:null, awayScore:null },
-    { id:248, tour:25, date:"10.02.2027", time:"23:00", home:"Ковентри Сити", away:"Ливерпуль", homeScore:null, awayScore:null },
-    { id:249, tour:25, date:"10.02.2027", time:"23:00", home:"Эвертон", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
-    { id:250, tour:25, date:"10.02.2027", time:"23:00", home:"Астон Вилла", away:"Борнмут", homeScore:null, awayScore:null },
+    { id:241, tour:25, date:"10.02.2027", time:"23:00", home:"Тоттенхэм Хотспур", away:"Манчестер Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321908/" },
+    { id:242, tour:25, date:"10.02.2027", time:"23:00", home:"Халл Сити", away:"Сандерленд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321914/" },
+    { id:243, tour:25, date:"10.02.2027", time:"23:00", home:"Фулхэм", away:"Ноттингем Форест", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321916/" },
+    { id:244, tour:25, date:"10.02.2027", time:"23:00", home:"Ипсвич Таун", away:"Арсенал", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321918/" },
+    { id:245, tour:25, date:"10.02.2027", time:"23:00", home:"Кристал Пэлас", away:"Брентфорд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321920/" },
+    { id:246, tour:25, date:"10.02.2027", time:"23:00", home:"Манчестер Юнайтед", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321922/" },
+    { id:247, tour:25, date:"10.02.2027", time:"23:00", home:"Ньюкасл Юнайтед", away:"Челси", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321924/" },
+    { id:248, tour:25, date:"10.02.2027", time:"23:00", home:"Ковентри Сити", away:"Ливерпуль", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321926/" },
+    { id:249, tour:25, date:"10.02.2027", time:"23:00", home:"Эвертон", away:"Лидс Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321928/" },
+    { id:250, tour:25, date:"10.02.2027", time:"23:00", home:"Астон Вилла", away:"Борнмут", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321930/" },
 
     // 26-й тур
-    { id:251, tour:26, date:"20.02.2027", time:"18:00", home:"Манчестер Сити", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
-    { id:252, tour:26, date:"20.02.2027", time:"18:00", home:"Челси", away:"Ипсвич Таун", homeScore:null, awayScore:null },
-    { id:253, tour:26, date:"20.02.2027", time:"18:00", home:"Лидс Юнайтед", away:"Астон Вилла", homeScore:null, awayScore:null },
-    { id:254, tour:26, date:"20.02.2027", time:"18:00", home:"Арсенал", away:"Фулхэм", homeScore:null, awayScore:null },
-    { id:255, tour:26, date:"20.02.2027", time:"18:00", home:"Брентфорд", away:"Ковентри Сити", homeScore:null, awayScore:null },
-    { id:256, tour:26, date:"20.02.2027", time:"18:00", home:"Борнмут", away:"Кристал Пэлас", homeScore:null, awayScore:null },
-    { id:257, tour:26, date:"20.02.2027", time:"18:00", home:"Ноттингем Форест", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
-    { id:258, tour:26, date:"20.02.2027", time:"18:00", home:"Ливерпуль", away:"Халл Сити", homeScore:null, awayScore:null },
-    { id:259, tour:26, date:"20.02.2027", time:"18:00", home:"Сандерленд", away:"Эвертон", homeScore:null, awayScore:null },
-    { id:260, tour:26, date:"20.02.2027", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+    { id:251, tour:26, date:"20.02.2027", time:"18:00", home:"Манчестер Сити", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321880/" },
+    { id:252, tour:26, date:"20.02.2027", time:"18:00", home:"Челси", away:"Ипсвич Таун", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321890/" },
+    { id:253, tour:26, date:"20.02.2027", time:"18:00", home:"Лидс Юнайтед", away:"Астон Вилла", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321892/" },
+    { id:254, tour:26, date:"20.02.2027", time:"18:00", home:"Арсенал", away:"Фулхэм", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321894/" },
+    { id:255, tour:26, date:"20.02.2027", time:"18:00", home:"Брентфорд", away:"Ковентри Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321896/" },
+    { id:256, tour:26, date:"20.02.2027", time:"18:00", home:"Борнмут", away:"Кристал Пэлас", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321898/" },
+    { id:257, tour:26, date:"20.02.2027", time:"18:00", home:"Ноттингем Форест", away:"Манчестер Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321900/" },
+    { id:258, tour:26, date:"20.02.2027", time:"18:00", home:"Ливерпуль", away:"Халл Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321902/" },
+    { id:259, tour:26, date:"20.02.2027", time:"18:00", home:"Сандерленд", away:"Эвертон", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321910/" },
+    { id:260, tour:26, date:"20.02.2027", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321912/" },
 
     // 27-й тур
-    { id:261, tour:27, date:"27.02.2027", time:"18:00", home:"Ньюкасл Юнайтед", away:"Брентфорд", homeScore:null, awayScore:null },
-    { id:262, tour:27, date:"27.02.2027", time:"18:00", home:"Кристал Пэлас", away:"Сандерленд", homeScore:null, awayScore:null },
-    { id:263, tour:27, date:"27.02.2027", time:"18:00", home:"Ипсвич Таун", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
-    { id:264, tour:27, date:"27.02.2027", time:"18:00", home:"Манчестер Юнайтед", away:"Арсенал", homeScore:null, awayScore:null },
-    { id:265, tour:27, date:"27.02.2027", time:"18:00", home:"Ковентри Сити", away:"Борнмут", homeScore:null, awayScore:null },
-    { id:266, tour:27, date:"27.02.2027", time:"18:00", home:"Эвертон", away:"Ноттингем Форест", homeScore:null, awayScore:null },
-    { id:267, tour:27, date:"27.02.2027", time:"18:00", home:"Тоттенхэм Хотспур", away:"Ливерпуль", homeScore:null, awayScore:null },
-    { id:268, tour:27, date:"27.02.2027", time:"18:00", home:"Фулхэм", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
-    { id:269, tour:27, date:"27.02.2027", time:"18:00", home:"Халл Сити", away:"Манчестер Сити", homeScore:null, awayScore:null },
-    { id:270, tour:27, date:"27.02.2027", time:"18:00", home:"Астон Вилла", away:"Челси", homeScore:null, awayScore:null },
+    { id:261, tour:27, date:"27.02.2027", time:"18:00", home:"Ньюкасл Юнайтед", away:"Брентфорд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321870/" },
+    { id:262, tour:27, date:"27.02.2027", time:"18:00", home:"Кристал Пэлас", away:"Сандерленд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321874/" },
+    { id:263, tour:27, date:"27.02.2027", time:"18:00", home:"Ипсвич Таун", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321876/" },
+    { id:264, tour:27, date:"27.02.2027", time:"18:00", home:"Манчестер Юнайтед", away:"Арсенал", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321878/" },
+    { id:265, tour:27, date:"27.02.2027", time:"18:00", home:"Ковентри Сити", away:"Борнмут", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321882/" },
+    { id:266, tour:27, date:"27.02.2027", time:"18:00", home:"Эвертон", away:"Ноттингем Форест", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321884/" },
+    { id:267, tour:27, date:"27.02.2027", time:"18:00", home:"Тоттенхэм Хотспур", away:"Ливерпуль", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321886/" },
+    { id:268, tour:27, date:"27.02.2027", time:"18:00", home:"Фулхэм", away:"Лидс Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321888/" },
+    { id:269, tour:27, date:"27.02.2027", time:"18:00", home:"Халл Сити", away:"Манчестер Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321904/" },
+    { id:270, tour:27, date:"27.02.2027", time:"18:00", home:"Астон Вилла", away:"Челси", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321906/" },
 
     // 28-й тур
-    { id:271, tour:28, date:"03.03.2027", time:"23:00", home:"Ноттингем Форест", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
-    { id:272, tour:28, date:"03.03.2027", time:"23:00", home:"Манчестер Сити", away:"Эвертон", homeScore:null, awayScore:null },
-    { id:273, tour:28, date:"03.03.2027", time:"23:00", home:"Сандерленд", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
-    { id:274, tour:28, date:"03.03.2027", time:"23:00", home:"Ливерпуль", away:"Астон Вилла", homeScore:null, awayScore:null },
-    { id:275, tour:28, date:"03.03.2027", time:"23:00", home:"Лидс Юнайтед", away:"Халл Сити", homeScore:null, awayScore:null },
-    { id:276, tour:28, date:"03.03.2027", time:"23:00", home:"Брентфорд", away:"Ипсвич Таун", homeScore:null, awayScore:null },
-    { id:277, tour:28, date:"03.03.2027", time:"23:00", home:"Челси", away:"Ковентри Сити", homeScore:null, awayScore:null },
-    { id:278, tour:28, date:"03.03.2027", time:"23:00", home:"Борнмут", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
-    { id:279, tour:28, date:"03.03.2027", time:"23:00", home:"Брайтон энд Хоув Альбион", away:"Фулхэм", homeScore:null, awayScore:null },
-    { id:280, tour:28, date:"03.03.2027", time:"23:00", home:"Арсенал", away:"Кристал Пэлас", homeScore:null, awayScore:null },
+    { id:271, tour:28, date:"03.03.2027", time:"23:00", home:"Ноттингем Форест", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321838/" },
+    { id:272, tour:28, date:"03.03.2027", time:"23:00", home:"Манчестер Сити", away:"Эвертон", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321848/" },
+    { id:273, tour:28, date:"03.03.2027", time:"23:00", home:"Сандерленд", away:"Манчестер Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321850/" },
+    { id:274, tour:28, date:"03.03.2027", time:"23:00", home:"Ливерпуль", away:"Астон Вилла", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321854/" },
+    { id:275, tour:28, date:"03.03.2027", time:"23:00", home:"Лидс Юнайтед", away:"Халл Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321858/" },
+    { id:276, tour:28, date:"03.03.2027", time:"23:00", home:"Брентфорд", away:"Ипсвич Таун", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321860/" },
+    { id:277, tour:28, date:"03.03.2027", time:"23:00", home:"Челси", away:"Ковентри Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321862/" },
+    { id:278, tour:28, date:"03.03.2027", time:"23:00", home:"Борнмут", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321864/" },
+    { id:279, tour:28, date:"03.03.2027", time:"23:00", home:"Брайтон энд Хоув Альбион", away:"Фулхэм", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321866/" },
+    { id:280, tour:28, date:"03.03.2027", time:"23:00", home:"Арсенал", away:"Кристал Пэлас", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321868/" },
 
     // 29-й тур
-    { id:281, tour:29, date:"13.03.2027", time:"18:00", home:"Манчестер Юнайтед", away:"Эвертон", homeScore:null, awayScore:null },
-    { id:282, tour:29, date:"13.03.2027", time:"18:00", home:"Тоттенхэм Хотспур", away:"Ноттингем Форест", homeScore:null, awayScore:null },
-    { id:283, tour:29, date:"13.03.2027", time:"18:00", home:"Лидс Юнайтед", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
-    { id:284, tour:29, date:"13.03.2027", time:"18:00", home:"Ковентри Сити", away:"Манчестер Сити", homeScore:null, awayScore:null },
-    { id:285, tour:29, date:"13.03.2027", time:"18:00", home:"Ливерпуль", away:"Ипсвич Таун", homeScore:null, awayScore:null },
-    { id:286, tour:29, date:"13.03.2027", time:"18:00", home:"Сандерленд", away:"Брентфорд", homeScore:null, awayScore:null },
-    { id:287, tour:29, date:"13.03.2027", time:"18:00", home:"Челси", away:"Арсенал", homeScore:null, awayScore:null },
-    { id:288, tour:29, date:"13.03.2027", time:"18:00", home:"Кристал Пэлас", away:"Фулхэм", homeScore:null, awayScore:null },
-    { id:289, tour:29, date:"13.03.2027", time:"18:00", home:"Борнмут", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
-    { id:290, tour:29, date:"13.03.2027", time:"18:00", home:"Астон Вилла", away:"Халл Сити", homeScore:null, awayScore:null },
+    { id:281, tour:29, date:"13.03.2027", time:"18:00", home:"Манчестер Юнайтед", away:"Эвертон", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321830/" },
+    { id:282, tour:29, date:"13.03.2027", time:"18:00", home:"Тоттенхэм Хотспур", away:"Ноттингем Форест", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321832/" },
+    { id:283, tour:29, date:"13.03.2027", time:"18:00", home:"Лидс Юнайтед", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321836/" },
+    { id:284, tour:29, date:"13.03.2027", time:"18:00", home:"Ковентри Сити", away:"Манчестер Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321840/" },
+    { id:285, tour:29, date:"13.03.2027", time:"18:00", home:"Ливерпуль", away:"Ипсвич Таун", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321842/" },
+    { id:286, tour:29, date:"13.03.2027", time:"18:00", home:"Сандерленд", away:"Брентфорд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321844/" },
+    { id:287, tour:29, date:"13.03.2027", time:"18:00", home:"Челси", away:"Арсенал", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321846/" },
+    { id:288, tour:29, date:"13.03.2027", time:"18:00", home:"Кристал Пэлас", away:"Фулхэм", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321852/" },
+    { id:289, tour:29, date:"13.03.2027", time:"18:00", home:"Борнмут", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321856/" },
+    { id:290, tour:29, date:"13.03.2027", time:"18:00", home:"Астон Вилла", away:"Халл Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321872/" },
 
     // 30-й тур
-    { id:291, tour:30, date:"20.03.2027", time:"18:00", home:"Ноттингем Форест", away:"Астон Вилла", homeScore:null, awayScore:null },
-    { id:292, tour:30, date:"20.03.2027", time:"18:00", home:"Ипсвич Таун", away:"Кристал Пэлас", homeScore:null, awayScore:null },
-    { id:293, tour:30, date:"20.03.2027", time:"18:00", home:"Манчестер Сити", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
-    { id:294, tour:30, date:"20.03.2027", time:"18:00", home:"Халл Сити", away:"Челси", homeScore:null, awayScore:null },
-    { id:295, tour:30, date:"20.03.2027", time:"18:00", home:"Фулхэм", away:"Ливерпуль", homeScore:null, awayScore:null },
-    { id:296, tour:30, date:"20.03.2027", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Ковентри Сити", homeScore:null, awayScore:null },
-    { id:297, tour:30, date:"20.03.2027", time:"18:00", home:"Ньюкасл Юнайтед", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
-    { id:298, tour:30, date:"20.03.2027", time:"18:00", home:"Брентфорд", away:"Борнмут", homeScore:null, awayScore:null },
-    { id:299, tour:30, date:"20.03.2027", time:"18:00", home:"Арсенал", away:"Сандерленд", homeScore:null, awayScore:null },
-    { id:300, tour:30, date:"20.03.2027", time:"18:00", home:"Эвертон", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+    { id:291, tour:30, date:"20.03.2027", time:"18:00", home:"Ноттингем Форест", away:"Астон Вилла", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321806/" },
+    { id:292, tour:30, date:"20.03.2027", time:"18:00", home:"Ипсвич Таун", away:"Кристал Пэлас", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321808/" },
+    { id:293, tour:30, date:"20.03.2027", time:"18:00", home:"Манчестер Сити", away:"Манчестер Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321810/" },
+    { id:294, tour:30, date:"20.03.2027", time:"18:00", home:"Халл Сити", away:"Челси", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321816/" },
+    { id:295, tour:30, date:"20.03.2027", time:"18:00", home:"Фулхэм", away:"Ливерпуль", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321820/" },
+    { id:296, tour:30, date:"20.03.2027", time:"18:00", home:"Брайтон энд Хоув Альбион", away:"Ковентри Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321822/" },
+    { id:297, tour:30, date:"20.03.2027", time:"18:00", home:"Ньюкасл Юнайтед", away:"Лидс Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321824/" },
+    { id:298, tour:30, date:"20.03.2027", time:"18:00", home:"Брентфорд", away:"Борнмут", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321826/" },
+    { id:299, tour:30, date:"20.03.2027", time:"18:00", home:"Арсенал", away:"Сандерленд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321828/" },
+    { id:300, tour:30, date:"20.03.2027", time:"18:00", home:"Эвертон", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321834/" },
 
     // 31-й тур
-    { id:301, tour:31, date:"10.04.2027", time:"17:00", home:"Сандерленд", away:"Ипсвич Таун", homeScore:null, awayScore:null },
-    { id:302, tour:31, date:"10.04.2027", time:"17:00", home:"Кристал Пэлас", away:"Эвертон", homeScore:null, awayScore:null },
-    { id:303, tour:31, date:"10.04.2027", time:"17:00", home:"Лидс Юнайтед", away:"Ноттингем Форест", homeScore:null, awayScore:null },
-    { id:304, tour:31, date:"10.04.2027", time:"17:00", home:"Манчестер Юнайтед", away:"Халл Сити", homeScore:null, awayScore:null },
-    { id:305, tour:31, date:"10.04.2027", time:"17:00", home:"Астон Вилла", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
-    { id:306, tour:31, date:"10.04.2027", time:"17:00", home:"Тоттенхэм Хотспур", away:"Брентфорд", homeScore:null, awayScore:null },
-    { id:307, tour:31, date:"10.04.2027", time:"17:00", home:"Челси", away:"Фулхэм", homeScore:null, awayScore:null },
-    { id:308, tour:31, date:"10.04.2027", time:"17:00", home:"Ливерпуль", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
-    { id:309, tour:31, date:"10.04.2027", time:"17:00", home:"Борнмут", away:"Манчестер Сити", homeScore:null, awayScore:null },
-    { id:310, tour:31, date:"10.04.2027", time:"17:00", home:"Ковентри Сити", away:"Арсенал", homeScore:null, awayScore:null },
+    { id:301, tour:31, date:"10.04.2027", time:"17:00", home:"Сандерленд", away:"Ипсвич Таун", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321782/" },
+    { id:302, tour:31, date:"10.04.2027", time:"17:00", home:"Кристал Пэлас", away:"Эвертон", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321784/" },
+    { id:303, tour:31, date:"10.04.2027", time:"17:00", home:"Лидс Юнайтед", away:"Ноттингем Форест", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321788/" },
+    { id:304, tour:31, date:"10.04.2027", time:"17:00", home:"Манчестер Юнайтед", away:"Халл Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321790/" },
+    { id:305, tour:31, date:"10.04.2027", time:"17:00", home:"Астон Вилла", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321792/" },
+    { id:306, tour:31, date:"10.04.2027", time:"17:00", home:"Тоттенхэм Хотспур", away:"Брентфорд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321796/" },
+    { id:307, tour:31, date:"10.04.2027", time:"17:00", home:"Челси", away:"Фулхэм", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321800/" },
+    { id:308, tour:31, date:"10.04.2027", time:"17:00", home:"Ливерпуль", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321804/" },
+    { id:309, tour:31, date:"10.04.2027", time:"17:00", home:"Борнмут", away:"Манчестер Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321814/" },
+    { id:310, tour:31, date:"10.04.2027", time:"17:00", home:"Ковентри Сити", away:"Арсенал", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321818/" },
 
     // 32-й тур
-    { id:311, tour:32, date:"17.04.2027", time:"17:00", home:"Ньюкасл Юнайтед", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
-    { id:312, tour:32, date:"17.04.2027", time:"17:00", home:"Ноттингем Форест", away:"Ливерпуль", homeScore:null, awayScore:null },
-    { id:313, tour:32, date:"17.04.2027", time:"17:00", home:"Манчестер Сити", away:"Кристал Пэлас", homeScore:null, awayScore:null },
-    { id:314, tour:32, date:"17.04.2027", time:"17:00", home:"Халл Сити", away:"Ковентри Сити", homeScore:null, awayScore:null },
-    { id:315, tour:32, date:"17.04.2027", time:"17:00", home:"Ипсвич Таун", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
-    { id:316, tour:32, date:"17.04.2027", time:"17:00", home:"Арсенал", away:"Астон Вилла", homeScore:null, awayScore:null },
-    { id:317, tour:32, date:"17.04.2027", time:"17:00", home:"Фулхэм", away:"Сандерленд", homeScore:null, awayScore:null },
-    { id:318, tour:32, date:"17.04.2027", time:"17:00", home:"Брентфорд", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
-    { id:319, tour:32, date:"17.04.2027", time:"17:00", home:"Эвертон", away:"Борнмут", homeScore:null, awayScore:null },
-    { id:320, tour:32, date:"17.04.2027", time:"17:00", home:"Брайтон энд Хоув Альбион", away:"Челси", homeScore:null, awayScore:null },
+    { id:311, tour:32, date:"17.04.2027", time:"17:00", home:"Ньюкасл Юнайтед", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321758/" },
+    { id:312, tour:32, date:"17.04.2027", time:"17:00", home:"Ноттингем Форест", away:"Ливерпуль", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321760/" },
+    { id:313, tour:32, date:"17.04.2027", time:"17:00", home:"Манчестер Сити", away:"Кристал Пэлас", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321768/" },
+    { id:314, tour:32, date:"17.04.2027", time:"17:00", home:"Халл Сити", away:"Ковентри Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321774/" },
+    { id:315, tour:32, date:"17.04.2027", time:"17:00", home:"Ипсвич Таун", away:"Манчестер Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321778/" },
+    { id:316, tour:32, date:"17.04.2027", time:"17:00", home:"Арсенал", away:"Астон Вилла", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321780/" },
+    { id:317, tour:32, date:"17.04.2027", time:"17:00", home:"Фулхэм", away:"Сандерленд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321786/" },
+    { id:318, tour:32, date:"17.04.2027", time:"17:00", home:"Брентфорд", away:"Лидс Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321794/" },
+    { id:319, tour:32, date:"17.04.2027", time:"17:00", home:"Эвертон", away:"Борнмут", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321802/" },
+    { id:320, tour:32, date:"17.04.2027", time:"17:00", home:"Брайтон энд Хоув Альбион", away:"Челси", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321812/" },
 
     // 33-й тур
-    { id:321, tour:33, date:"24.04.2027", time:"17:00", home:"Астон Вилла", away:"Ковентри Сити", homeScore:null, awayScore:null },
-    { id:322, tour:33, date:"24.04.2027", time:"17:00", home:"Борнмут", away:"Арсенал", homeScore:null, awayScore:null },
-    { id:323, tour:33, date:"24.04.2027", time:"17:00", home:"Ноттингем Форест", away:"Сандерленд", homeScore:null, awayScore:null },
-    { id:324, tour:33, date:"24.04.2027", time:"17:00", home:"Ньюкасл Юнайтед", away:"Ипсвич Таун", homeScore:null, awayScore:null },
-    { id:325, tour:33, date:"24.04.2027", time:"17:00", home:"Тоттенхэм Хотспур", away:"Халл Сити", homeScore:null, awayScore:null },
-    { id:326, tour:33, date:"24.04.2027", time:"17:00", home:"Лидс Юнайтед", away:"Ливерпуль", homeScore:null, awayScore:null },
-    { id:327, tour:33, date:"24.04.2027", time:"17:00", home:"Эвертон", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
-    { id:328, tour:33, date:"24.04.2027", time:"17:00", home:"Манчестер Юнайтед", away:"Кристал Пэлас", homeScore:null, awayScore:null },
-    { id:329, tour:33, date:"24.04.2027", time:"17:00", home:"Челси", away:"Манчестер Сити", homeScore:null, awayScore:null },
-    { id:330, tour:33, date:"24.04.2027", time:"17:00", home:"Брентфорд", away:"Фулхэм", homeScore:null, awayScore:null },
+    { id:321, tour:33, date:"24.04.2027", time:"17:00", home:"Астон Вилла", away:"Ковентри Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321744/" },
+    { id:322, tour:33, date:"24.04.2027", time:"17:00", home:"Борнмут", away:"Арсенал", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321750/" },
+    { id:323, tour:33, date:"24.04.2027", time:"17:00", home:"Ноттингем Форест", away:"Сандерленд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321756/" },
+    { id:324, tour:33, date:"24.04.2027", time:"17:00", home:"Ньюкасл Юнайтед", away:"Ипсвич Таун", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321762/" },
+    { id:325, tour:33, date:"24.04.2027", time:"17:00", home:"Тоттенхэм Хотспур", away:"Халл Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321764/" },
+    { id:326, tour:33, date:"24.04.2027", time:"17:00", home:"Лидс Юнайтед", away:"Ливерпуль", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321766/" },
+    { id:327, tour:33, date:"24.04.2027", time:"17:00", home:"Эвертон", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321770/" },
+    { id:328, tour:33, date:"24.04.2027", time:"17:00", home:"Манчестер Юнайтед", away:"Кристал Пэлас", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321772/" },
+    { id:329, tour:33, date:"24.04.2027", time:"17:00", home:"Челси", away:"Манчестер Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321776/" },
+    { id:330, tour:33, date:"24.04.2027", time:"17:00", home:"Брентфорд", away:"Фулхэм", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321798/" },
 
     // 34-й тур
-    { id:331, tour:34, date:"01.05.2027", time:"17:00", home:"Манчестер Сити", away:"Брентфорд", homeScore:null, awayScore:null },
-    { id:332, tour:34, date:"01.05.2027", time:"17:00", home:"Ливерпуль", away:"Челси", homeScore:null, awayScore:null },
-    { id:333, tour:34, date:"01.05.2027", time:"17:00", home:"Сандерленд", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
-    { id:334, tour:34, date:"01.05.2027", time:"17:00", home:"Фулхэм", away:"Эвертон", homeScore:null, awayScore:null },
-    { id:335, tour:34, date:"01.05.2027", time:"17:00", home:"Халл Сити", away:"Борнмут", homeScore:null, awayScore:null },
-    { id:336, tour:34, date:"01.05.2027", time:"17:00", home:"Ипсвич Таун", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
-    { id:337, tour:34, date:"01.05.2027", time:"17:00", home:"Брайтон энд Хоув Альбион", away:"Ноттингем Форест", homeScore:null, awayScore:null },
-    { id:338, tour:34, date:"01.05.2027", time:"17:00", home:"Ковентри Сити", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
-    { id:339, tour:34, date:"01.05.2027", time:"17:00", home:"Кристал Пэлас", away:"Астон Вилла", homeScore:null, awayScore:null },
-    { id:340, tour:34, date:"01.05.2027", time:"17:00", home:"Арсенал", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
+    { id:331, tour:34, date:"01.05.2027", time:"17:00", home:"Манчестер Сити", away:"Брентфорд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321722/" },
+    { id:332, tour:34, date:"01.05.2027", time:"17:00", home:"Ливерпуль", away:"Челси", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321724/" },
+    { id:333, tour:34, date:"01.05.2027", time:"17:00", home:"Сандерленд", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321726/" },
+    { id:334, tour:34, date:"01.05.2027", time:"17:00", home:"Фулхэм", away:"Эвертон", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321728/" },
+    { id:335, tour:34, date:"01.05.2027", time:"17:00", home:"Халл Сити", away:"Борнмут", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321732/" },
+    { id:336, tour:34, date:"01.05.2027", time:"17:00", home:"Ипсвич Таун", away:"Лидс Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321734/" },
+    { id:337, tour:34, date:"01.05.2027", time:"17:00", home:"Брайтон энд Хоув Альбион", away:"Ноттингем Форест", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321738/" },
+    { id:338, tour:34, date:"01.05.2027", time:"17:00", home:"Ковентри Сити", away:"Манчестер Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321740/" },
+    { id:339, tour:34, date:"01.05.2027", time:"17:00", home:"Кристал Пэлас", away:"Астон Вилла", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321742/" },
+    { id:340, tour:34, date:"01.05.2027", time:"17:00", home:"Арсенал", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321752/" },
 
     // 35-й тур
-    { id:341, tour:35, date:"08.05.2027", time:"17:00", home:"Борнмут", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
-    { id:342, tour:35, date:"08.05.2027", time:"17:00", home:"Тоттенхэм Хотспур", away:"Челси", homeScore:null, awayScore:null },
-    { id:343, tour:35, date:"08.05.2027", time:"17:00", home:"Ноттингем Форест", away:"Кристал Пэлас", homeScore:null, awayScore:null },
-    { id:344, tour:35, date:"08.05.2027", time:"17:00", home:"Ньюкасл Юнайтед", away:"Ковентри Сити", homeScore:null, awayScore:null },
-    { id:345, tour:35, date:"08.05.2027", time:"17:00", home:"Манчестер Сити", away:"Ливерпуль", homeScore:null, awayScore:null },
-    { id:346, tour:35, date:"08.05.2027", time:"17:00", home:"Фулхэм", away:"Ипсвич Таун", homeScore:null, awayScore:null },
-    { id:347, tour:35, date:"08.05.2027", time:"17:00", home:"Лидс Юнайтед", away:"Арсенал", homeScore:null, awayScore:null },
-    { id:348, tour:35, date:"08.05.2027", time:"17:00", home:"Эвертон", away:"Халл Сити", homeScore:null, awayScore:null },
-    { id:349, tour:35, date:"08.05.2027", time:"17:00", home:"Брайтон энд Хоув Альбион", away:"Сандерленд", homeScore:null, awayScore:null },
-    { id:350, tour:35, date:"08.05.2027", time:"17:00", home:"Брентфорд", away:"Астон Вилла", homeScore:null, awayScore:null },
+    { id:341, tour:35, date:"08.05.2027", time:"17:00", home:"Борнмут", away:"Манчестер Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321706/" },
+    { id:342, tour:35, date:"08.05.2027", time:"17:00", home:"Тоттенхэм Хотспур", away:"Челси", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321708/" },
+    { id:343, tour:35, date:"08.05.2027", time:"17:00", home:"Ноттингем Форест", away:"Кристал Пэлас", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321716/" },
+    { id:344, tour:35, date:"08.05.2027", time:"17:00", home:"Ньюкасл Юнайтед", away:"Ковентри Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321718/" },
+    { id:345, tour:35, date:"08.05.2027", time:"17:00", home:"Манчестер Сити", away:"Ливерпуль", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321720/" },
+    { id:346, tour:35, date:"08.05.2027", time:"17:00", home:"Фулхэм", away:"Ипсвич Таун", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321730/" },
+    { id:347, tour:35, date:"08.05.2027", time:"17:00", home:"Лидс Юнайтед", away:"Арсенал", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321736/" },
+    { id:348, tour:35, date:"08.05.2027", time:"17:00", home:"Эвертон", away:"Халл Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321746/" },
+    { id:349, tour:35, date:"08.05.2027", time:"17:00", home:"Брайтон энд Хоув Альбион", away:"Сандерленд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321748/" },
+    { id:350, tour:35, date:"08.05.2027", time:"17:00", home:"Брентфорд", away:"Астон Вилла", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321754/" },
 
     // 36-й тур
-    { id:351, tour:36, date:"15.05.2027", time:"17:00", home:"Сандерленд", away:"Борнмут", homeScore:null, awayScore:null },
-    { id:352, tour:36, date:"15.05.2027", time:"17:00", home:"Кристал Пэлас", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
-    { id:353, tour:36, date:"15.05.2027", time:"17:00", home:"Ливерпуль", away:"Брентфорд", homeScore:null, awayScore:null },
-    { id:354, tour:36, date:"15.05.2027", time:"17:00", home:"Халл Сити", away:"Фулхэм", homeScore:null, awayScore:null },
-    { id:355, tour:36, date:"15.05.2027", time:"17:00", home:"Челси", away:"Эвертон", homeScore:null, awayScore:null },
-    { id:356, tour:36, date:"15.05.2027", time:"17:00", home:"Ковентри Сити", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
-    { id:357, tour:36, date:"15.05.2027", time:"17:00", home:"Манчестер Юнайтед", away:"Лидс Юнайтед", homeScore:null, awayScore:null },
-    { id:358, tour:36, date:"15.05.2027", time:"17:00", home:"Арсенал", away:"Ноттингем Форест", homeScore:null, awayScore:null },
-    { id:359, tour:36, date:"15.05.2027", time:"17:00", home:"Ипсвич Таун", away:"Манчестер Сити", homeScore:null, awayScore:null },
-    { id:360, tour:36, date:"15.05.2027", time:"17:00", home:"Астон Вилла", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
+    { id:351, tour:36, date:"15.05.2027", time:"17:00", home:"Сандерленд", away:"Борнмут", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321682/" },
+    { id:352, tour:36, date:"15.05.2027", time:"17:00", home:"Кристал Пэлас", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321688/" },
+    { id:353, tour:36, date:"15.05.2027", time:"17:00", home:"Ливерпуль", away:"Брентфорд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321690/" },
+    { id:354, tour:36, date:"15.05.2027", time:"17:00", home:"Халл Сити", away:"Фулхэм", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321692/" },
+    { id:355, tour:36, date:"15.05.2027", time:"17:00", home:"Челси", away:"Эвертон", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321700/" },
+    { id:356, tour:36, date:"15.05.2027", time:"17:00", home:"Ковентри Сити", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321702/" },
+    { id:357, tour:36, date:"15.05.2027", time:"17:00", home:"Манчестер Юнайтед", away:"Лидс Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321704/" },
+    { id:358, tour:36, date:"15.05.2027", time:"17:00", home:"Арсенал", away:"Ноттингем Форест", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321710/" },
+    { id:359, tour:36, date:"15.05.2027", time:"17:00", home:"Ипсвич Таун", away:"Манчестер Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321712/" },
+    { id:360, tour:36, date:"15.05.2027", time:"17:00", home:"Астон Вилла", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321714/" },
 
     // 37-й тур
-    { id:361, tour:37, date:"23.05.2027", time:"17:00", home:"Тоттенхэм Хотспур", away:"Манчестер Юнайтед", homeScore:null, awayScore:null },
-    { id:362, tour:37, date:"23.05.2027", time:"17:00", home:"Ноттингем Форест", away:"Ипсвич Таун", homeScore:null, awayScore:null },
-    { id:363, tour:37, date:"23.05.2027", time:"17:00", home:"Ньюкасл Юнайтед", away:"Кристал Пэлас", homeScore:null, awayScore:null },
-    { id:364, tour:37, date:"23.05.2027", time:"17:00", home:"Брентфорд", away:"Халл Сити", homeScore:null, awayScore:null },
-    { id:365, tour:37, date:"23.05.2027", time:"17:00", home:"Фулхэм", away:"Ковентри Сити", homeScore:null, awayScore:null },
-    { id:366, tour:37, date:"23.05.2027", time:"17:00", home:"Брайтон энд Хоув Альбион", away:"Ливерпуль", homeScore:null, awayScore:null },
-    { id:367, tour:37, date:"23.05.2027", time:"17:00", home:"Эвертон", away:"Арсенал", homeScore:null, awayScore:null },
-    { id:368, tour:37, date:"23.05.2027", time:"17:00", home:"Манчестер Сити", away:"Астон Вилла", homeScore:null, awayScore:null },
-    { id:369, tour:37, date:"23.05.2027", time:"17:00", home:"Борнмут", away:"Челси", homeScore:null, awayScore:null },
-    { id:370, tour:37, date:"23.05.2027", time:"17:00", home:"Лидс Юнайтед", away:"Сандерленд", homeScore:null, awayScore:null },
+    { id:361, tour:37, date:"23.05.2027", time:"17:00", home:"Тоттенхэм Хотспур", away:"Манчестер Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321660/" },
+    { id:362, tour:37, date:"23.05.2027", time:"17:00", home:"Ноттингем Форест", away:"Ипсвич Таун", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321666/" },
+    { id:363, tour:37, date:"23.05.2027", time:"17:00", home:"Ньюкасл Юнайтед", away:"Кристал Пэлас", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321668/" },
+    { id:364, tour:37, date:"23.05.2027", time:"17:00", home:"Брентфорд", away:"Халл Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321674/" },
+    { id:365, tour:37, date:"23.05.2027", time:"17:00", home:"Фулхэм", away:"Ковентри Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321676/" },
+    { id:366, tour:37, date:"23.05.2027", time:"17:00", home:"Брайтон энд Хоув Альбион", away:"Ливерпуль", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321678/" },
+    { id:367, tour:37, date:"23.05.2027", time:"17:00", home:"Эвертон", away:"Арсенал", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321680/" },
+    { id:368, tour:37, date:"23.05.2027", time:"17:00", home:"Манчестер Сити", away:"Астон Вилла", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321684/" },
+    { id:369, tour:37, date:"23.05.2027", time:"17:00", home:"Борнмут", away:"Челси", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321694/" },
+    { id:370, tour:37, date:"23.05.2027", time:"17:00", home:"Лидс Юнайтед", away:"Сандерленд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321696/" },
 
     // 38-й тур
-    { id:371, tour:38, date:"30.05.2027", time:"18:00", home:"Манчестер Юнайтед", away:"Фулхэм", homeScore:null, awayScore:null },
-    { id:372, tour:38, date:"30.05.2027", time:"18:00", home:"Сандерленд", away:"Манчестер Сити", homeScore:null, awayScore:null },
-    { id:373, tour:38, date:"30.05.2027", time:"18:00", home:"Ливерпуль", away:"Борнмут", homeScore:null, awayScore:null },
-    { id:374, tour:38, date:"30.05.2027", time:"18:00", home:"Астон Вилла", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null },
-    { id:375, tour:38, date:"30.05.2027", time:"18:00", home:"Ипсвич Таун", away:"Эвертон", homeScore:null, awayScore:null },
-    { id:376, tour:38, date:"30.05.2027", time:"18:00", home:"Челси", away:"Брентфорд", homeScore:null, awayScore:null },
-    { id:377, tour:38, date:"30.05.2027", time:"18:00", home:"Арсенал", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null },
-    { id:378, tour:38, date:"30.05.2027", time:"18:00", home:"Халл Сити", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null },
-    { id:379, tour:38, date:"30.05.2027", time:"18:00", home:"Ковентри Сити", away:"Ноттингем Форест", homeScore:null, awayScore:null },
-    { id:380, tour:38, date:"30.05.2027", time:"18:00", home:"Кристал Пэлас", away:"Лидс Юнайтед", homeScore:null, awayScore:null }
+    { id:371, tour:38, date:"30.05.2027", time:"18:00", home:"Манчестер Юнайтед", away:"Фулхэм", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321652/" },
+    { id:372, tour:38, date:"30.05.2027", time:"18:00", home:"Сандерленд", away:"Манчестер Сити", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321654/" },
+    { id:373, tour:38, date:"30.05.2027", time:"18:00", home:"Ливерпуль", away:"Борнмут", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321656/" },
+    { id:374, tour:38, date:"30.05.2027", time:"18:00", home:"Астон Вилла", away:"Тоттенхэм Хотспур", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321658/" },
+    { id:375, tour:38, date:"30.05.2027", time:"18:00", home:"Ипсвич Таун", away:"Эвертон", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321662/" },
+    { id:376, tour:38, date:"30.05.2027", time:"18:00", home:"Челси", away:"Брентфорд", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321664/" },
+    { id:377, tour:38, date:"30.05.2027", time:"18:00", home:"Арсенал", away:"Брайтон энд Хоув Альбион", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321670/" },
+    { id:378, tour:38, date:"30.05.2027", time:"18:00", home:"Халл Сити", away:"Ньюкасл Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321672/" },
+    { id:379, tour:38, date:"30.05.2027", time:"18:00", home:"Ковентри Сити", away:"Ноттингем Форест", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321686/" },
+    { id:380, tour:38, date:"30.05.2027", time:"18:00", home:"Кристал Пэлас", away:"Лидс Юнайтед", homeScore:null, awayScore:null, link:"https://www.championat.com/football/_england/tournament/7142/match/1321698/" }
 ];
 
-// ===================================================================
-// ТУРНИРНАЯ ТАБЛИЦА
-// ===================================================================
 let scores = {};
 function loadScores() {
-    const saved = localStorage.getItem("apl2627_scores");
+    const saved = localStorage.getItem("apl2627_scores_v4");
     let parsed = saved ? JSON.parse(saved) : {};
     matchData.forEach(m => {
         if (m.homeScore !== null && m.awayScore !== null) {
@@ -600,7 +608,7 @@ function loadScores() {
             scores[m.id] = null;
         }
     });
-    localStorage.setItem("apl2627_scores", JSON.stringify(scores));
+    localStorage.setItem("apl2627_scores_v4", JSON.stringify(scores));
 }
 
 function computeStandings() {
@@ -621,15 +629,11 @@ function computeStandings() {
     return teams.map(name => ({ name, ...stats[name] })).sort((a,b) => b.pts - a.pts || (b.gf - b.ga) - (a.gf - a.ga) || b.gf - a.gf);
 }
 
-// ===================================================================
-// ФУНКЦИЯ ДЛЯ ПОЛУЧЕНИЯ ССЫЛКИ НА КОМАНДУ
-// ===================================================================
 function getTeamUrl(teamName) {
     const id = teamIds[teamName];
     if (id) {
         return `https://www.championat.com/football/_england/tournament/7142/teams/${id}/result/`;
     }
-    // Если ID нет — ведём на поиск Championat по названию команды
     return `https://www.championat.com/search/?q=${encodeURIComponent(teamName)}`;
 }
 
@@ -650,9 +654,6 @@ function renderStandings() {
     container.innerHTML = html;
 }
 
-// ===================================================================
-// ОПРЕДЕЛЕНИЕ ТУРОВ
-// ===================================================================
 function getLastPlayedTour() {
     let last = 1;
     matchData.forEach(m => {
@@ -687,9 +688,6 @@ function getDefaultTour() {
     return getTodayTour() || getLastPlayedTour();
 }
 
-// ===================================================================
-// ОТОБРАЖЕНИЕ МАТЧЕЙ
-// ===================================================================
 function getActiveTour() {
     const activeBtn = document.querySelector('.bottom-btn.active');
     return activeBtn ? parseInt(activeBtn.getAttribute('data-tour')) : getDefaultTour();
@@ -720,7 +718,7 @@ function renderMatches() {
         const s = scores[m.id];
         const homeVal = s?.home !== undefined ? s.home : '';
         const awayVal = s?.away !== undefined ? s.away : '';
-        const link = matchLinks[m.id] || '#';
+        const link = m.link || '#';
 
         const homeLogo = teamLogos[m.home] || '';
         const awayLogo = teamLogos[m.away] || '';
@@ -755,9 +753,6 @@ function renderMatches() {
     renderCalendar(activeTour);
 }
 
-// ===================================================================
-// КАЛЕНДАРЬ
-// ===================================================================
 function renderCalendar(activeTour) {
     const grid = document.getElementById('calendarGrid');
     const label = document.getElementById('monthLabel');
@@ -808,7 +803,6 @@ function renderCalendar(activeTour) {
     grid.innerHTML = html;
 }
 
-// Собираем даты туров для календаря
 const tourDates = {};
 matchData.forEach(m => {
     if (m.date) {
@@ -817,9 +811,6 @@ matchData.forEach(m => {
     }
 });
 
-// ===================================================================
-// ФИЛЬТРЫ ПО ТУРАМ
-// ===================================================================
 function buildBottomFilters() {
     const container = document.getElementById('bottomPanel');
     const initialTour = getDefaultTour();
@@ -839,9 +830,6 @@ function buildBottomFilters() {
     });
 }
 
-// ===================================================================
-// НАДПИСЬ В ШАПКЕ
-// ===================================================================
 function renderTourStatus() {
     const el = document.getElementById('tourStatus');
     if (!el) return;
@@ -860,9 +848,6 @@ function renderTourStatus() {
     }
 }
 
-// ===================================================================
-// ЗАПУСК
-// ===================================================================
 loadScores();
 buildBottomFilters();
 renderStandings();
